@@ -4,7 +4,7 @@
 
 Before starting, you need the following:
 
--   A MATLAB® Web App Server™ license. For more information, see [Configure MATLAB Web App Server Licensing on the Cloud](https://www.mathworks.com/help/licensingoncloud/matlab-Web App-server-on-the-cloud.html). In order to configure the license in the cloud, you need the MAC address of the license server on the cloud. For more information, see [Get License Server MAC Address](#get-license-server-mac-address).
+-   A MATLAB® Web App Server™ license. For more information, see [Configure MATLAB Web App Server Licensing on the Cloud](https://www.mathworks.com/help/licensingoncloud/). In order to configure the license in the cloud, you need the MAC address of the license server on the cloud. For more information, see [Get License Server MAC Address](#get-license-server-mac-address).
 - MATLAB Compiler ???
 -   An Amazon Web Services™ (AWS) account.
 -   A Key Pair for your AWS account in the US East (N. Virginia), EU (Ireland) or Asia Pacific (Tokyo) region. For more information, see [Amazon EC2 Key Pairs](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-key-pairs.html).
@@ -40,7 +40,7 @@ Click the **Launch Stack** button to deploy resources on AWS. This will open the
 |---------------|------------------------|
 | MATLAB R2021a | <a href="https://us-east-1.console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/create/review?templateURL=https://matlab-Web App-server-templates.s3.amazonaws.com/r2020b_mps_refarch/MatlabWeb AppServer_New.yml" target="_blank">     <img src="https://s3.amazonaws.com/cloudformation-examples/cloudformation-launch-stack.png"/> </a> |
 
-For other releases, see [How do I launch a template that uses a previous MATLAB release?](#how-do-i-launch-a-template-that-uses-a-previous-matlab-release)
+<!--For other releases, see [How do I launch a template that uses a previous MATLAB release?](#how-do-i-launch-a-template-that-uses-a-previous-matlab-release)-->
 <p><strong>Note:</strong> Creating a stack on AWS can take at least 20 minutes.</p>
 
 ## Step 2. Configure the Stack
