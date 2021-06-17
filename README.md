@@ -1,6 +1,6 @@
 # MATLAB Web App Server on Amazon Web Services
 
-# Requirements Hello
+# Requirements
 
 Before starting, you need the following:
 
