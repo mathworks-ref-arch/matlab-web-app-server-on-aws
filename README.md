@@ -1,10 +1,13 @@
 # MATLAB Web App Server on Amazon Web Services
 
-# Requirements Hello
+# Requirements
 
 Before starting, you need the following:
 
--   A MATLAB® Web App Server™ license. For more information, see [Configure MATLAB Web App Server Licensing on the Cloud](http://tinyurl.mathworks.com/8bfHUFTY). In order to configure the license in the cloud, you need the MAC address of the network license manager on the cloud. For more information, see [Get License Server MAC Address](#get-license-server-mac-address).
+-   A MATLAB® Web App Server™ license. For more information, see [Configure MATLAB Web App Server Licensing on the Cloud](http://tinyurl.mathworks.com/8bfHUFTY). To configure a license for use on the cloud, you need the MAC address of the network license manager on the cloud. For more information, see [Get License Server MAC Address](#get-license-server-mac-address).
+
+
+    <span style="color: blue;">For UX testing, use the following license file:(inlcude link here) </span>
 -   An Amazon Web Services™ (AWS) account with an IAM user identity.
 -   A Key Pair for your AWS account in the US East (N. Virginia), EU (Ireland) or Asia Pacific (Tokyo) region. For more information, see [Amazon EC2 Key Pairs](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-key-pairs.html).
 
@@ -20,9 +23,9 @@ file that defines the resources needed to deploy and manage MATLAB Web App
 Server on AWS.
 For information about the architecture of this solution, see [Architecture and Resources](#architecture-and-resources). For information about AWS templates, see [AWS CloudFormation Templates](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/template-guide.html). <br>
 
-The default MATLAB Web App Server deployment template deploys a Network License Manager to manage MATLAB Web App Server licenses. 
+The default MATLAB Web App Server deployment template deploys a network license manager to manage MATLAB Web App Server licenses. 
 
-The template for using an exisitng VPC for deployment provides an option to either deploy the Network License Manager or use a network license manager that has already been deployed. For more information about the Network License Manager reference architecture, see [Network License Manager for MATLAB](https://github.com/mathworks-ref-arch/license-manager-for-matlab-on-aws).
+The template for using an exisitng VPC for deployment provides an option to either deploy a network license manager or use a network license manager that has already been deployed. For details, see [Network License Manager for MATLAB](https://github.com/mathworks-ref-arch/license-manager-for-matlab-on-aws).
 
 # Prepare Your AWS Account
 1. If you do not have an AWS account, create one at https://aws.amazon.com by following the on-screen instructions.
