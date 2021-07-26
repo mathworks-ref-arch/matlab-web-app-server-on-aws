@@ -7,7 +7,7 @@ Before starting, you need the following:
 -   A MATLAB® Web App Server™ license. For more information, see [Configure MATLAB Web App Server Licensing on the Cloud](http://tinyurl.mathworks.com/8bfHUFTY). To configure a license for use on the cloud, you need the MAC address of the network license manager on the cloud. For more information, see [Get License Server MAC Address](#get-license-server-mac-address).
 
 
-    <span style="color: blue;">For UX testing, use the following license file:(inlcude link here) </span>
+    <font style="color: blue;">For UX testing, use the following license file:(inlcude link here) </font>
 -   An Amazon Web Services™ (AWS) account with an IAM user identity.
 -   A Key Pair for your AWS account in the US East (N. Virginia), EU (Ireland) or Asia Pacific (Tokyo) region. For more information, see [Amazon EC2 Key Pairs](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-key-pairs.html).
 
