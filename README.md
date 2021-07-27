@@ -262,7 +262,7 @@ Find the IP address of the license server from the AWS management console.
 1. Select the license server instance.
 1. In the instance details, copy the value of **Private IPs**. For example, 172.30.1.126
 1. Add the private IP to the `--license` property. For example, `--license 27000@172.30.1.126`. For more information about editing the server configuration, see [Edit the Server Configuration](/releases/R2020b/doc/cloudConsoleDoc.md#edit-the-server-configuration). 
-<!-->
+<!--
 ## How do I launch a template that uses a previous MATLAB release?
 | Release | Windows Server VM | Ubuntu VM |
 |---------------|------------------------|-----------------|
