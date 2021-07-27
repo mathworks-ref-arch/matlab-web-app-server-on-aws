@@ -24,7 +24,7 @@ For information about the architecture of this solution, see [Architecture and R
 
 The default MATLAB Web App Server deployment template deploys a network license manager to manage MATLAB Web App Server licenses. 
 
-The template for using an exisitng VPC for deployment provides an option to either deploy a network license manager or use a network license manager that has already been deployed. For details, see [Network License Manager for MATLAB](https://github.com/mathworks-ref-arch/license-manager-for-matlab-on-aws).
+The template for using an exisitng VPC for deployment provides an option to either deploy a network license manager or use a network license manager that has already been deployed. For details, see [How Do I Use An Existing VPC to Deploy MATLAB Web App Server?](#how-do-i-use-an-existing-vpc-to-deploy-matlab-web-app-servers).
 
 # Prepare Your AWS Account
 1. If you do not have an AWS account, create one at https://aws.amazon.com by following the on-screen instructions.
@@ -50,34 +50,34 @@ Click the **Launch Stack** button to deploy resources on AWS. This will open the
     | Parameter Name                         | Value                                                                                                                                                                                                                                                                                                                                                 |
     |----------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
     | **Stack name**                         | Choose a name for the stack. This will be shown in the AWS console. <p><em>*Example*</em>: Boston</p>                                                                                                                                                                                                                                                                       |
-    | |**Parametes for Setting Up Remote Access to EC2 Instance Hosting MATLAB Web App Server**|
-    | **Name of Existing Key Pair**          | Choose the name of an existing EC2 Key Pair to allow access to all the instances in the stack. For information about creating an Amazon EC2 key pair, see [Amazon EC2 Key Pairs](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-key-pairs.html#having-ec2-create-your-key-pair). <p><em>*Example*</em>: boston-keypair</p>                                                                                   |
-    | **IP Addresses Permitted to Remotely Access EC2 Instance Hosting MATLAB Web App Server** | This is the IP address range that will be allowed to connect to the cloud console that manages the server. The format for this field is IP Address/Mask. <p><em>Example</em>: </p>10.0.0.1/32 <ul><li>This is the public IP address which can be found by searching for "what is my ip address" on the web. The mask determines the number of IP addresses to include.</li><li>A mask of 32 is a single IP address.</li><li>Use a [CIDR calculator](https://www.ipaddressguide.com/cidr) if you need a range of more than one IP addresses.</li><li>You may need to contact your IT administrator to determine which address is appropriate.</li></ul></p> |
-    | **Make Solution Available over Internet** | Choose 'Yes' if you want your solution to use public IP addresses. |
-    ||**Parameters to Enable Access to MATLAB Web App Server Homepage**||
-    | **IP Addresses Permitted to Access MATLAB Web App Server Homepage** | Specify the IP Addresses that can connect to the MATLAB Web App Server. Specify the range in CIDR notation in the format IP Address/Mask. <p><em>*Example*</em>: 10.0.0.1/24</p> |
-    ||**Parameters for Setting Up for EC2 Instance That Hosts MATLAB Web App Server**|
-    | **EC2 Instance Type** | Choose the AWS instance type to use for the server instances. All AWS instance types are supported. For more information, see [Amazon EC2 Instance Types](https://aws.amazon.com/ec2/instance-types/). <p><em>*Example*</em>: m5.xlarge</p> |
+    | |**Settings for Remote Access to EC2 Instance Hosting MATLAB Web App Server**|
+    | **Name of Existing Amazon EC2 Key Pair**          | Choose an existing Amazon EC2 key pair to connect to the EC2 instance hosting MATLAB Web App Server. For information about creating an Amazon EC2 key pair, see [Amazon EC2 Key Pairs](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-key-pairs.html#having-ec2-create-your-key-pair). <p><em>*Example*</em>: boston-keypair</p>                                                                                   |
+    | **IP Addresses Allowed to Remotely Connect to EC2 Instance and Administer MATLAB Web App Server** | Specify a single IP address or an IP address range that can remotely connect to the EC2 instance that hosts the MATLAB Web App Server and administer it. You still need login credentials to modify any server configurations. The format for this field is IP Address/Mask. <p><em>Example</em>: </p><p><em>Single IP Address [ 10.0.0.1 ]:</em> 10.0.0.1/32 </p><p><em>Range of IP Addresses [ 10.0.0.0 to 10.0.255.255 ]:</em> 10.0.0.1/16 <ul><li>This is the public IP address which can be found by searching for "what is my ip address" on the web. The mask determines the number of IP addresses to include.</li><li>A mask of 32 is a single IP address.</li><li>Use a [CIDR calculator](https://www.ipaddressguide.com/cidr) if you need a range of more than one IP addresses.</li><li>You may need to contact your IT administrator to determine which address is appropriate.</li></ul></p> |
+    ||**Settings to Access to MATLAB Web App Server Home Page**||
+    | **Use the Same IP Addresses to Access MATLAB Web App Server Apps Home Page**| Select, "Yes" or "No". <p>If you select "Yes", the same IP address range specified above is configured to access the MATLAB Web App Server apps homepage.</p><p> If you select "No", you must specify a new IP address range in the next field.</p>
+    | **IP Addresses Allowed to Access MATLAB Web App Server Apps Home Page** | Complete this field only if you selected "No" in the previous field. Specify the IP address range that can connect to MATLAB Web App Server. Specify the range in CIDR notation in the format IP Address/Mask. <p><em>*Example*</em>: 10.0.0.1/24</p> |
+    | **ARN of SSL Certificate** | Specify the Amazon Resource Name (ARN) of the SSL certificate you uploaded to the AWS Ceritifcate Manager. The ARN facilitates connecting to the apps home page using an HTTPS connection.<p><em>*Example*</em>:</p><code>arn:aws:acm:us-east-1:012345678910:certificate/666abcd6-ab6c-6ab6-a666-a666666bcd66</code> <p>To retrieve an ARN:</p><ul><li>Type "Certificate Manager" in the search box at the top of the web page and hit Enter. This automatically takes you to the AWS Certificate Manager.</li><li>Expand the entry for the certificate you uploaded.</li><li>Copy the ARN from the "Details" section.</li></ul><p>For more information, see [Create Self-signed Certificate](/README.md#create-self-signed-certificate) and [Upload Self-signed Certificate to AWS Certificate Manager](/README.md#upload-self-signed-certificate-to-aws-certificate-manager).
+    ||**Settings for EC2 Instance Hosting MATLAB Web App Server**|
+    | **EC2 Instance Type** | Choose the AWS EC2 instance type to use for the server. All AWS instance types are supported. For more information, see [Amazon EC2 Instance Types](https://aws.amazon.com/ec2/instance-types/). <p><em>*Example*</em>: m5.xlarge</p> |
     | **Operating System** | Choose between Windows (Windows Server) and Linux(Ubuntu).  |
-    | **ARN of SSL Certificate**             | Provide the Amazon Resource Name (ARN) of an existing certificate in the AWS Certificate Manager to enable secure HTTPS communication to the HTTPS server endpoint. This field is optional and may be left blank to use HTTP communication instead. For more information, see [Create Self-signed Certificate](/README.md#create-self-signed-certificate) and [Upload Self-signed Certificate to AWS Certificate Manager](/README.md#upload-self-signed-certificate-to-aws-certificate-manager).<p><em>*Example*</em>: arn:aws:acm:us-east-1:012345678910:certificate/666abcd6-ab6c-6ab6-a666-a666666bcd66</p>                                                                                        |
-    ||**Parameters for Setting Up Networks License Manager**|
-    | **Password for Network License Manager** | Specify a password for the network license manager. Use this password to log in to the EC2 instance hosting the network license manager after the stack has been successfully created. |
-    | **Confirm Password** | Reenter the password to log in to the Network License Manager. |
-    ||**Parameters for Setting Up Authentication on  MATLAB Web App Server**||
-    |
+    ||**Settings for Networks License Manager**|
+    | **Password for Network License Manager** | Specify a password for the network license manager. Use this password to log in to the EC2 instance hosting the network license manager after the stack has been successfully created.<p>Deploying MATLAB Web App Server automatically deploys a network license manager.</p>|
+    | **Confirm Password** | Reenter the password to log in to the network license manager. |
 
     >**Note**: Make sure you select US East (N.Virginia), EU (Ireland) or Asia Pacific (Tokyo) as your region from the navigation panel on top. Currently, US East, EU (Ireland), and Asia Pacific (Tokyo) are the only supported regions.
 
 2. Tick the box to accept that the template uses IAM roles. For more information about IAM, see [IAM FAQ](https://aws.amazon.com/iam/faqs). 
   
-3. Click the **Create** button. The CloudFormation service will start creating the resources for the stack.
+3. Click the **Create** button. The CloudFormation service starts creating resources for the stack.
+>**Note**: Clicking **Create** takes you to the *Stack Detail* page for your stack. Wait for the Status to reach **CREATE\_COMPLETE**. This can take up to 20 minutes.
 
-<!--## Step 3. Upload the License File
-1. Clicking **Create** takes you to the *Stack Detail* page for your stack. Wait for the Status to reach **CREATE\_COMPLETE**. This can take up to 20 minutes.
-1. In the Stack Detail for your stack, click **Outputs**.
-1. Look for the key named `MatlabWeb AppServerLicenseServer` and click the corresponding URL listed under value. This will take you to Network License Manager for MATLAB dashboard log in page.
-1. The user name for the Network License Manager for MATLAB dashboard is **manager**. For the password, enter the password that you entered in the **Network License Manager for MATLAB** section while creating the stack in [Step 2](#step-2-configure-the-stack).
-1. Follow the instructions to upload your MATLAB Web App Server license.
+## Step 3. Upload License File
+1. Click **Outputs** in the Stack Detail for your stack.
+1. Look for the key named `MATLABWebAppServerLicenseManager` and click the corresponding URL listed under value. This will take you to Network License Manager for MATLAB Dashboard login page.
+1. The user name is **manager**. For the password, enter the password you entered in the **Password for Network License Manager** field while creating the stack in [Step 2](#step-2-configure-the-stack).
+1. Follow the instructions on the home page of the network license manager to upload your MATLAB Web App Server license.
+
+<mark> For UX testing: Click **Administration** > **Manage License** and upload the license file. </mark>
 
 ## Step 4. Get the Password to the Cloud Console
 1. In the AWS management console, select the stack that you deployed. 
@@ -103,14 +103,9 @@ Click the **Launch Stack** button to deploy resources on AWS. This will open the
 The username to the cloud console is **Administrator**. For the password, paste the password you copied to the clipboard by completing [Step 4](#step-4-get-the-password-to-the-cloud-console). The cloud console provides a web-based interface to configure and manage server instances on the cloud. For more information on how to use the cloud console, see [MATLAB Web App Server Cloud Console User  Guide](/releases/R2020b/doc/cloudConsoleDoc.md#matlab-Web App-server-cloud-console-users-guide).  
 
 ![MATLAB Web App Server Cloud Console](/releases/R2020b/images/cloudConsoleLogin.png?raw=true)
--->
+
 You are now ready to use MATLAB Web App Server on AWS. 
-<!-->
->**Accept Terms and Conditions**: Access to and use of the MATLAB Web App Server cloud console is governed by license terms in the file `C:\MathWorks\Cloud Console License.txt` (Linux: `/MathWorks/Cloud Console License.txt`) available on the `servermachine` in the resource group for this solution. 
 
-
->**Note**: The cloud console uses a self-signed certificate which you can change. For information on changing the self-signed certificates, see [Change Self-signed Certificates](/releases/R2020b/doc/cloudConsoleDoc.md#change-self-signed-certificates).
--->
 To run applications on MATLAB Web App Server, you need to create applications using MATLAB Compiler. For more information, see [Deployable Archive Creation](https://www.mathworks.com/help/compiler/webapps/create-and-deploy-a-web-app.html) in the MATLAB Compiler product documentation.
 
 # Additional Information
