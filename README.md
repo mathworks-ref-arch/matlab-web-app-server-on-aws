@@ -54,7 +54,7 @@ Click the **Launch Stack** button to deploy resources on AWS. This will open the
     | **Name of Existing Amazon EC2 Key Pair**          | Choose an existing Amazon EC2 key pair to connect to the EC2 instance hosting MATLAB Web App Server. For information about creating an Amazon EC2 key pair, see [Amazon EC2 Key Pairs](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-key-pairs.html#having-ec2-create-your-key-pair). <p><em>*Example*</em>: boston-keypair</p>                                                                                   |
     | **IP Addresses Allowed to Remotely Connect to EC2 Instance and Administer MATLAB Web App Server** | Specify a single IP address or an IP address range that can remotely connect to the EC2 instance that hosts the MATLAB Web App Server and administer it. You still need login credentials to modify any server configurations. The format for this field is IP Address/Mask. <p><em>Example</em>: </p><p><em>Single IP Address [ 10.0.0.1 ]:</em> 10.0.0.1/32 </p><p><em>Range of IP Addresses [ 10.0.0.0 to 10.0.255.255 ]:</em> 10.0.0.1/16 <ul><li>This is the public IP address which can be found by searching for "what is my ip address" on the web. The mask determines the number of IP addresses to include.</li><li>A mask of 32 is a single IP address.</li><li>Use a [CIDR calculator](https://www.ipaddressguide.com/cidr) if you need a range of more than one IP addresses.</li><li>You may need to contact your IT administrator to determine which address is appropriate.</li></ul></p> |
     ||**Settings to Access to MATLAB Web App Server Home Page**||
-    | **Use the Same IP Addresses to Access MATLAB Web App Server Apps Home Page**| Select, "Yes" or "No". <p>If you select "Yes", the same IP address range specified above is configured to access the MATLAB Web App Server apps homepage.</p><p> If you select "No", you must specify a new IP address range in the next field.</p>
+    | **Use the Same IP Addresses to Access MATLAB Web App Server Apps Home Page**| Select, "Yes" or "No". <ul><li>If you select "Yes", the same IP address range specified above is configured to access the MATLAB Web App Server apps homepage.</li><li>If you select "No", you must specify a new IP address range in the next field.</li></ul>
     | **IP Addresses Allowed to Access MATLAB Web App Server Apps Home Page** | Complete this field only if you selected "No" in the previous field. Specify the IP address range that can connect to MATLAB Web App Server. Specify the range in CIDR notation in the format IP Address/Mask. <p><em>*Example*</em>: 10.0.0.1/24</p> |
     | **ARN of SSL Certificate** | Specify the Amazon Resource Name (ARN) of the SSL certificate you uploaded to the AWS Ceritifcate Manager. The ARN facilitates connecting to the apps home page using an HTTPS connection.<p><em>*Example*</em>:</p><code>arn:aws:acm:us-east-1:012345678910:certificate/666abcd6-ab6c-6ab6-a666-a666666bcd66</code> <p>To retrieve an ARN:</p><ul><li>Type "Certificate Manager" in the search box at the top of the web page and hit Enter. This automatically takes you to the AWS Certificate Manager.</li><li>Expand the entry for the certificate you uploaded.</li><li>Copy the ARN from the "Details" section.</li></ul><p>For more information, see [Create Self-signed Certificate](/README.md#create-self-signed-certificate) and [Upload Self-signed Certificate to AWS Certificate Manager](/README.md#upload-self-signed-certificate-to-aws-certificate-manager).
     ||**Settings for EC2 Instance Hosting MATLAB Web App Server**|
@@ -79,34 +79,28 @@ Click the **Launch Stack** button to deploy resources on AWS. This will open the
 
 <mark> For UX testing: Click **Administration** > **Manage License** and upload the license file. </mark>
 
-## Step 4. Get the Password to the Cloud Console
-1. In the AWS management console, select the stack that you deployed. 
+## Step 4. Get the AWS Password to the EC2 Instance 
+1. In the AWS management console, select the stack you deployed. 
 1. In the Stack Detail for your stack, expand the **Outputs** section.
-1. Look for the key named `MatlabWeb AppServerInstance` and click the corresponding URL listed under value. This will take you to the server instance (`matlab-Web App-server-vm`) page. 
+1. Look for the key named `MATLABWebAppServerEC2Instance` and click the corresponding URL listed under value. This will take you to the server instance (`matlab-webapp-server-vm`) page. 
 1. Click the **Connect** button at the top.
-1. In the *Connect To Your Instance* dialog box, choose **Get Password**.
+1. In the *Connect to instance* dialog box, choose **Get Password**.
 1. Click **Choose File** to navigate and select the private key file (`.pem` file) for the key pair that you used while creating the stack in [Step 2](#step-2-configure-the-stack).
-1. Click **Decrypt Password**. The console displays the password for the instance in the *Connect To Your Instance* dialog box, replacing the link to *Get Password* shown previously with the actual password.
+1. Click **Decrypt Password**. The console displays the password for the instance in the *Connect to instance* dialog box, replacing the link to *Get Password* shown previously with the actual password.
 1. Copy the password to the clipboard.
 
 
 
-## Step 5. Connect to the Cloud Console
-> **Note**: The Internet Explorer web browser is not supported for interacting with the cloud console.
-
+## Step 5. Connect to the EC2 Instance Hosting MATLAB Web App Server
 1. In the Stack Detail for your stack, expand the **Outputs** section. 
-1. Look for the key named `MatlabWeb AppServerCloudConsole` and click the corresponding URL listed under value. This is the HTTPS endpoint to the MATLAB Web App Server Cloud Console. 
+1. **Details Details Details Details Details Details Details Details Details Details Details**
 
-
-
-## Step 6. Log in to the Cloud Console
-The username to the cloud console is **Administrator**. For the password, paste the password you copied to the clipboard by completing [Step 4](#step-4-get-the-password-to-the-cloud-console). The cloud console provides a web-based interface to configure and manage server instances on the cloud. For more information on how to use the cloud console, see [MATLAB Web App Server Cloud Console User  Guide](/releases/R2020b/doc/cloudConsoleDoc.md#matlab-Web App-server-cloud-console-users-guide).  
-
-![MATLAB Web App Server Cloud Console](/releases/R2020b/images/cloudConsoleLogin.png?raw=true)
+## Step 6. Start MATLAB Web App Server
+1. **Details Details Details Details Details Details Details Details Details Details Details**
 
 You are now ready to use MATLAB Web App Server on AWS. 
 
-To run applications on MATLAB Web App Server, you need to create applications using MATLAB Compiler. For more information, see [Deployable Archive Creation](https://www.mathworks.com/help/compiler/webapps/create-and-deploy-a-web-app.html) in the MATLAB Compiler product documentation.
+To run applications on MATLAB Web App Server, you need to create web apps using MATLAB Compiler. For more information, see [Web Apps](https://www.mathworks.com/help/compiler/webapps/create-and-deploy-a-web-app.html) in the MATLAB Compiler product documentation.
 
 # Additional Information
 
@@ -114,14 +108,14 @@ To run applications on MATLAB Web App Server, you need to create applications us
 
 Once you have finished using your stack, it is recommended that you delete all resources to avoid incurring further cost. 
 
-If you are using an existing license server, and have added the security group of the server VMs to the security group of the license server, you must delete the inbound rules before you delete the stack.
+~~If you are using an existing license server, and have added the security group of the server VMs to the security group of the license server, you must delete the inbound rules before you delete the stack.
 1. In the AWS management console, select the stack that you deployed. 
 1. In the stack detail for your stack, click **Resources**.
 1. Look for the **Logical ID** named `SecurityGroup` and click the corresponding URL listed under **Physical ID**. This will take you to the security group details.
 1. Click the **Inbound Rules** tab, then click **Edit Inbound Rules**.
 1. Click **Delete Rule** for the rules that have the tag `matlab-Web App-server-cloud-stack-elb-1-sg` and `
 matlab-Web App-server-cloud-stack-elb-2-sg` as their **Source**. 
-1. Click **Save Rules**.
+1. Click **Save Rules**.~~
 
 To delete the stack, do the following:
 1. Log in to the AWS Console.
