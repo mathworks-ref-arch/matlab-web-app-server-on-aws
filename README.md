@@ -72,29 +72,17 @@ Click the **Launch Stack** button to deploy resources on AWS. This will open the
 >**Note**: Clicking **Create** takes you to the *Stack Detail* page for your stack. Wait for the Status to reach **CREATE\_COMPLETE**. This can take up to 20 minutes.
 
 ## Step 3. Upload License File
-1. Click **Outputs** in the Stack Detail for your stack.
+1. Click **Outputs** in the *Stack details* for your stack.
 1. Look for the key named `MATLABWebAppServerLicenseManager` and click the corresponding URL listed under value. This will take you to Network License Manager for MATLAB Dashboard login page.
 1. The user name is **manager**. For the password, enter the password you entered in the **Password for Network License Manager** field while creating the stack in [Step 2](#step-2-configure-the-stack).
 1. Follow the instructions on the home page of the network license manager to upload your MATLAB Web App Server license.
 
 <mark> For UX testing: Click **Administration** > **Manage License** and upload the license file. </mark>
 
-## Step 6. Start MATLAB Web App Server
-1. In the EC2 instance, navigate to the folder containing the MATLAB Web App Server command-line scripts.
+>Note: MATLAB Web App Server automatically starts after succesfully uploading a license file.
 
-
-Operating System | Default Location of Command-Line Scripts 
----------|----------
- Windows® (Administrator) | `C:\Program Files\MATLAB\MATLAB Web App Server\R2021a\script` | 
- Linux® (sudo) | `/usr/local/MATLAB/MATLAB_Web_App_Server/R2021a/script` | 
-
-At the operating system command line, type: `webapps-start`
-
-## Step 7. Upload a Test Web App to AWS S3 Bucket
-**Details Details Details Details Details Details Details Details Details Details Details**
-
-## Step 8. Open the MATLAB Web App Server Apps Home Page
-1. In the Stack Detail for your stack, expand the **Outputs** section.
+## Step 4. Open the MATLAB Web App Server Apps Home Page
+1. In the *Stack details* for your stack, click the **Outputs** tab.
 1. Look for the key named `MATLABWebAppServerAppsHomePage` and click the corresponding URL listed under value. This opens the apps home page.
 
 You are now ready to use MATLAB Web App Server on AWS. 
@@ -102,9 +90,16 @@ You are now ready to use MATLAB Web App Server on AWS.
 To run applications on MATLAB Web App Server, you need to create web apps using MATLAB Compiler. For more information, see [Web Apps](https://www.mathworks.com/help/compiler/webapps/create-and-deploy-a-web-app.html) in the MATLAB Compiler product documentation.
 
 # Common Tasks
-## Get Password to EC2 Instance
+## Upload Web Apps to AWS S3 Bucket
+1. In the AWS management console, select the stack that you deployed. 
+1. In the *Stack details* for your stack, click the **Outputs** tab.
+1. Look for the key named `MATLABWebAppServerAppsS3Bucket`, and click the corresponding URL listed under value.
+1. In the S3 console, click **apps**.
+1. Click **Upload** > **Add Files** to select and upload web apps (`.ctf` files).
+
+## Get Password to EC2 Instance Hosting MATLAB Web App Server
 1. In the AWS management console, select the stack you deployed. 
-1. In the Stack Detail for your stack, expand the **Outputs** section.
+1. In the Stack Detail for your stack, click the **Outputs** tab.
 1. Look for the key named `MATLABWebAppServerEC2Instance` and click the corresponding URL listed under value. This will take you to the server instance (`matlab-webapp-server-vm`) page. 
 1. Click the **Connect** button at the top.
 1. In the *Connect to instance* dialog, choose **Get Password**.
@@ -112,10 +107,9 @@ To run applications on MATLAB Web App Server, you need to create web apps using 
 1. Click **Decrypt Password**. The console displays the password for the instance in the *Connect to instance* dialog.
 1. Copy the password to the clipboard.
 
-## Connect to EC2 Instance Hosting MATLAB Web App Server
-**EC2 > Instances > {instance id} > Connect to instance**
+## Connect to EC2 Instance Hosting MATLAB Web App Server Using Remote Desktop
 1. In the AWS management console, select the stack you deployed. 
-1. In the Stack Detail for your stack, expand the **Outputs** section.
+1. In the *Stack details* for your stack, click the **Outputs** tab.
 1. Look for the key named `MATLABWebAppServerEC2Instance` and click the corresponding URL listed under value. This will take you to the server instance (`matlab-webapp-server-vm`) page. 
 1. Click the value under Instance ID to view the instance summary. 
 1. Click the **Connect** button at the top.
@@ -125,18 +119,19 @@ To run applications on MATLAB Web App Server, you need to create web apps using 
 * Username: Administrator
 * Password: The decrypted password. For details, see [Get Password to EC2 Instance](#get-password-to-ec2-instance).
 
+## Connect to EC2 Instance Hosting MATLAB Web App Server Using SSH
+1. In the AWS management console, select the stack you deployed. 
+1. In the *Stack details* for your stack, click the **Outputs** tab.
+1. Look for the key named `MATLABWebAppServerEC2Instance` and click the corresponding URL listed under value. This will take you to the server instance (`matlab-webapp-server-vm`) page. 
+1. Click the value under Instance ID to view the instance summary. 
+1. Click the **Connect** button at the top.
+1. In the *Connect to instance* dialog, click  the **SSH client** tab.
+1. Follow the instructions on the page to SSH to the EC2 instance.
 
-
-## Delete Your Stack
-To delete the stack:
-1. Log in to the AWS Console.
-3. Go to the CloudFormation page and select the stack you created.
-3. Click **Delete**.
-
-### Create Self-signed Certificate
+## Create Self-signed Certificate
 For information on creating a self-signed certificate, see [Create and Sign an X509 Certificate](https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/configuring-https-ssl.html).
 
-### Upload Self-signed Certificate to AWS Certificate Manager
+## Upload Self-signed Certificate to AWS Certificate Manager
 
 1. Open the AWS Certificate Manager.
 2. Click the button at the top of the page to **Import a certificate**.
@@ -152,29 +147,28 @@ The ARN value that you copied should be pasted into the **ARN of SSL Certificate
 ## View Logs
 Logs are available in AWS CloudWatch. 
 1. In the AWS management console, select the stack you deployed. 
-1. In the Stack Detail for your stack, expand the **Outputs** section.
+1. In the *Stack details* for your stack, click the **Outputs** tab.
 1. To view logs related to the cloud console and the MATLAB Web App Server workers, look for the key named `MATLABWebAppServerLogGroup`, and click the corresponding URL listed under value.
 
-<!--
-## Upload Multiple Applications
-You can upload multiple deployed archives (CTF files) using the Amazon S3 management console. 
-1. In the AWS management console, select the stack that you deployed. 
-1. In the Stack Detail for your stack, expand the **Outputs** section.
-1. Look for the key named `MATLABWeb AppServerApplicationsBucket`, and click the corresponding URL listed under value. Doing so takes you to the S3 console.
-1. In the S3 console, click **CTF**.
-1. Click **Upload** > **Add Files** to select and upload applications.
--->
 ## Get Network License Manager MAC Address
-The Network License Manager for MATLAB reference architecture manages the MATLAB Web App Server license file. When you deploy the MATLAB Web App Server reference architecture the network license manager is automatically deployed. You can also use an existing license manager that is located in the same VPC and the security group of the MATLAB Web App Server EC2 instance. For more information about the Network License Manager for MATLAB reference architecture, see [Network License Manager for MATLAB](https://github.com/mathworks-ref-arch/license-manager-for-matlab-on-aws).
-
->**NOTE**: For a new license manager deployed with MATLAB Web App Server, the license manager MAC address is available only after the stack creation is complete.
-
-To get the MAC address of the license manager: 
-1. Log in to the Network License Manager for MATLAB dashboard. For a license manager deployed with the MATLAB Web App Server deployment, use the following credentials:<br>
+1. In the AWS management console, select the stack that you deployed. 
+1. In the *Stack details* for your stack, click the **Outputs** tab.
+1. Look for the key named `MATLABWebAppServerLicenseManager`, and click the corresponding URL listed under value.
+1. Log in to the Network License Manager for MATLAB dashboard using the following credentials:<br>
 Username: **manager**<br>
-Password: Enter the password that you entered while creating the stack.
-1. Click **Administration** > **License**.
+Password: Enter the password you provided while creating the stack.
+1. Click **Administration** > **Manage License**.
 1. Copy the license server MAC address displayed at the top.
+
+When you deploy the MATLAB Web App Server reference architecture a network license manager is automatically deployed. You can also use an existing license manager that is located in the same VPC and the security group of the MATLAB Web App Server EC2 instance. For detials, see [Network License Manager for MATLAB](https://github.com/mathworks-ref-arch/license-manager-for-matlab-on-aws).
+
+>**NOTE**: The license manager MAC address is available only after the stack creation is complete.
+
+## Delete Your Stack
+To delete the stack:
+1. Log in to the AWS Console.
+3. Go to the CloudFormation page and select the stack you created.
+3. Click **Delete**.
 
 # FAQ
 
@@ -218,7 +212,7 @@ If you want to use an exisiting license server, select `No` for the *Deploy Lice
 
 To use an existing license server, you must add the security group of the server VMs to the security group of the license server.
 1. In the AWS management console, select the stack that you deployed. 
-1. In the stack detail for your stack, click **Resources**.
+1. In the *Stack details* for your stack, click **Resources**.
 1. Look for the **Logical ID** named ```SecurityGroup``` and click the corresponding URL listed under **Physical ID**. This will take you to the security group details.
 1. Click the **Inbound Rules** tab, then click **Edit Inbound Rules**.
 1. Click **Add Rule**.
@@ -232,32 +226,12 @@ Find the IP address of the license server from the AWS management console.
 1. Select the license server instance.
 1. In the instance details, copy the value of **Private IPs**. For example, 172.30.1.126
 1. Add the private IP to the `--license` property. For example, `--license 27000@172.30.1.126`. For more information about editing the server configuration, see [Edit the Server Configuration](/releases/R2020b/doc/cloudConsoleDoc.md#edit-the-server-configuration). 
-<!--
-## How do I launch a template that uses a previous MATLAB release?
-| Release | Windows Server VM | Ubuntu VM |
-|---------------|------------------------|-----------------|
-| MATLAB R2019a | <a href="https://us-east-1.console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/create/review?templateURL=https://s3.amazonaws.com/matlab-Web App-server-templates/MatlabWeb AppServer_Windows_R2019a_New.template" target="_blank">     <img src="https://s3.amazonaws.com/cloudformation-examples/cloudformation-launch-stack.png"/> </a> | <a href="https://us-east-1.console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/create/review?templateURL=https://s3.amazonaws.com/matlab-Web App-server-templates/MatlabWeb AppServer_Linux_R2019a_New.template" target="_blank">     <img src="https://s3.amazonaws.com/cloudformation-examples/cloudformation-launch-stack.png"/> </a>|
-| MATLAB R2019b | <a href="https://us-east-1.console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/create/review?templateURL=https://matlab-Web App-server-templates.s3.amazonaws.com/MatlabWeb AppServer_Windows_R2019b_New.template" target="_blank">     <img src="https://s3.amazonaws.com/cloudformation-examples/cloudformation-launch-stack.png"/> </a> | <a href="https://us-east-1.console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/create/review?templateURL=https://matlab-Web App-server-templates.s3.amazonaws.com/MatlabWeb AppServer_Linux_R2019b_New.template" target="_blank">     <img src="https://s3.amazonaws.com/cloudformation-examples/cloudformation-launch-stack.png"/> </a>|
-| MATLAB R2020a | <a href="https://us-east-1.console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/create/review?templateURL=https://matlab-Web App-server-templates.s3.amazonaws.com/MatlabWeb AppServer_R2020a_New.yml" target="_blank">     <img src="https://s3.amazonaws.com/cloudformation-examples/cloudformation-launch-stack.png"/> </a> | <a href="https://us-east-1.console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/create/review?templateURL=https://matlab-Web App-server-templates.s3.amazonaws.com/MatlabWeb AppServer_R2020a_New.yml" target="_blank">     <img src="https://s3.amazonaws.com/cloudformation-examples/cloudformation-launch-stack.png"/> </a>|
 
-For more information, see [previous releases](/releases).
--->
 ## What versions of MATLAB Runtime are supported?
 
 | Release | MATLAB Runtime | MATLAB Runtime | MATLAB Runtime | MATLAB Runtime |  
 |---------------|----------------|----------------|----------------|----------------|
 | MATLAB R2021a |  R2019b | R2020a | R2020b |  R2021a |  
-
-
-## Why do requests to the server fail with errors such as “untrusted certificate” or “security exception”?  
-
-These errors result from either CORS not being enabled on the server or due to the fact that the server endpoint uses a self-signed 
-certificate. 
-
-If you are making an AJAX request to the server, make sure that CORS is enabled in the server configuration. You can enable CORS by editing the property `--cors-allowed-origins` in the config file. For more information, see [Edit the Server Configuration](/releases/R2020b/doc/cloudConsoleDoc.md#edit-the-server-configuration).
-
-Also, some HTTP libraries and Javascript AJAX calls will reject a request originating from a server that uses a self-signed certificate. You may need to manually override the default security behavior of the client application. Or you can add a new 
-HTTP/HTTPS endpoint to the application gateway. For more information, see [Create a Listener](/releases/R2020b/doc/cloudConsoleDoc.md#create-a-listener). 
 
 # Enhancement Request
 Provide suggestions for additional features or capabilities using the following link: https://www.mathworks.com/cloud/enhancement-request.html
