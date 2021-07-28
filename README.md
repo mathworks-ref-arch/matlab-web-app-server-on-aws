@@ -60,7 +60,7 @@ Click the **Launch Stack** button to deploy resources on AWS. This will open the
     ||**Settings for EC2 Instance Hosting MATLAB Web App Server**|
     | **EC2 Instance Type** | Choose the AWS EC2 instance type to use for the server. All AWS instance types are supported. For more information, see [Amazon EC2 Instance Types](https://aws.amazon.com/ec2/instance-types/). <p><em>*Example*</em>: m5.xlarge</p> |
     | **Operating System** | Choose between Windows (Windows Server) and Linux(Ubuntu).  |
-    ||**Settings for Networks License Manager**|
+    ||**Settings for Network License Manager**|
     | **Password for Network License Manager** | Specify a password for the network license manager. Use this password to log in to the EC2 instance hosting the network license manager after the stack has been successfully created.<p>Deploying MATLAB Web App Server automatically deploys a network license manager.</p>|
     | **Confirm Password** | Reenter the password to log in to the network license manager. |
 
