@@ -79,22 +79,6 @@ Click the **Launch Stack** button to deploy resources on AWS. This will open the
 
 <mark> For UX testing: Click **Administration** > **Manage License** and upload the license file. </mark>
 
-## Step 4. Get the AWS Password to the EC2 Instance 
-1. In the AWS management console, select the stack you deployed. 
-1. In the Stack Detail for your stack, expand the **Outputs** section.
-1. Look for the key named `MATLABWebAppServerEC2Instance` and click the corresponding URL listed under value. This will take you to the server instance (`matlab-webapp-server-vm`) page. 
-1. Click the **Connect** button at the top.
-1. In the *Connect to instance* dialog box, choose **Get Password**.
-1. Click **Choose File** to navigate and select the private key file (`.pem` file) for the key pair that you used while creating the stack in [Step 2](#step-2-configure-the-stack).
-1. Click **Decrypt Password**. The console displays the password for the instance in the *Connect to instance* dialog box, replacing the link to *Get Password* shown previously with the actual password.
-1. Copy the password to the clipboard.
-
-
-
-## Step 5. Connect to the EC2 Instance Hosting MATLAB Web App Server
-1. In the Stack Detail for your stack, expand the **Outputs** section. 
-1. **Details Details Details Details Details Details Details Details Details Details Details**
-
 ## Step 6. Start MATLAB Web App Server
 1. In the EC2 instance, navigate to the folder containing the MATLAB Web App Server command-line scripts.
 
@@ -117,35 +101,38 @@ You are now ready to use MATLAB Web App Server on AWS.
 
 To run applications on MATLAB Web App Server, you need to create web apps using MATLAB Compiler. For more information, see [Web Apps](https://www.mathworks.com/help/compiler/webapps/create-and-deploy-a-web-app.html) in the MATLAB Compiler product documentation.
 
-# Additional Information
+# Common Tasks
+## Get Password to EC2 Instance
+1. In the AWS management console, select the stack you deployed. 
+1. In the Stack Detail for your stack, expand the **Outputs** section.
+1. Look for the key named `MATLABWebAppServerEC2Instance` and click the corresponding URL listed under value. This will take you to the server instance (`matlab-webapp-server-vm`) page. 
+1. Click the **Connect** button at the top.
+1. In the *Connect to instance* dialog, choose **Get Password**.
+1. Click **Choose File** to navigate and select the private key file (`.pem` file) for the key pair that you used while creating the stack in [Step 2](#step-2-configure-the-stack).
+1. Click **Decrypt Password**. The console displays the password for the instance in the *Connect to instance* dialog.
+1. Copy the password to the clipboard.
+
+## Connect to EC2 Instance Hosting MATLAB Web App Server
+**EC2 > Instances > {instance id} > Connect to instance**
+1. In the AWS management console, select the stack you deployed. 
+1. In the Stack Detail for your stack, expand the **Outputs** section.
+1. Look for the key named `MATLABWebAppServerEC2Instance` and click the corresponding URL listed under value. This will take you to the server instance (`matlab-webapp-server-vm`) page. 
+1. Click the value under Instance ID to view the instance summary. 
+1. Click the **Connect** button at the top.
+1. In the *Connect to instance* dialog, click  the **RDP client** tab.
+1. Click the **Download remote desktop file** button to download a .rdp file.
+1. Use the .rdp file to remotely connect to EC2 instance using the following credentials:
+* Username: Administrator
+* Password: The decrypted password. For details, see [Get Password to EC2 Instance](#get-password-to-ec2-instance).
+
+
 
 ## Delete Your Stack
-
-Once you have finished using your stack, it is recommended that you delete all resources to avoid incurring further cost. 
-<!--
-If you are using an existing license server, and have added the security group of the server VMs to the security group of the license server, you must delete the inbound rules before you delete the stack.
-1. In the AWS management console, select the stack that you deployed. 
-1. In the stack detail for your stack, click **Resources**.
-1. Look for the **Logical ID** named `SecurityGroup` and click the corresponding URL listed under **Physical ID**. This will take you to the security group details.
-1. Click the **Inbound Rules** tab, then click **Edit Inbound Rules**.
-1. Click **Delete Rule** for the rules that have the tag `matlab-Web App-server-cloud-stack-elb-1-sg` and `
-matlab-Web App-server-cloud-stack-elb-2-sg` as their **Source**. 
-1. Click **Save Rules**.-->
-
-To delete the stack, do the following:
+To delete the stack:
 1. Log in to the AWS Console.
 3. Go to the CloudFormation page and select the stack you created.
 3. Click **Delete**.
-<!--
-## Security
-When you run MATLAB Web App Server on the cloud you get two HTTP/HTTPS endpoints. 
 
-1. An HTTP/HTTPS endpoint to the application gateway/load balancer that connects the server instances. This endpoint is displayed in the home page of the cloud console and is used to make requests to the server. Whether the endpoint is HTTP or HTTPS depends on whether you provided a certificate during the creation of the stack.
-
-1. An HTTPS endpoint to the cloud console. This endpoint is used to connect to the cloud console. The cloud console comes with a self-signed certificate.  
-
-For information on changing the self-signed certificates, see [Change Self-signed Certificates](/releases/R2020b/doc/cloudConsoleDoc.md#change-self-signed-certificates). 
--->
 ### Create Self-signed Certificate
 For information on creating a self-signed certificate, see [Create and Sign an X509 Certificate](https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/configuring-https-ssl.html).
 
@@ -188,26 +175,9 @@ Username: **manager**<br>
 Password: Enter the password that you entered while creating the stack.
 1. Click **Administration** > **License**.
 1. Copy the license server MAC address displayed at the top.
-<!--
-# Architecture and Resources
-Deploying this reference architecture will create several resources in your
-resource group.
 
-*Architecture on AWS*
-
-### Resources
-
-| Resource Type                                                              | Number of Resources | Description                                                                                                                                                                                                                                                                                                                        |
-|----------------------------------------------------------------------------|---------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| AWS EC2 Instance                                                           | 2                   | <ol><li>Virtual machine (VM) that hosts the MATLAB Web App Server Cloud Console. Use the cloud console to: <ul><li>Get HTTP/HTTPS endpoint to make requests</li><li> Upload applications (CTF files) to the server</li><li> Manage server configurations</li><li> Manage the HTTPS certificate</li></ul><p>For more information, see [MATLAB Web App Server Cloud Console User Guide](/releases/R2020b/doc/cloudConsoleDoc.md#matlab-Web App-server-cloud-console-users-guide).</li><li>VM that hosts the Network License Manager for MATLAB. For more information, see [Network License Manager for MATLAB](https://github.com/mathworks-ref-arch/license-manager-for-matlab-on-aws).</li></ol>   |
-| Auto Scaling Group                                                         | 1                   | Manages the number of identical VMs to be deployed. Each VM runs an instance of MATLAB Web App Server which in turn runs multiple MATLAB workers.                                                                                                                                                                               |
-| Load Balancer                                                              | 1                   | Provides routing and load balancing service to MATLAB Web App Server instances. The MATLAB Web App Server cloud console retrieves the HTTP/HTTPS endpoint for making requests to the server from the load balancer resource.<p>**NOTE**: Provides HTTPS endpoint to the server for making requests.</p>                                                                                           |
-| S3 Bucket                                                                  | 1                  | S3 storage bucket created during the creation of the stack where applications deployed to the reference architecture are stored.                                                                                                                                                                                                  |
-| Virtual Private Cluster (VPC)                                              | 1                   | Enables resources to communicate with each other.                                           |
-| Redis ElastiCache | 1 | Enables caching of data between calls to MATLAB code running on a server instance. |
-| CloudWatch | 1 | Enables viewing of logs. |
--->
 # FAQ
+
 ## How do I use an existing VPC to deploy MATLAB Web App Server?
 
 Use the following templates to launch the reference architecture within an existing VPC and subnet. The templates provide an option to deploy the Network License Manager for MATLAB to manage MATLAB Web App Server licenses. The license manager must be in the same VPC and security group as MATLAB Web App Server.
