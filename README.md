@@ -37,7 +37,7 @@ The template for using an exisitng VPC for deployment provides an option to eith
 ## Step 1. Launch the Template
 Click the **Launch Stack** button to deploy resources on AWS. This will open the AWS Management Console in your web browser.
 
-| Release | Windows Server ???? or Ubuntu ??.?? VM |
+| Release | Windows Server 2019 or Ubuntu 18.04  |
 |---------------|------------------------|
 | MATLAB R2021a | <a href="https://us-east-1.console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/create/review?templateURL=https://matlab-Web App-server-templates.s3.amazonaws.com/r2020b_mps_refarch/MatlabWeb AppServer_New.yml" target="_blank">     <img src="https://s3.amazonaws.com/cloudformation-examples/cloudformation-launch-stack.png"/> </a> |
 
