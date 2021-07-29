@@ -129,13 +129,16 @@ To run applications on MATLAB Web App Server, you need to create web apps using 
 1. Follow the instructions on the page to SSH to the EC2 instance.
 
 ## Configure OIDC Authentication
-1. Connect to the EC2 instance hosting MATLAB Web App Server. For details, see [Connect to EC2 Instance Hosting MATLAB Web App Server Using Remote Desktop](#connect-to-ec2-instance-hosting-matlab-web-app-server-using-remote-desktop) or [Connect to EC2 Instance Hosting MATLAB Web App Server Using SSH](#connect-to-ec2-instance-hosting-matlab-web-app-server-using-ssh).
-1. Follow the instructions on the [Authentication](https://www.mathworks.com/help/webappserver/ug/authentication.html) documentation page.
+1. Connect to the EC2 instance hosting MATLAB Web App Server. For details, see:
+    * [Connect to EC2 Instance Hosting MATLAB Web App Server Using Remote Desktop](#connect-to-ec2-instance-hosting-matlab-web-app-server-using-remote-desktop)
+    * [Connect to EC2 Instance Hosting MATLAB Web App Server Using SSH](#connect-to-ec2-instance-hosting-matlab-web-app-server-using-ssh).
+1. Follow the instructions on the [Authentication](https://www.mathworks.com/help/webappserver/ug/authentication.html) page in the MathWorks documentation.
+    >**NOTE:** SSL is enabled when you deploy the stack.   
 1. For the `redirectUrl`, use the URL created as part of your stack.
-* In the AWS management console, select the stack you deployed. 
-* In the *Stack details* for your stack, click the **Outputs** tab.
-* Look for the key named `MATLABWebAppServerOIDCRedirectUrl` and copy the corresponding URL listed under value.
-* Use this URL in the `webapps_authn.json` file.
+    * In the AWS management console, select the stack you deployed. 
+    * In the *Stack details* for your stack, click the **Outputs** tab.
+    * Look for the key named `MATLABWebAppServerOIDCRedirectUrl` and copy the corresponding URL listed under value.
+    * Use this URL in the `webapps_authn.json` file.
 
 ## Create Self-signed Certificate
 For information on creating a self-signed certificate, see [Create and Sign an X509 Certificate](https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/configuring-https-ssl.html).
