@@ -74,7 +74,7 @@ Click the **Launch Stack** button to deploy resources on AWS. This will open the
 ## Step 3. Upload License File
 1. Click **Outputs** in the *Stack details* for your stack.
 1. Look for the key named `MATLABWebAppServerLicenseManager` and click the corresponding URL listed under value. This will take you to Network License Manager for MATLAB Dashboard login page.
-1. The user name is **manager**. For the password, enter the password you entered in the **Password for Network License Manager** field while creating the stack in [Step 2](#step-2-configure-the-stack).
+1. The username is **manager**. For the password, enter the password you entered in the **Password for Network License Manager** field while creating the stack in [Step 2](#step-2-configure-the-stack).
 1. Follow the instructions on the home page of the network license manager to upload your MATLAB Web App Server license.
 
 <mark> For UX testing: Click **Administration** > **Manage License** and upload the license file. </mark>
