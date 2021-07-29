@@ -79,7 +79,7 @@ Click the **Launch Stack** button to deploy resources on AWS. This will open the
 
 <mark> For UX testing: Click **Administration** > **Manage License** and upload the license file. </mark>
 
->Note: MATLAB Web App Server automatically starts after succesfully uploading a license file.
+>Note: MATLAB Web App Server automatically starts after succesfully uploading a valid license file.
 
 ## Step 4. Open the MATLAB Web App Server Apps Home Page
 1. In the *Stack details* for your stack, click the **Outputs** tab.
