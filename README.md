@@ -43,7 +43,7 @@ Click the **Launch Stack** button to deploy resources on AWS. This will open the
 
 <!--For other releases, see [How do I launch a template that uses a previous MATLAB release?](#how-do-i-launch-a-template-that-uses-a-previous-matlab-release)-->
 <p><strong>Note:</strong> Creating a stack on AWS can take at least 20 minutes.</p>
-<p><strong>Note:</strong> Mulitple versions of MATLAB Runtime are supported. For details, see [Supported MATLAB Runtime Versions](#what-versions-of-matlab-runtime-are-supported).</p>
+Mulitple versions of MATLAB Runtime are supported. For details, see [Supported MATLAB Runtime Versions](#what-versions-of-matlab-runtime-are-supported).
 
 ## Step 2. Configure the Stack
 1. Provide values for parameters in the **Create Stack** page:
