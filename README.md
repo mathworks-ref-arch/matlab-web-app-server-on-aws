@@ -41,9 +41,10 @@ Click the **Launch Stack** button to deploy resources on AWS. This will open the
 |---------------|------------------------|
 | MATLAB R2021a | <a href="https://us-east-1.console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/quickcreate?templateURL=https://joeywebapplambdaarchive.s3.amazonaws.com/WebAppServer_new.yml" target="_blank">     <img src="https://s3.amazonaws.com/cloudformation-examples/cloudformation-launch-stack.png"/> </a> |
 
-<!--For other releases, see [How do I launch a template that uses a previous MATLAB release?](#how-do-i-launch-a-template-that-uses-a-previous-matlab-release)-->
-<p><strong>Note:</strong> Creating a stack on AWS can take at least 20 minutes.</p>
-Mulitple versions of MATLAB Runtime are supported. For details, see [Supported MATLAB Runtime Versions](#what-versions-of-matlab-runtime-are-supported).
+>**NOTE:** Mulitple versions of MATLAB Runtime are supported. For details, see [Supported MATLAB Runtime Versions](#what-versions-of-matlab-runtime-are-supported).
+
+>**NOTE:** Creating a stack on AWS can take at least 20 minutes.
+><!--For other releases, see [How do I launch a template that uses a previous MATLAB release?](#how-do-i-launch-a-template-that-uses-a-previous-matlab-release)-->
 
 ## Step 2. Configure the Stack
 1. Provide values for parameters in the **Create Stack** page:
