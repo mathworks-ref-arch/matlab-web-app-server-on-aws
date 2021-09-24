@@ -185,7 +185,7 @@ To delete the stack:
 
 ## How do I use an existing VPC to deploy MATLAB Web App Server?
 
-Use the following templates to launch the reference architecture within an existing VPC and subnet. The templates provide an option to deploy the Network License Manager for MATLAB to manage MATLAB Web App Server licenses. The license manager must be in the same VPC and security group as MATLAB Web App Server.
+Use the following templates to launch the reference architecture within an existing VPC and subnet. The templates provide an option to deploy the Network License Manager for MATLAB to manage MATLAB Web App Server licenses.
 
 | Release | Windows Server 2019 or Ubuntu 18.04 VM |
 |---------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
