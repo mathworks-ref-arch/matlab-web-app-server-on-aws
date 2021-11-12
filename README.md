@@ -200,12 +200,13 @@ In addition to the parameters specified in the section [Configure the Stack](#st
 | Subnet 1 ID | ID of an existing subnet that will host the cloud console and other resources. |
 | Subnet 2 ID | ID of an existing subnet that will host the application gateway. |
 
-- If Subnet 1 and Subnet 2 are public, then you must connect the EC2 VPC endpoint and the AutoScaling VPC endpoint to the VPC.
-- If Subnet 1 and Subnet 2 are private, then you must either deploy a NAT gateway in the VPC, or connect all of the following endpoints to the VPC:
-    - EC2 VPC endpoint
-    - AutoScaling VPC endpoint
-    - S3 VPC endpoint
-    - CloudFormation endpoint 
+- If Subnet 1 is public, then you must connect the VPC endpoint to the EC2 service to your VPC.
+- If Subnet 1 is private, then you must either:
+    - Deploy a NAT gateway to a public subnet in your VPC and update the route table.
+    - Or, connect all of the following endpoints to your VPC:
+        - EC2 interface VPC endpoint
+        - S3 interface VPC endpoint
+        - CloudFormation interface endpoint
 
 For more information about creating endpoints, see [AWS documentation](https://docs.aws.amazon.com/vpc/latest/userguide/vpce-interface.html#create-interface-endpoint).
 
