@@ -219,11 +219,11 @@ You will also need to open the following ports in your VPC:
 | `27000`, `50115` | Required for communication between the network license manager and the workers. |
 | `3389` | Required for Remote Desktop functionality. This can be used for troubleshooting and debugging. |
 
-### How to use an existing license server in an existing VPC?
-If you want to use an exisiting license server, select `No` for the *Deploy License Server* step of the deployment.
+### How to use an existing network license manager in an existing VPC?
+If you want to use an exisiting network license manager, select `No` for the *Deploy Network License Manager* step of the deployment.
 
-To use an existing license server, you must add the security group of the server VMs to the security group of the license server.
-1. In the AWS management console, select the stack that you deployed. 
+To use an existing network license manager, you must add the security group of the server VMs to the security group of the license manager.
+1. In the AWS management console, select the stack you deployed. 
 1. In the *Stack details* for your stack, click **Resources**.
 1. Look for the **Logical ID** named ```SecurityGroup``` and click the corresponding URL listed under **Physical ID**. This will take you to the security group details.
 1. Click the **Inbound Rules** tab, then click **Edit Inbound Rules**.
