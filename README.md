@@ -197,10 +197,10 @@ In addition to the parameters specified in the section [Configure the Stack](#st
 |----------------------------------|--------------------------------------------------------------------------------|
 | Existing VPC ID | ID of your existing VPC. |
 | IP address range of existing VPC | IP address range from the existing VPC. To find the IP address range: <ol><li>Log in to the AWS Console.</li><li>Navigate to the VPC dashboard and select your VPC.</li><li>Click the **CIDR blocks** tab.</li><li>The **IPv4 CIDR Blocks** gives the IP address range.</li></ol> |
-| Subnet 1 ID | ID of an existing subnet that will host the cloud console and other resources. |
-| Subnet 2 ID | ID of an existing subnet that will host the application gateway. |
+| Subnet 1 ID | ID of an existing subnet that will host the server machine, load balancer, and other other resources. |
+| Subnet 2 ID | ID of an existing subnet to satisy the two-subnet minimum required by the load balancer.|
 
-- If Subnet 1 is public, then you must connect the VPC endpoint to the EC2 service to your VPC.
+- If Subnet 1 is public, then you must connect the EC2 service VPC to your VPC.
 - If Subnet 1 is private, then you must either:
     - Deploy a NAT gateway to a public subnet in your VPC and update the route table.
     - Or, connect all of the following endpoints to your VPC:
