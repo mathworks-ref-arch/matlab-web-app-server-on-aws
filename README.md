@@ -197,7 +197,7 @@ In addition to the parameters specified in the section [Configure the Stack](#st
 |----------------------------------|--------------------------------------------------------------------------------|
 | Existing VPC ID | ID of your existing VPC. |
 | IP address range of existing VPC | IP address range from the existing VPC. To find the IP address range: <ol><li>Log in to the AWS Console.</li><li>Navigate to the VPC dashboard and select your VPC.</li><li>Click the **CIDR blocks** tab.</li><li>The **IPv4 CIDR Blocks** gives the IP address range.</li></ol> |
-| Subnet 1 ID | ID of an existing subnet that will host the server machine, load balancer, and other other resources. |
+| Subnet 1 ID | ID of an existing subnet that will host the EC2 instance running MATLAB Web App Server, the load balancer, and other resources. |
 | Subnet 2 ID | ID of an existing subnet to satisy the two-subnet minimum required by the load balancer.|
 
 - If Subnet 1 is public, then you must connect the EC2 service VPC to your VPC.
@@ -231,13 +231,6 @@ To use an existing license server, you must add the security group of the server
 1. In the **Type** dropdown, select ```All TCP```.
 1. In the **Source**, search and add the ```matlab-Web App-server-cloud-stack-elb-1-sg``` and ```matlab-Web App-server-cloud-stack-elb-2-sg``` security groups. 
 1. Click **Save Rules**.
-
-You must also add the private IP address of the license server to the `--license` property in the server configuration file. 
-Find the IP address of the license server from the AWS management console.
-1. In the AWS management console, navigate to the EC2 dashboard. 
-1. Select the license server instance.
-1. In the instance details, copy the value of **Private IPs**. For example, 172.30.1.126
-1. Add the private IP to the `--license` property. For example, `--license 27000@172.30.1.126`. For more information about editing the server configuration, see [Edit the Server Configuration](/releases/R2020b/doc/cloudConsoleDoc.md#edit-the-server-configuration). 
 
 ## What versions of MATLAB Runtime are supported?
 
