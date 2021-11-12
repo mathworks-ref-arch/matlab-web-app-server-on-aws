@@ -214,10 +214,10 @@ You will also need to open the following ports in your VPC:
 
 | Port | Description |
 |------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `443` | Required for communicating with the cloud console. |
-| `8000`, `8002`, `9910` | Required for communication between the cloud console and workers within the VPC.  These ports do not need to be open to the internet. |
-| `27000`, `50115` | Required for communication between the network license manager and the workers. |
-| `3389` | Required for Remote Desktop functionality. This can be used for troubleshooting and debugging. |
+| `443` | Required for communicating with MATLAB Web App Server apps home page. |
+| `8000`, `9988` | Required for communication between MATLAB Web App Server controllers  and AWS services. These ports do not need to be open to the internet. |
+| `27000` | Required for communication between the network license manager and MATLAB Web App Server. |
+| `3389`, `22` | Required for Remote Desktop and Secure Connection functionality. This can be used for troubleshooting and debugging MATLAB Web App Server. |
 
 ### How to use an existing network license manager in an existing VPC?
 If you want to use an exisiting network license manager:
