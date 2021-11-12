@@ -229,7 +229,7 @@ To use an existing network license manager, you must add the security group of t
 1. Click the **Inbound Rules** tab, then click **Edit Inbound Rules**.
 1. Click **Add Rule**.
 1. In the **Type** dropdown, select ```All TCP```.
-1. In the **Source**, search and add the ```matlab-Web App-server-cloud-stack-elb-1-sg``` and ```matlab-Web App-server-cloud-stack-elb-2-sg``` security groups. 
+1. In the **Source**, search and add the ```MatlabWebappServerCloudStackSg``` security group. 
 1. Click **Save Rules**.
 
 ## What versions of MATLAB Runtime are supported?
