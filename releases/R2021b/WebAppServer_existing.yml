@@ -87,7 +87,7 @@ Parameters:
     ConstraintDescription: Must be the ID of an existing Subnet.
     Default: ''
   ExistingSubnet2:
-    Description: "ID of a public subnet within the existing VPC that will host server resources. This can be the same subnet as the previous one."
+    Description: "ID of a public subnet within the existing VPC that will host server resources. This subnet can be the same as the one hosting MATLAB Web App Server, as long as the subnet hosting the server is public. If the subnet hosting the server is private, then this subnet must be a different public subnet."
     Type: 'AWS::EC2::Subnet::Id'
     ConstraintDescription: Must be the ID of an existing Subnet.
     Default: ''
