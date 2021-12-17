@@ -4,7 +4,7 @@
 
 Before starting, you need the following:
 
--   A MATLAB® Web App Server™ license. For more information, see [Configure MATLAB Web App Server Licensing on the Cloud](https://www.mathworks.com/help/webappserver/ug/configure-server-license-on-cloud.html). To configure a license for use on the cloud, you need the MAC address of the network license manager on the cloud. For more information, see [Get License Server MAC Address](#get-license-server-mac-address).
+-   A MATLAB® Web App Server™ license. For more information, see [Configure MATLAB Web App Server Licensing on the Cloud](https://www.mathworks.com/help/webappserver/ug/configure-server-license-on-cloud.html). To configure a license for use on the cloud, you need the MAC address of the network license manager on the cloud. For more information, see [Get License Server MAC Address](#get-network-license-manager-mac-address).
 
 
 -   An Amazon Web Services™ (AWS) account with an IAM user identity.
@@ -205,18 +205,10 @@ In addition to the parameters specified in the section [Configure the Stack](#st
 |----------------------------------|--------------------------------------------------------------------------------|
 | Existing VPC ID | ID of your existing VPC. |
 | IP address range of existing VPC | IP address range from the existing VPC. To find the IP address range: <ol><li>Log in to the AWS Console.</li><li>Navigate to the VPC dashboard and select your VPC.</li><li>Click the **CIDR blocks** tab.</li><li>The **IPv4 CIDR Blocks** gives the IP address range.</li></ol> |
-| Subnet 1 ID | ID of an existing subnet that will host the EC2 instance running MATLAB Web App Server, the load balancer, and other resources. |
-| Subnet 2 ID | ID of an existing subnet to satisy the two-subnet minimum required by the load balancer.|
-
-- If Subnet 1 is public, then you must connect the EC2 service VPC to your VPC.
-- If Subnet 1 is private, then you must either:
-    - Deploy a NAT gateway to a public subnet in your VPC and update the route table.
-    - Or, connect all of the following endpoints to your VPC:
-        - EC2 interface VPC endpoint
-        - S3 interface VPC endpoint
-        - CloudFormation interface endpoint
-
-For more information about creating endpoints, see [AWS documentation](https://docs.aws.amazon.com/vpc/latest/userguide/vpce-interface.html#create-interface-endpoint).
+|Assign Public IP to EC2 Instance Hosting MATLAB Web App Server | Specify whether the deployed EC2 instance must use a public IP address. If you select "No", you must provide a private subnet in the field "Subnet for MATLAB Web App Server". |
+| Subnet for MATLAB Web App Server | Specify the ID of a public or private subnet within the existing VPC that will host the server. |
+| Public Subnet 1 ID | ID of an existing public subnet to host server resources. This subnet can be the same as the one hosting MATLAB Web App Server, as long as the subnet hosting the server is public. If the subnet hosting the server is private, then this subnet must be a different public subnet. |
+| Public Subnet 2 ID | ID of an existing public subnet to to host server resources. This subnet must be different from Public Subnet 1.|
 
 You will also need to open the following ports in your VPC:
 
