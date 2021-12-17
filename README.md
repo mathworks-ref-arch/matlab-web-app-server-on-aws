@@ -20,11 +20,11 @@ Web App Server on the Amazon Web Services (AWS) Cloud. The automation is
 accomplished using an AWS CloudFormation template. The template is a JSON
 file that defines the resources needed to deploy and manage MATLAB Web App
 Server on AWS.
-For information about the architecture of this solution, see [Architecture and Resources](#architecture-and-resources). For information about AWS templates, see [AWS CloudFormation Templates](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/template-guide.html). <br>
+For information about AWS templates, see [AWS CloudFormation Templates](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/template-guide.html). <br>
 
 The default MATLAB Web App Server deployment template deploys a network license manager to manage MATLAB Web App Server licenses. 
 
-The template for using an exisitng VPC for deployment provides an option to either deploy a network license manager or use a network license manager that has already been deployed. For details, see [How Do I Use An Existing VPC to Deploy MATLAB Web App Server?](#how-do-i-use-an-existing-vpc-to-deploy-matlab-web-app-server).
+The template for using an existing VPC for deployment provides an option to either deploy a network license manager or use a network license manager that has already been deployed. For details, see [How Do I Use An Existing VPC to Deploy MATLAB Web App Server?](#how-do-i-use-an-existing-vpc-to-deploy-matlab-web-app-server).
 
 # Prepare Your AWS Account
 1. If you do not have an AWS account, create one at https://aws.amazon.com by following the on-screen instructions.
@@ -39,7 +39,7 @@ Click the **Launch Stack** button to deploy resources on AWS. This will open the
 
 | Release | Windows Server 2019 or Ubuntu 18.04  |
 |---------------|------------------------|
-| MATLAB R2021a | <a href="https://us-east-1.console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/quickcreate?templateURL=https://joeywebapplambdaarchive.s3.amazonaws.com/WebAppServer_new.yml" target="_blank">     <img src="https://s3.amazonaws.com/cloudformation-examples/cloudformation-launch-stack.png"/> </a> |
+| MATLAB R2021b | <a href="https://us-east-1.console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/quickcreate?templateURL=https://joeywebapplambdaarchive.s3.amazonaws.com/WebAppServer_new.yml" target="_blank">     <img src="https://s3.amazonaws.com/cloudformation-examples/cloudformation-launch-stack.png"/> </a> |
 
 >**NOTE:** Mulitple versions of MATLAB Runtime are supported. For details, see [Supported MATLAB Runtime Versions](#what-versions-of-matlab-runtime-are-supported).
 
@@ -57,9 +57,9 @@ Click the **Launch Stack** button to deploy resources on AWS. This will open the
     | **IP Address of MATLAB Web App Server Administrator in CIDR Notation** | Specify the IP address of the administrator using CIDR notation. The administrator can remotely connect to the EC2 instance that hosts MATLAB Web App Server and administer it. The IP address can be a single IP address or a range of IP addresses. The format for this field is IP Address/Mask.The format for this field is IP Address/Mask. <p><em>Example</em>: `x.x.x.x/32`<ul><li>This is the public IP address which can be found by searching for **"what is my ip address"** on the web. The mask determines the number of IP addresses to include.</li><li>A mask of 32 is a single IP address.</li><li>Use a [CIDR calculator](https://www.ipaddressguide.com/cidr) if you need a range of more than one IP addresses.</li><li>You may need to contact your IT administrator to determine which address is appropriate.</li></ul>**NOTE:** Restricting access to the server using an IP address is not a form of authentication. MATLAB Web App Server supports authentication using LDAP and OIDC. For details, see [Authentication](https://www.mathworks.com/help/webappserver/ug/authentication.html).</p> |
     | **Do You Want to Use the Same IP Address Range to Access the MATLAB Web App Server Apps Home Page?**| Select, **Yes** or **No**. <ul><li>If you select **Yes**, the same IP address range specified above is configured to access the MATLAB Web App Server apps homepage. Choose this option if you know that the same set of users will administer the server and access web apps on the apps home page.</li><li>If you select **No**, you must specify a new IP address range in the next field. Choose this option if the users accessing web apps on the apps home page are different from the users administering the server.</li></ul>
     | **IP Addresses Allowed to Access MATLAB Web App Server Apps Home Page** | Complete this field only if you selected **"No"** in the previous field. Specify the range of IP addresses that can access the MATLAB Web App Server apps home page in CIDR notation. The format for this field is IP Address/Mask.<p><em>*Example*</em>: `x.x.x.x/24`</p> |
-    | **ARN of SSL Certificate** | Specify the Amazon Resource Name (ARN) of the SSL certificate you uploaded to the AWS Ceritifcate Manager. The ARN facilitates connecting to the apps home page using an HTTPS connection.<p><em>*Example*</em>: <code>arn:aws:acm:us-east-1:012345678910:certificate/666abcd6-ab6c-6ab6-a666-a666666bcd66</code> </p><p>To retrieve an ARN:</p><ul><li>Type "Certificate Manager" in the search box at the top of the web page and hit Enter. This automatically takes you to the AWS Certificate Manager.</li><li>Expand the entry for the certificate you uploaded.</li><li>Copy the ARN from the "Details" section.</li></ul><p>For more information, see [Create Self-signed Certificate](/README.md#create-self-signed-certificate) and [Upload Self-signed Certificate to AWS Certificate Manager](/README.md#upload-self-signed-certificate-to-aws-certificate-manager).
+    | **ARN of SSL Certificate** | Specify the Amazon Resource Name (ARN) of the SSL certificate you uploaded to the AWS Ceritifcate Manager. The ARN facilitates connecting to the apps home page using an HTTPS connection.<p><em>*Example*</em>: <code>arn:aws:acm:us-east-1:012345678910:certificate/666abcd6-ab6c-6ab6-a666-a666666bcd66</code> </p><p>To retrieve an ARN:</p><ul><li>Type "Certificate Manager" in the search box at the top of the web page and hit Enter. This automatically takes you to the AWS Certificate Manager.</li><li>Select the certificate you uploaded based on Certificate ID, or Domain name, or Name tag .</li><li>Copy the ARN from the "Certificate status" section at the top.</li></ul><p>For more information, see [Create Self-signed Certificate](/README.md#create-self-signed-certificate) and [Upload Self-signed Certificate to AWS Certificate Manager](/README.md#upload-self-signed-certificate-to-aws-certificate-manager).
     | **EC2 Instance Type** | Choose the AWS EC2 instance type to use for the server. All AWS instance types are supported. For more information, see [Amazon EC2 Instance Types](https://aws.amazon.com/ec2/instance-types/). <p><em>*Example*</em>: `m5.xlarge`</p> |
-    | **Operating System** | Choose between Windows (Windows Server) and Linux(Ubuntu).  |
+    | **Operating System** | Choose between Windows (Windows Server) and Linux (Ubuntu).  |
     ||**Settings for Network License Manager**|
     | **Password for Network License Manager** | Specify a password for the network license manager. Use this password to log in to the network license manager after the stack has been successfully created.<p>Deploying MATLAB Web App Server automatically deploys a network license manager.</p>|
     | **Confirm Password** | Reenter the password to log in to the network license manager. |
@@ -127,6 +127,14 @@ To run applications on MATLAB Web App Server, you need to create web apps using 
 1. In the *Connect to instance* dialog, click  the **SSH client** tab.
 1. Follow the instructions on the page to SSH to the EC2 instance.
 
+## Find Setup and Configuration Files
+| Task                  | Relevant Files                                            | Details                            |
+|-----------------------|-----------------------------------------------------------|------------------------------------|
+| Server Administration | webapps-start webapps-stop webapps-restart webapps-status | [Command-Line Scripts Documentation](https://www.mathworks.com/help/webappserver/server-management.html) |
+| Authentication        | webapps_authn.json                                        | [Authentication Documentation](https://www.mathworks.com/help/webappserver/ug/authentication.html)       |
+| Role-Based Access     | webapps_app_roles.json                                    | [Role-Based Access Documentation](https://www.mathworks.com/help/webappserver/ug/role-based-access.html)    |
+| Policy-Based Access   | webapps_acc_ctl.json                                      | [Policy-Based Access Documentation](https://www.mathworks.com/help/webappserver/ug/policy-based-access.html)  |
+
 ## Configure OIDC Authentication
 1. Connect to the EC2 instance hosting MATLAB Web App Server. For details, see:
     * [Connect to EC2 Instance Hosting MATLAB Web App Server Using Remote Desktop](#connect-to-ec2-instance-hosting-matlab-web-app-server-using-remote-desktop)
@@ -189,7 +197,7 @@ Use the following templates to launch the reference architecture within an exist
 
 | Release | Windows Server 2019 or Ubuntu 18.04 VM |
 |---------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| R2021a | <a  href ="https://us-east-1.console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/create/review?templateURL=https://matlab-Web App-server-templates.s3.amazonaws.com/r2020b_mps_refarch/MatlabWeb AppServer_Existing.yml"  target ="_blank" >      <img  src ="https://s3.amazonaws.com/cloudformation-examples/cloudformation-launch-stack.png" />  </a> |
+| R2021b | <a  href ="https://us-east-1.console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/create/review?templateURL=https://joeywebapplambdaarchive.s3.amazonaws.com/WebAppServer_existing.yml"  target ="_blank" >      <img  src ="https://s3.amazonaws.com/cloudformation-examples/cloudformation-launch-stack.png" />  </a> |
 
 In addition to the parameters specified in the section [Configure the Stack](#step-2-configure-the-stack), you will need to specify the following parameters in the template to use your existing VPC.
 
@@ -238,7 +246,7 @@ To use an existing network license manager, you must add the security group of t
 
 | Release | MATLAB Runtime | MATLAB Runtime | MATLAB Runtime | MATLAB Runtime |  
 |---------------|----------------|----------------|----------------|----------------|
-| MATLAB R2021a |  R2019b | R2020a | R2020b |  R2021a |  
+| MATLAB R2021b |  R2020a | R2020b | R2021a |  R2021b |  
 
 # Enhancement Request
 Provide suggestions for additional features or capabilities using the following link: https://www.mathworks.com/cloud/enhancement-request.html
