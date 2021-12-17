@@ -82,17 +82,17 @@ Parameters:
       - 'No'
     Default: 'Yes'
   ExistingSubnet1:
-    Description: "Specify the ID of a public/private subnet within the existing VPC that will host the server. Specify a public subnet if you chose \"Yes\" for the previous option, specify a private subnet if you chose \"No\""
+    Description: "Specify the ID of a public or private subnet within the existing VPC that will host the server. If you selected \"Yes\" in previous field for assigning a public IP, choose a public subnet. Otherwise, choose a private subnet."
     Type: 'AWS::EC2::Subnet::Id'
     ConstraintDescription: Must be the ID of an existing Subnet.
     Default: ''
   ExistingSubnet2:
-    Description: "ID of a public subnet within the existing VPC that will host the load balancer and resources. This can be the same subnet with previous one."
+    Description: "ID of a public subnet within the existing VPC that will host server resources. This subnet can be the same as the one hosting MATLAB Web App Server, as long as the subnet hosting the server is public. If the subnet hosting the server is private, then this subnet must be a different public subnet."
     Type: 'AWS::EC2::Subnet::Id'
     ConstraintDescription: Must be the ID of an existing Subnet.
     Default: ''
   ExistingSubnet3:
-    Description: "ID of a public subnet within the existing VPC that will host the load balancer."
+    Description: "ID of a public subnet within the existing VPC that will host server resources. This should be different from Subnet 1."
     Type: 'AWS::EC2::Subnet::Id'
     ConstraintDescription: Must be the ID of an existing Subnet.
     Default: ''
@@ -165,7 +165,7 @@ Metadata:
       AdminIPAddress:
         default: IP Address of MATLAB Web App Server Administrator in CIDR Notation
       AllowPublicIP:
-        default: Assign Public IP to Instance hosting MATLAB Web App Server
+        default: Assign Public IP to EC2 Instance Hosting MATLAB Web App Server
       SSLCertificateARN:
         default: ARN of SSL Certificate 
 
