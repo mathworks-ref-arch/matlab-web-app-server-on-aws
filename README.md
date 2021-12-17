@@ -131,9 +131,9 @@ To run applications on MATLAB Web App Server, you need to create web apps using 
 | Task                  | Relevant Files                                            | Details                            |
 |-----------------------|-----------------------------------------------------------|------------------------------------|
 | Server Administration | `webapps-start`, `webapps-stop`, `webapps-restart`, `webapps-status` | [Command-Line Scripts Documentation](https://www.mathworks.com/help/webappserver/server-management.html) |
-| Authentication        | webapps_authn.json                                        | [Authentication Documentation](https://www.mathworks.com/help/webappserver/ug/authentication.html)       |
-| Role-Based Access     | webapps_app_roles.json                                    | [Role-Based Access Documentation](https://www.mathworks.com/help/webappserver/ug/role-based-access.html)    |
-| Policy-Based Access   | webapps_acc_ctl.json                                      | [Policy-Based Access Documentation](https://www.mathworks.com/help/webappserver/ug/policy-based-access.html)  |
+| Authentication        | `webapps_authn.json`                                        | [Authentication Documentation](https://www.mathworks.com/help/webappserver/ug/authentication.html)       |
+| Role-Based Access     | `webapps_app_roles.json`                                    | [Role-Based Access Documentation](https://www.mathworks.com/help/webappserver/ug/role-based-access.html)    |
+| Policy-Based Access   | `webapps_acc_ctl.json`                                      | [Policy-Based Access Documentation](https://www.mathworks.com/help/webappserver/ug/policy-based-access.html)  |
 
 ## Configure OIDC Authentication
 1. Connect to the EC2 instance hosting MATLAB Web App Server. For details, see:
