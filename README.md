@@ -234,6 +234,8 @@ To use an existing network license manager, you must add the security group of t
 1. In the **Source**, search and add the ```MatlabWebappServerCloudStackSg``` security group. 
 1. Click **Save Rules**.
 
+>**NOTE:** When using an existing license manager on an existing VPC, use the private IP address of the network license manager. You can find the private IP address in the *Outputs* tab of the existing network license manager deployment. 
+
 ## What versions of MATLAB Runtime are supported?
 
 | Release | MATLAB Runtime | MATLAB Runtime | MATLAB Runtime | MATLAB Runtime |  
