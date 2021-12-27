@@ -39,7 +39,7 @@ Click the **Launch Stack** button to deploy resources on AWS. This will open the
 
 | Release | Windows Server 2019 or Ubuntu 18.04  |
 |---------------|------------------------|
-| MATLAB R2021b | <a href="https://us-east-1.console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/quickcreate?templateURL=https://joeywebapplambdaarchive.s3.amazonaws.com/WebAppServer_new.yml" target="_blank">     <img src="https://s3.amazonaws.com/cloudformation-examples/cloudformation-launch-stack.png"/> </a> |
+| MATLAB R2021b | <a href="https://us-east-1.console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/quickcreate?templateURL=https://matlab-web-app-server-templates.s3.amazonaws.com/r2021b_refarch/WebAppServer_new.yml" target="_blank">     <img src="https://s3.amazonaws.com/cloudformation-examples/cloudformation-launch-stack.png"/> </a> |
 
 >**NOTE:** Mulitple versions of MATLAB Runtime are supported. For details, see [Supported MATLAB Runtime Versions](#what-versions-of-matlab-runtime-are-supported).
 
@@ -198,7 +198,7 @@ Use the following templates to launch the reference architecture within an exist
 
 | Release | Windows Server 2019 or Ubuntu 18.04 VM |
 |---------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| R2021b | <a  href ="https://us-east-1.console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/create/review?templateURL=https://joeywebapplambdaarchive.s3.amazonaws.com/WebAppServer_existing.yml"  target ="_blank" >      <img  src ="https://s3.amazonaws.com/cloudformation-examples/cloudformation-launch-stack.png" />  </a> |
+| R2021b | <a  href ="https://us-east-1.console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/create/review?templateURL=https://matlab-web-app-server-templates.s3.amazonaws.com/r2021b_refarch/WebAppServer_existing.yml"  target ="_blank" >      <img  src ="https://s3.amazonaws.com/cloudformation-examples/cloudformation-launch-stack.png" />  </a> |
 
 In addition to the parameters specified in the section [Configure the Stack](#step-2-configure-the-stack), you will need to specify the following parameters in the template to use your existing VPC.
 

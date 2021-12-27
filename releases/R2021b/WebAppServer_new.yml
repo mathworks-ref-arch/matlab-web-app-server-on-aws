@@ -139,7 +139,7 @@ Resources:
   MatlabWebappServerVPCStack:
     Type: AWS::CloudFormation::Stack
     Properties:
-      TemplateURL: 'https://joeywebapplambdaarchive.s3.amazonaws.com/VPCStack.yml'
+      TemplateURL: 'https://matlab-web-app-server-templates.s3.amazonaws.com/r2021b_refarch/VPCStack.yml'
       Parameters:
         AllowPublicIP: 'Yes'
 
@@ -162,7 +162,7 @@ Resources:
       - MatlabWebappServerVPCStack
     Type: AWS::CloudFormation::Stack
     Properties:
-      TemplateURL: 'https://joeywebapplambdaarchive.s3.amazonaws.com/CommonResourcesStack.yml'
+      TemplateURL: 'https://matlab-web-app-server-templates.s3.amazonaws.com/r2021b_refarch/CommonResourcesStack.yml'
       Parameters:
         ExistingVPC: !GetAtt MatlabWebappServerVPCStack.Outputs.VPCID
         ExistingVPCAddress: !GetAtt MatlabWebappServerVPCStack.Outputs.VPCCIDR

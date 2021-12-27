@@ -247,7 +247,7 @@ Resources:
   MatlabWebAppServerResourcesStack:
     Type: AWS::CloudFormation::Stack
     Properties:
-      TemplateURL: 'https://joeywebapplambdaarchive.s3.amazonaws.com/CommonResourcesStack.yml'
+      TemplateURL: 'https://matlab-web-app-server-templates.s3.amazonaws.com/r2021b_refarch/CommonResourcesStack.yml'
       Parameters:
         ExistingVPC: !Ref ExistingVPC
         ExistingVPCAddress: !Ref ExistingVPCAddress
