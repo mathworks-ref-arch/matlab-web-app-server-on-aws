@@ -17,7 +17,7 @@ You are responsible for the cost of the AWS services used when you create cloud 
 # Introduction
 The following guide will help you automate the process of running MATLAB
 Web App Server on the Amazon Web Services (AWS) Cloud. The automation is
-accomplished using an AWS CloudFormation template. The template is a JSON
+accomplished using an AWS CloudFormation template. The template is a YAML 
 file that defines the resources needed to deploy and manage MATLAB Web App
 Server on AWS.
 For information about AWS templates, see [AWS CloudFormation Templates](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/template-guide.html). <br>
@@ -37,9 +37,10 @@ The template for using an existing VPC for deployment provides an option to eith
 ## Step 1. Launch the Template
 Click the **Launch Stack** button to deploy resources on AWS. This will open the AWS Management Console in your web browser.
 
-| Release | Windows Server 2019 or Ubuntu 18.04  |
-|---------------|------------------------|
-| MATLAB R2021b | <a href="https://us-east-1.console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/quickcreate?templateURL=https://matlab-web-app-server-templates.s3.amazonaws.com/r2021b_refarch/WebAppServer_new.yml" target="_blank">     <img src="https://s3.amazonaws.com/cloudformation-examples/cloudformation-launch-stack.png"/> </a> |
+| Release | Launch Button | Operating Systems |
+|---------|---------------|-------------------|
+| MATLAB R2022a | <a href="https://us-east-1.console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/quickcreate?templateURL=https://matlab-web-app-server-templates.s3.amazonaws.com/r2022a_refarch/WebAppServer_new.yml" target="_blank">     <img src="https://s3.amazonaws.com/cloudformation-examples/cloudformation-launch-stack.png"/> </a> | Windows Server 2019 or Ubuntu 18.04 VM |
+| MATLAB R2021b | <a href="https://us-east-1.console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/quickcreate?templateURL=https://matlab-web-app-server-templates.s3.amazonaws.com/r2021b_refarch/WebAppServer_new.yml" target="_blank">     <img src="https://s3.amazonaws.com/cloudformation-examples/cloudformation-launch-stack.png"/> </a> | Windows Server 2019 or Ubuntu 18.04 VM |
 
 >**NOTE:** Mulitple versions of MATLAB Runtime are supported. For details, see [Supported MATLAB Runtime Versions](#what-versions-of-matlab-runtime-are-supported).
 
@@ -196,9 +197,10 @@ To delete the stack:
 
 Use the following templates to launch the reference architecture within an existing VPC and subnet. The templates provide an option to deploy the Network License Manager for MATLAB to manage MATLAB Web App Server licenses.
 
-| Release | Windows Server 2019 or Ubuntu 18.04 VM |
-|---------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| R2021b | <a  href ="https://us-east-1.console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/create/review?templateURL=https://matlab-web-app-server-templates.s3.amazonaws.com/r2021b_refarch/WebAppServer_existing.yml"  target ="_blank" >      <img  src ="https://s3.amazonaws.com/cloudformation-examples/cloudformation-launch-stack.png" />  </a> |
+| Release | Launch Button | Operating Systems |
+|---------|---------------|-------------------|
+| R2022a | <a  href ="https://us-east-1.console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/create/review?templateURL=https://matlab-web-app-server-templates.s3.amazonaws.com/r2022a_refarch/WebAppServer_existing.yml"  target ="_blank" >      <img  src ="https://s3.amazonaws.com/cloudformation-examples/cloudformation-launch-stack.png" />  </a> | Windows Server 2019 or Ubuntu 18.04 VM |
+| R2021b | <a  href ="https://us-east-1.console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/create/review?templateURL=https://matlab-web-app-server-templates.s3.amazonaws.com/r2021b_refarch/WebAppServer_existing.yml"  target ="_blank" >      <img  src ="https://s3.amazonaws.com/cloudformation-examples/cloudformation-launch-stack.png" />  </a> | Windows Server 2019 or Ubuntu 18.04 VM |
 
 In addition to the parameters specified in the section [Configure the Stack](#step-2-configure-the-stack), you will need to specify the following parameters in the template to use your existing VPC.
 
@@ -239,9 +241,10 @@ To use an existing network license manager, you must add the security group of t
 
 ## What versions of MATLAB Runtime are supported?
 
-| Release | MATLAB Runtime | MATLAB Runtime | MATLAB Runtime | MATLAB Runtime |  
-|---------------|----------------|----------------|----------------|----------------|
-| MATLAB R2021b |  R2020a | R2020b | R2021a |  R2021b |  
+| Release | MATLAB Runtimes |
+|---------------|----------------|
+| MATLAB R2022a |  R2019b, R2020a, R2020b, R2021a, R2021b, R2022a |  
+| MATLAB R2021b |  R2020a, R2020b, R2021a, R2021b |  
 
 # Enhancement Request
 Provide suggestions for additional features or capabilities using the following link: https://www.mathworks.com/cloud/enhancement-request.html
