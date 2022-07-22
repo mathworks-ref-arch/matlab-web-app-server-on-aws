@@ -103,7 +103,7 @@ To run applications on MATLAB Web App Server, you need to create web apps using 
 1. In the Stack Detail for your stack, click the **Outputs** tab.
 1. Look for the key named `MATLABWebAppServerEC2Instance` and click the corresponding URL listed under value. This will take you to the server instance (`matlab-webapp-server-vm`) page. 
 1. Click the **Connect** button at the top.
-1. In the *Connect to instance* dialog, choose **Get Password**.
+1. In the *Connect to instance* dialog, click the **RDP client** tab and then click **Get Password**.
 1. Click **Choose File** to navigate and select the private key file (`.pem` file) for the key pair that you used while creating the stack in [Step 2](#step-2-configure-the-stack).
 1. Click **Decrypt Password**. The console displays the password for the instance in the *Connect to instance* dialog.
 1. Copy the password to the clipboard.
