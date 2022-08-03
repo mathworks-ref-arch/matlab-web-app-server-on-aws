@@ -243,6 +243,9 @@ To use an existing network license manager, you must add the security group of t
 |---------------|----------------|----------------|----------------|----------------|
 | MATLAB R2021b |  R2020a | R2020b | R2021a |  R2021b |  
 
+## Is Lightweight Directory Access Protocol (LDAP) authentication supported?
+LDAP authentication is not supported when MATLAB Web App Server is deployed to cloud platforms. LDAP authentication is only supported in on-prem settings.
+
 # Enhancement Request
 Provide suggestions for additional features or capabilities using the following link: https://www.mathworks.com/cloud/enhancement-request.html
 
