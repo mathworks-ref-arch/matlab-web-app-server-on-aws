@@ -10,7 +10,7 @@ import random
 from datetime import date
 import json
 
-def main(keypairname, password, ipAddress, SSLCertificateARN):
+def main(keypairname, password, ipAddress, SSLCertificateARN, location_arg, platform_arg):
     # Reference architectures in production.
     ref_arch_name = 'matlab-web-app-server-on-aws'
     parameters = [{'ParameterKey': 'KeyPairName', 'ParameterValue': keypairname},
@@ -18,13 +18,13 @@ def main(keypairname, password, ipAddress, SSLCertificateARN):
                   {'ParameterKey': 'Password', 'ParameterValue': password},
                   {'ParameterKey': 'ConfirmPassword', 'ParameterValue': password},
                   {'ParameterKey': 'SSLCertificateARN', 'ParameterValue': SSLCertificateARN},
-                  {'ParameterKey': 'WorkerSystem', 'ParameterValue': 'Windows'},
+                  {'ParameterKey': 'WorkerSystem', 'ParameterValue': platform_arg},
                   {'ParameterKey': 'WorkerInstanceType', 'ParameterValue': 'm5.xlarge'},
                   {'ParameterKey': 'UseSameIPForClient', 'ParameterValue': 'Yes'}]
 
     # Find latest MATLAB release from Github page and get template url text
     res = requests.get(f"https://github.com/mathworks-ref-arch/{ref_arch_name}/blob/master/releases/")
-    
+
     # Deploy a stack for the latest two releases
     latest_releases = [re.findall("main/releases/(R\d{4}[ab]\\b)", res.text)[-1], re.findall("main/releases/(R\d{4}[ab]\\b)", res.text)[-2]]
     number_of_releases = 2
@@ -39,7 +39,7 @@ def main(keypairname, password, ipAddress, SSLCertificateARN):
             template_url_path = f"{github_base_dir}/{ref_arch_name}/master/releases/{matlab_release}/templates.txt"
             file = urllib.request.urlopen(template_url_path)
             template_url = file.readline().decode("utf-8").rstrip()
-        
+
         # Getting template url from .json file
         else:
             template_url_path = f"{github_base_dir}/{ref_arch_name}/main/releases/{matlab_release}/templates.json"
@@ -54,7 +54,7 @@ def main(keypairname, password, ipAddress, SSLCertificateARN):
         # Deploying the stack
         try:
             print("deploying the stack")
-            stack = deploy.deploy_stack(template_url, parameters, "us-east-1", stack_name) 
+            stack = deploy.deploy_stack(template_url, parameters, location_arg, stack_name)
             print("success deploying the stack")
         except Exception as e:
             raise (e)
@@ -68,4 +68,4 @@ def main(keypairname, password, ipAddress, SSLCertificateARN):
         print("\n\n")
 
 if __name__ == '__main__':
-    main(sys.argv[1], sys.argv[2], sys.argv[3], sys.argv[4])
+    main(sys.argv[1], sys.argv[2], sys.argv[3], sys.argv[4], sys.argv[5], sys.argv[6])
