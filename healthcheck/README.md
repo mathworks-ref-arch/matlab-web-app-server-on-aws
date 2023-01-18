@@ -1,3 +1,3 @@
 # MWAS_RefArch_AWS_HealthCheck
-This section of repository is to contain the tests for health check of published MATLAB Web App Server Ref Arch AWS health check.
-It will be scheduled to run everyday and confirm that the deployment can be done successfully and links that we have published to github are in good health.
+This section of repository is to contain the tests for health check of published MATLAB Web App Server Ref Arch AWS.
+It will be scheduled to run everyday on one of the regions (N.Virginia, Ireland, Tokyo) regions and confirm that the deployment testing new VPC and Existing VPC templates can be done successfully and links that we have published to github are in good health.
