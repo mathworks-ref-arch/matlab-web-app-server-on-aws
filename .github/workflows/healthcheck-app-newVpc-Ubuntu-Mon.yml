@@ -1,6 +1,6 @@
 # This workflow will install Python dependencies, run tests and lint with a single version of Python
 # For more information see: https://help.github.com/actions/language-and-framework-guides/using-python-with-github-actions
-name: MATLAB Web App Server Reference Architecture AWS Health Check Test
+name: MATLAB Web App Server Reference Architecture AWS new VPC Ubuntu us-east-1 region Health Check Test
 
 on:
  push:
@@ -28,7 +28,7 @@ jobs:
         flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
         # exit-zero treats all errors as warnings. The GitHub editor is 127 chars wide
         flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
-    - name: MATLAB Web App Server Reference Architecture Health Check Test Ubuntu New VPC
+    - name: MATLAB Web App Server Reference Architecture Health Check Test Ubuntu New VPC Ubuntu us-east-1 region
       run: |
         cd healthcheck
         export AWS_ACCESS_KEY_ID=${{ secrets.aws_access_key_id }}
