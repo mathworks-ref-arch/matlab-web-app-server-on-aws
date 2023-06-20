@@ -244,7 +244,7 @@ To use an existing network license manager, you must add the security group of t
 
 ## What versions of MATLAB Runtime are supported?
 
-| Release | MATLAB Runtimes |
+| Release | MATLAB Runtime |
 |---------------|----------------|
 | MATLAB R2023a |  R2020b, R2021a, R2021b, R2022a, R2022b, R2023a |
 | MATLAB R2022b |  R2020a, R2020b, R2021a, R2021b, R2022a, R2022b |  
