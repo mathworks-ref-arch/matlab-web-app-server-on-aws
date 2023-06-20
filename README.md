@@ -1,6 +1,6 @@
 # MATLAB Web App Server on Amazon Web Services
 
-# Requirement
+# Requirements
 
 Before starting, you need the following:
 
@@ -227,7 +227,7 @@ You will also need to open the following ports in your VPC:
 ### How to use an existing network license manager in an existing VPC?
 If you want to use an exisiting network license manager:
 - Choose `No` for the *Deploy Network License Manager* step of the deployment.
-- Specify the IP address of the existing network license manager in the `IP Address of Existing Network License Manager` step of the deployment. 
+- Specify the IP address of the existing network license manager in the `IP Address of Existing Network License Manager` step of the deployment. You can find the private IP address in the *Outputs* tab of the existing network license manager deployment. 
 
 To use an existing network license manager, you must add the security group of the server VMs to the security group of the license manager.
 1. In the AWS management console, select the stack where the network license manager is deployed.
@@ -236,10 +236,9 @@ To use an existing network license manager, you must add the security group of t
 1. Click the **Inbound Rules** tab, then click **Edit Inbound Rules**.
 1. Click **Add Rule**.
 1. In the **Type** dropdown, select ```All TCP```.
-1. In the **Source**, search and add the ```MatlabWebappServerCloudStackSg``` security group. 
+1. In the **Source**, search and add the ```matlab-webapp-server-sg``` security group. 
 1. Click **Save Rules**.
-
->**NOTE:** When using an existing license manager on an existing VPC, use the private IP address of the network license manager. You can find the private IP address in the *Outputs* tab of the existing network license manager deployment. 
+ 
 
 ## What versions of MATLAB Runtime are supported?
 
