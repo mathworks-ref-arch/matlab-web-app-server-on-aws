@@ -79,14 +79,14 @@ def main(keypairname, password, ipAddress, SSLCertificateARN, location_arg, plat
             print("success deploying the stack")
         except Exception as e:
             raise (e)
-
-        # Delete the deployment
-        print("deleting the stack")
-        deploy.delete_stack(stack)
-        print("success deleting the stack")
-        ct = datetime.datetime.now()
-        print("Date time after deployment and deletion of stack:-", ct)
-        print("\n\n")
+        finally:
+           # Delete the deployment
+           print("deleting the stack")
+           deploy.delete_stack(stack)
+           print("success deleting the stack")
+           ct = datetime.datetime.now()
+           print("Date time after deployment and deletion of stack:-", ct)
+           print("\n\n")
 
 if __name__ == '__main__':
     main(sys.argv[1], sys.argv[2], sys.argv[3], sys.argv[4], sys.argv[5], sys.argv[6])
