@@ -252,7 +252,7 @@ To use an existing network license manager, you must add the security group of t
 | MATLAB R2021b |  R2020a, R2020b, R2021a, R2021b |  
 
 # Enhancement Request
-Provide suggestions for additional features or capabilities using the following link: https://www.mathworks.com/cloud/enhancement-request.html
+Provide suggestions for additional features or capabilities using the following link: https://www.mathworks.com/solutions/cloud.html
 
 # Technical Support
 If you require assistance or have a request for additional features or capabilities, please contact [MathWorks Technical Support](https://www.mathworks.com/support/contact_us.html).
