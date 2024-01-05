@@ -39,6 +39,7 @@ Click the **Launch Stack** button to deploy resources on AWS. This will open the
 
 | Release | Launch Button | Operating Systems |
 |---------|---------------|-------------------|
+| MATLAB R2023b | <a href="https://us-east-1.console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/quickcreate?templateURL=https://matlab-web-app-server-templates.s3.amazonaws.com/r2023b_refarch/WebAppServer_new.yml" target="_blank">     <img src="https://s3.amazonaws.com/cloudformation-examples/cloudformation-launch-stack.png"/> </a> | Windows Server 2022 or Ubuntu 22.04 VM |
 | MATLAB R2023a | <a href="https://us-east-1.console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/quickcreate?templateURL=https://matlab-web-app-server-templates.s3.amazonaws.com/r2023a_refarch/WebAppServer_new.yml" target="_blank">     <img src="https://s3.amazonaws.com/cloudformation-examples/cloudformation-launch-stack.png"/> </a> | Windows Server 2019 or Ubuntu 18.04 VM |
 | MATLAB R2022b | <a href="https://us-east-1.console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/quickcreate?templateURL=https://matlab-web-app-server-templates.s3.amazonaws.com/r2022b_refarch/WebAppServer_new.yml" target="_blank">     <img src="https://s3.amazonaws.com/cloudformation-examples/cloudformation-launch-stack.png"/> </a> | Windows Server 2019 or Ubuntu 18.04 VM |
 | MATLAB R2022a | <a href="https://us-east-1.console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/quickcreate?templateURL=https://matlab-web-app-server-templates.s3.amazonaws.com/r2022a_refarch/WebAppServer_new.yml" target="_blank">     <img src="https://s3.amazonaws.com/cloudformation-examples/cloudformation-launch-stack.png"/> </a> | Windows Server 2019 or Ubuntu 18.04 VM |
@@ -201,6 +202,7 @@ Use the following templates to launch the reference architecture within an exist
 
 | Release | Launch Button | Operating Systems |
 |---------|---------------|-------------------|
+| R2023b | <a  href ="https://us-east-1.console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/create/review?templateURL=https://matlab-web-app-server-templates.s3.amazonaws.com/r2023b_refarch/WebAppServer_existing.yml"  target ="_blank" >      <img  src ="https://s3.amazonaws.com/cloudformation-examples/cloudformation-launch-stack.png" />  </a> | Windows Server 2022 or Ubuntu 22.04 VM |
 | R2023a | <a  href ="https://us-east-1.console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/create/review?templateURL=https://matlab-web-app-server-templates.s3.amazonaws.com/r2023a_refarch/WebAppServer_existing.yml"  target ="_blank" >      <img  src ="https://s3.amazonaws.com/cloudformation-examples/cloudformation-launch-stack.png" />  </a> | Windows Server 2019 or Ubuntu 18.04 VM |
 | R2022b | <a  href ="https://us-east-1.console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/create/review?templateURL=https://matlab-web-app-server-templates.s3.amazonaws.com/r2022b_refarch/WebAppServer_existing.yml"  target ="_blank" >      <img  src ="https://s3.amazonaws.com/cloudformation-examples/cloudformation-launch-stack.png" />  </a> | Windows Server 2019 or Ubuntu 18.04 VM |
 | R2022a | <a  href ="https://us-east-1.console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/create/review?templateURL=https://matlab-web-app-server-templates.s3.amazonaws.com/r2022a_refarch/WebAppServer_existing.yml"  target ="_blank" >      <img  src ="https://s3.amazonaws.com/cloudformation-examples/cloudformation-launch-stack.png" />  </a> | Windows Server 2019 or Ubuntu 18.04 VM |
@@ -246,6 +248,7 @@ To use an existing network license manager, you must add the security group of t
 
 | Release | MATLAB Runtime |
 |---------------|----------------|
+| MATLAB R2023b |  R2021a, R2021b, R2022a, R2022b, R2023a, R2023b |
 | MATLAB R2023a |  R2020b, R2021a, R2021b, R2022a, R2022b, R2023a |
 | MATLAB R2022b |  R2020a, R2020b, R2021a, R2021b, R2022a, R2022b |  
 | MATLAB R2022a |  R2019b, R2020a, R2020b, R2021a, R2021b, R2022a |  
