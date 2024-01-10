@@ -67,6 +67,9 @@ Click the **Launch Stack** button to deploy resources on AWS. This will open the
     ||**Settings for Network License Manager**|
     | **Password for Network License Manager** | Specify a password for the network license manager. Use this password to log in to the network license manager after the stack has been successfully created.<p>Deploying MATLAB Web App Server automatically deploys a network license manager.</p>|
     | **Confirm Password** | Reenter the password to log in to the network license manager. |
+    ||**If you are using [an existing VPC](#How-do-I-use-an-existing-VPC-to-deploy-MATLAB-Web-App-Server?), the following settings are available:**|
+    | **Port and IP Address of Existing Network License Manager** | Enter the IP address and port number of the existing network license manager. You can find the private IP address in the *Outputs* tab of the existing network license manager deployment.  |
+    | **Security Group of Existing Network License Manager** | Specify the security group of the network license manager that has already been deployed to the existing VPC. |
 
     >**Note**: Make sure you select US East (N.Virginia), EU (Ireland) or Asia Pacific (Tokyo) as your region from the navigation panel on top. Currently, US East, EU (Ireland), and Asia Pacific (Tokyo) are the only supported regions.
 
@@ -213,7 +216,6 @@ In addition to the parameters specified in the section [Configure the Stack](#st
 | Parameter  | Value |
 |----------------------------------|--------------------------------------------------------------------------------|
 | Existing VPC ID | ID of your existing VPC. |
-| IP address range of existing VPC | IP address range from the existing VPC. To find the IP address range: <ol><li>Log in to the AWS Console.</li><li>Navigate to the VPC dashboard and select your VPC.</li><li>Click the **CIDR blocks** tab.</li><li>The **IPv4 CIDR Blocks** gives the IP address range.</li></ol> |
 |Assign Public IP to EC2 Instance Hosting MATLAB Web App Server | Specify whether the deployed EC2 instance must use a public IP address. If you select "No", you must provide a private subnet in the field "Subnet for MATLAB Web App Server". <p>**Note:** Even after you select "No", your MATLAB Web App Server apps home page is still accessible over the Internet. However, you cannot remotely connect to the EC2 instance hosting the server from outside the VPC.</p> |
 | Subnet for MATLAB Web App Server | Specify the ID of a public or private subnet within the existing VPC that will host the server. |
 | Public Subnet 1 ID | ID of an existing public subnet to host server resources. This subnet can be the same as the one hosting MATLAB Web App Server, as long as the subnet hosting the server is public. If the subnet hosting the server is private, then this subnet must be a different public subnet. |
@@ -231,7 +233,7 @@ You will also need to open the following ports in your VPC:
 ### How to use an existing network license manager in an existing VPC?
 If you want to use an exisiting network license manager:
 - Choose `No` for the *Deploy Network License Manager* step of the deployment.
-- Specify the IP address of the existing network license manager in the `IP Address of Existing Network License Manager` step of the deployment. You can find the private IP address in the *Outputs* tab of the existing network license manager deployment. 
+- Specify the IP address and port number of the existing network license manager in the `Port and IP Address of Existing Network License Manager` step of the deployment. You can find the private IP address in the *Outputs* tab of the existing network license manager deployment. 
 
 To use an existing network license manager, you must add the security group of the server VMs to the security group of the license manager.
 1. In the AWS management console, select the stack where the network license manager is deployed.
@@ -255,7 +257,7 @@ To use an existing network license manager, you must add the security group of t
 | MATLAB R2021b |  R2020a, R2020b, R2021a, R2021b |  
 
 # Enhancement Request
-Provide suggestions for additional features or capabilities using the following link: https://www.mathworks.com/solutions/cloud.html
+Provide suggestions for additional features or capabilities using the following link: https://www.mathworks.com/cloud/enhancement-request.html
 
 # Technical Support
 If you require assistance or have a request for additional features or capabilities, please contact [MathWorks Technical Support](https://www.mathworks.com/support/contact_us.html).
