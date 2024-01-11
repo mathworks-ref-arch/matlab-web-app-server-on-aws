@@ -218,6 +218,9 @@ In addition to the parameters specified in the section [Configure the Stack](#st
 | Subnet for MATLAB Web App Server | Specify the ID of a public or private subnet within the existing VPC that will host the server. |
 | Public Subnet 1 ID | ID of an existing public subnet to host server resources. This subnet can be the same as the one hosting MATLAB Web App Server, as long as the subnet hosting the server is public. If the subnet hosting the server is private, then this subnet must be a different public subnet. |
 | Public Subnet 2 ID | ID of an existing public subnet to to host server resources. This subnet must be different from Public Subnet 1.|
+   ||**Settings for Network License Manager**|
+   | Port and IP Address of Existing Network License Manager | Optional parameter: Specify the port number and private DNS name or private IP address of the network license manager that has already been deployed to the existing VPC. Specify it in the format port@privateDNSname, for example, 27000@ip-172-30-1-89.ec2.internal or 27000@172.30.1.89. By default, the license manager uses port 27000. Leave this field blank if you are deploying a new network license manager.  |
+   | Security Group of Existing Network License Manager | Optional parameter: Specify the security group of the network license manager that has already been deployed to the existing VPC. Leave this field blank if you are deploying a new network license manager. |
 
 You will also need to open the following ports in your VPC:
 

@@ -67,9 +67,6 @@ Click the **Launch Stack** button to deploy resources on AWS. This will open the
     ||**Settings for Network License Manager**|
     | **Password for Network License Manager** | Specify a password for the network license manager. Use this password to log in to the network license manager after the stack has been successfully created.<p>Deploying MATLAB Web App Server automatically deploys a network license manager.</p>|
     | **Confirm Password** | Reenter the password to log in to the network license manager. |
-    ||**If you are using [an existing VPC](#How-do-I-use-an-existing-VPC-to-deploy-MATLAB-Web-App-Server?), the following settings are available:**|
-    | **Port and IP Address of Existing Network License Manager** | Enter the IP address and port number of the existing network license manager. You can find the private IP address in the *Outputs* tab of the existing network license manager deployment.  |
-    | **Security Group of Existing Network License Manager** | Specify the security group of the network license manager that has already been deployed to the existing VPC. |
 
     >**Note**: Make sure you select US East (N.Virginia), EU (Ireland) or Asia Pacific (Tokyo) as your region from the navigation panel on top. Currently, US East, EU (Ireland), and Asia Pacific (Tokyo) are the only supported regions.
 
@@ -220,6 +217,9 @@ In addition to the parameters specified in the section [Configure the Stack](#st
 | Subnet for MATLAB Web App Server | Specify the ID of a public or private subnet within the existing VPC that will host the server. |
 | Public Subnet 1 ID | ID of an existing public subnet to host server resources. This subnet can be the same as the one hosting MATLAB Web App Server, as long as the subnet hosting the server is public. If the subnet hosting the server is private, then this subnet must be a different public subnet. |
 | Public Subnet 2 ID | ID of an existing public subnet to to host server resources. This subnet must be different from Public Subnet 1.|
+   ||**Settings for Network License Manager**|
+   | Port and IP Address of Existing Network License Manager | Optional parameter: Specify the port number and private DNS name or private IP address of the network license manager that has already been deployed to the existing VPC. Specify it in the format port@privateDNSname, for example, 27000@ip-172-30-1-89.ec2.internal or 27000@172.30.1.89. By default, the license manager uses port 27000. Leave this field blank if you are deploying a new network license manager.  |
+   | Security Group of Existing Network License Manager | Optional parameter: Specify the security group of the network license manager that has already been deployed to the existing VPC. Leave this field blank if you are deploying a new network license manager. |
 
 You will also need to open the following ports in your VPC:
 
