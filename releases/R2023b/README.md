@@ -62,7 +62,7 @@ Click the **Launch Stack** button to deploy resources on AWS. This will open the
     | **Do You Want to Use the Same IP Address Range to Access the MATLAB Web App Server Apps Home Page?**| Select, **Yes** or **No**. <ul><li>If you select **Yes**, the same IP address range specified above is configured to access the MATLAB Web App Server apps homepage. Choose this option if you know that the same set of users will administer the server and access web apps on the apps home page.</li><li>If you select **No**, you must specify a new IP address range in the next field. Choose this option if the users accessing web apps on the apps home page are different from the users administering the server.</li></ul>
     | **IP Addresses Allowed to Access MATLAB Web App Server Apps Home Page** | Complete this field only if you selected **"No"** in the previous field. Specify the range of IP addresses that can access the MATLAB Web App Server apps home page in CIDR notation. The format for this field is IP Address/Mask.<p><em>*Example*</em>: `x.x.x.x/24`</p> |
     | **ARN of SSL Certificate** | Specify the Amazon Resource Name (ARN) of the SSL certificate you uploaded to the AWS Ceritifcate Manager. The ARN facilitates connecting to the apps home page using an HTTPS connection.<p><em>*Example*</em>: <code>arn:aws:acm:us-east-1:012345678910:certificate/666abcd6-ab6c-6ab6-a666-a666666bcd66</code> </p><p>To retrieve an ARN:</p><ul><li>Type "Certificate Manager" in the search box at the top of the web page and hit Enter. This automatically takes you to the AWS Certificate Manager.</li><li>Select the certificate you uploaded based on Certificate ID, or Domain name, or Name tag .</li><li>Copy the ARN from the "Certificate status" section at the top.</li></ul><p>For more information, see [Create Self-signed Certificate](/README.md#create-self-signed-certificate) and [Upload Self-signed Certificate to AWS Certificate Manager](/README.md#upload-self-signed-certificate-to-aws-certificate-manager).
-    | **EC2 Instance Type** | Choose the AWS EC2 instance type to use for the server. All AWS instance types are supported. For more information, see [Amazon EC2 Instance Types](https://aws.amazon.com/ec2/instance-types/). <p><em>*Example*</em>: `m5.xlarge`</p> |
+    | **EC2 Instance Type** | Choose the AWS EC2 instance type to use for the server. All AWS instance types are supported. For more information, see [Amazon EC2 Instance Types](https://aws.amazon.com/ec2/instance-types/). <p><em>*Example*</em>: `m6a.large`</p> |
     | **Operating System** | Choose between Windows (Windows Server) and Linux (Ubuntu).  |
     ||**Settings for Network License Manager**|
     | **Password for Network License Manager** | Specify a password for the network license manager. Use this password to log in to the network license manager after the stack has been successfully created.<p>Deploying MATLAB Web App Server automatically deploys a network license manager.</p>|
@@ -218,7 +218,7 @@ In addition to the parameters specified in the section [Configure the Stack](#st
 | Public Subnet 1 ID | ID of an existing public subnet to host server resources. This subnet can be the same as the one hosting MATLAB Web App Server, as long as the subnet hosting the server is public. If the subnet hosting the server is private, then this subnet must be a different public subnet. |
 | Public Subnet 2 ID | ID of an existing public subnet to to host server resources. This subnet must be different from Public Subnet 1.|
    ||**Settings for Network License Manager**|
-   | Port and IP Address of Existing Network License Manager | Optional parameter: Specify the port number and private DNS name or private IP address of the network license manager that has already been deployed to the existing VPC. Specify it in the format port@privateDNSname, for example, 27000@ip-172-30-1-89.ec2.internal or 27000@172.30.1.89. By default, the license manager uses port 27000. Leave this field blank if you are deploying a new network license manager.  |
+   | Port and IP Address of Existing Network License Manager | Optional parameter: Specify the port number and private DNS name or private IP address of the network license manager that has already been deployed to the existing VPC. Specify it in the format port@privateDNSname, for example, `27000@ip-172-30-1-89.ec2.internal` or `27000@172.30.1.89`. By default, the license manager uses port 27000. Leave this field blank if you are deploying a new network license manager.  |
    | Security Group of Existing Network License Manager | Optional parameter: Specify the security group of the network license manager that has already been deployed to the existing VPC. Leave this field blank if you are deploying a new network license manager. |
 
 You will also need to open the following ports in your VPC:
@@ -233,7 +233,7 @@ You will also need to open the following ports in your VPC:
 ### How to use an existing network license manager in an existing VPC?
 If you want to use an exisiting network license manager:
 - Choose `No` for the *Deploy Network License Manager* step of the deployment.
-- Specify the IP address and port number of the existing network license manager in the `Port and IP Address of Existing Network License Manager` step of the deployment. You can find the private IP address in the *Outputs* tab of the existing network license manager deployment. 
+- Specify the IP address of the existing network license manager in the `IP Address of Existing Network License Manager` step of the deployment. You can find the private IP address in the *Outputs* tab of the existing network license manager deployment. 
 
 To use an existing network license manager, you must add the security group of the server VMs to the security group of the license manager.
 1. In the AWS management console, select the stack where the network license manager is deployed.
@@ -257,7 +257,7 @@ To use an existing network license manager, you must add the security group of t
 | MATLAB R2021b |  R2020a, R2020b, R2021a, R2021b |  
 
 # Enhancement Request
-Provide suggestions for additional features or capabilities using the following link: https://www.mathworks.com/cloud/enhancement-request.html
+Provide suggestions for additional features or capabilities using the following link: https://www.mathworks.com/solutions/cloud.html
 
 # Technical Support
 If you require assistance or have a request for additional features or capabilities, please contact [MathWorks Technical Support](https://www.mathworks.com/support/contact_us.html).
