@@ -51,60 +51,6 @@ resource group.
 | CloudWatch | 1 | Enables viewing of logs. |
 
 
-
-# FAQ
-
-## How do I use an existing VPC to deploy MATLAB Web App Server?
-
-Use the following templates to launch the reference architecture within an existing VPC and subnet. The templates provide an option to deploy the Network License Manager for MATLAB to manage MATLAB Web App Server licenses.
-
-| Release | Launch Button | Operating Systems |
-|---------|---------------|-------------------|
-| R2024a | <a  href ="https://us-east-1.console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/create/review?templateURL=https://matlab-web-app-server-templates.s3.amazonaws.com/r2024a_refarch/WebAppServer_existing.yml"  target ="_blank" >      <img  src ="https://s3.amazonaws.com/cloudformation-examples/cloudformation-launch-stack.png" />  </a> | Windows Server 2022 or Ubuntu 22.04 VM |
-| R2023b | <a  href ="https://us-east-1.console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/create/review?templateURL=https://matlab-web-app-server-templates.s3.amazonaws.com/r2023b_refarch/WebAppServer_existing.yml"  target ="_blank" >      <img  src ="https://s3.amazonaws.com/cloudformation-examples/cloudformation-launch-stack.png" />  </a> | Windows Server 2022 or Ubuntu 22.04 VM |
-| R2023a | <a  href ="https://us-east-1.console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/create/review?templateURL=https://matlab-web-app-server-templates.s3.amazonaws.com/r2023a_refarch/WebAppServer_existing.yml"  target ="_blank" >      <img  src ="https://s3.amazonaws.com/cloudformation-examples/cloudformation-launch-stack.png" />  </a> | Windows Server 2019 or Ubuntu 18.04 VM |
-| R2022b | <a  href ="https://us-east-1.console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/create/review?templateURL=https://matlab-web-app-server-templates.s3.amazonaws.com/r2022b_refarch/WebAppServer_existing.yml"  target ="_blank" >      <img  src ="https://s3.amazonaws.com/cloudformation-examples/cloudformation-launch-stack.png" />  </a> | Windows Server 2019 or Ubuntu 18.04 VM |
-| R2022a | <a  href ="https://us-east-1.console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/create/review?templateURL=https://matlab-web-app-server-templates.s3.amazonaws.com/r2022a_refarch/WebAppServer_existing.yml"  target ="_blank" >      <img  src ="https://s3.amazonaws.com/cloudformation-examples/cloudformation-launch-stack.png" />  </a> | Windows Server 2019 or Ubuntu 18.04 VM |
-| R2021b | <a  href ="https://us-east-1.console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/create/review?templateURL=https://matlab-web-app-server-templates.s3.amazonaws.com/r2021b_refarch/WebAppServer_existing.yml"  target ="_blank" >      <img  src ="https://s3.amazonaws.com/cloudformation-examples/cloudformation-launch-stack.png" />  </a> | Windows Server 2019 or Ubuntu 18.04 VM |
-
-In addition to the parameters specified in the section [Configure the Stack](#step-2-configure-the-stack), you will need to specify the following parameters in the template to use your existing VPC.
-
-| Parameter  | Value |
-|----------------------------------|--------------------------------------------------------------------------------|
-| Existing VPC ID | ID of your existing VPC. |
-|Assign Public IP to EC2 Instance Hosting MATLAB Web App Server | Specify whether the deployed EC2 instance must use a public IP address. If you select "No", you must provide a private subnet in the field "Subnet for MATLAB Web App Server". <p>**Note:** Even after you select "No", your MATLAB Web App Server apps home page is still accessible over the Internet. However, you cannot remotely connect to the EC2 instance hosting the server from outside the VPC.</p> |
-| Subnet for MATLAB Web App Server | Specify the ID of a public or private subnet within the existing VPC that will host the server. |
-| Public Subnet 1 ID | ID of an existing public subnet to host server resources. This subnet can be the same as the one hosting MATLAB Web App Server, as long as the subnet hosting the server is public. If the subnet hosting the server is private, then this subnet must be a different public subnet. |
-| Public Subnet 2 ID | ID of an existing public subnet to host server resources. This subnet must be different from Public Subnet 1.|
-   ||**Settings for Network License Manager**|
-   | Port and IP Address of Existing Network License Manager | Optional parameter: Specify the port number and private DNS name or private IP address of the network license manager that has already been deployed to the existing VPC. Specify it in the format port@privateDNSname, for example, `27000@ip-172-30-1-89.ec2.internal` or `27000@172.30.1.89`. By default, the license manager uses port 27000. Leave this field blank if you are deploying a new network license manager.  |
-   | Security Group of Existing Network License Manager | Optional parameter: Specify the security group of the network license manager that has already been deployed to the existing VPC. Leave this field blank if you are deploying a new network license manager. |
-
-You will also need to open the following ports in your VPC:
-
-| Port | Description |
-|------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `443` | Required for communicating with MATLAB Web App Server apps home page. |
-| `8000`, `9988` | Required for communication between MATLAB Web App Server controllers  and AWS services. These ports do not need to be open to the internet. |
-| `27000` | Required for communication between the network license manager and MATLAB Web App Server. |
-| `3389`, `22` | Required for Remote Desktop and Secure Connection functionality. This can be used for troubleshooting and debugging MATLAB Web App Server. |
-
-### How to use an existing network license manager in an existing VPC?
-If you want to use an existing network license manager:
-- Choose `No` for the *Deploy Network License Manager* step of the deployment.
-- Specify the IP address of the existing network license manager in the `IP Address of Existing Network License Manager` step of the deployment. You can find the private IP address in the *Outputs* tab of the existing network license manager deployment. 
-
-To use an existing network license manager, you must add the security group of the server VMs to the security group of the license manager.
-1. In the AWS management console, select the stack where the network license manager is deployed.
-1. In the *Stack details* for your stack, click **Resources**.
-1. Look for the **Logical ID** named ```SecurityGroup``` and click the corresponding URL listed under **Physical ID**. This will take you to the security group details.
-1. Click the **Inbound Rules** tab, then click **Edit Inbound Rules**.
-1. Click **Add Rule**.
-1. In the **Type** dropdown, select ```All TCP```.
-1. In the **Source**, search and add the ```matlab-webapp-server-sg``` security group. 
-1. Click **Save Rules**.
-
-
 # Enhancement Request
 Provide suggestions for additional features or capabilities using the following link: https://www.mathworks.com/solutions/cloud.html
 
