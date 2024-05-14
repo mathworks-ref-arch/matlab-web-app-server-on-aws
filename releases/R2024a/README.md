@@ -70,27 +70,21 @@ You will also need to open the following ports in your VPC:
 | `3389`, `22` | Required for Remote Desktop and Secure Connection functionality. This can be used for troubleshooting and debugging MATLAB Web App Server. |
 
 ### Use an existing network license manager in an existing VPC
-If you want to use an existing network license manager:
+For complete instructions on deploying the Network License Manager for MATLAB reference architecture, see [Network License Manager for MATLAB on Amazon Web Services](https://github.com/mathworks-ref-arch/license-manager-for-matlab-on-aws).
+
+If you want to use an existing network license manager in an existing VPC:
 - Choose `No` for the *Deploy Network License Manager* step of the deployment.
 - Specify the IP address of the existing network license manager in the `IP Address of Existing Network License Manager` step of the deployment. You can find the private IP address in the *Outputs* tab of the existing network license manager deployment. 
 
 To use an existing network license manager, you must add the security group of the server VMs to the security group of the license manager.
-1. In the AWS management console, select the stack where the network license manager is deployed.
-1. In the *Stack details* for your stack, click **Resources**.
+1. In the AWS management console, select the external security group that is nested in the network license manager stack you created. If it is not present in the stack list, ensure the **View nested** option is enabled.<p>For example: `mluser-nlm-MWSecurityGroupExternal-8JJX66NUZDD8`</p>
+1. In the *Stack details* for the external security group stack, click **Resources**.
 1. Look for the **Logical ID** named ```SecurityGroup``` and click the corresponding URL listed under **Physical ID**. This will take you to the security group details.
-1. Click the **Inbound Rules** tab, then click **Edit Inbound Rules**.
+1. Select the security group. Click the **Inbound Rules** tab, then click **Edit Inbound Rules**.
 1. Click **Add Rule**.
 1. In the **Type** dropdown, select ```All TCP```.
 1. In the **Source**, search and add the ```matlab-webapp-server-sg``` security group. 
 1. Click **Save Rules**.
-
-You must also add the private IP address of the license server to the `License Server` property in the **Settings** tab of the dashboard. 
-You can find the IP address of the license server from the AWS management console.
-1. In the AWS management console, navigate to the EC2 dashboard. 
-1. Select the license server instance.
-1. In the instance details, copy the value of **Private IPs**. For example: 172.30.1.126
-1. Add the private IP to the `License Server` property. For example: ` 27000@172.30.1.126`
-
 
 ## Step 4. Create Stack
 Review or edit your stack details. You must select the acknowledgements to create IAM resources. Otherwise, the deployment produces a `Requires capabilities : [CAPABILITY_IAM]` error and fails to create resources. For more information about IAM, see [IAM FAQ](https://aws.amazon.com/iam/faqs).
