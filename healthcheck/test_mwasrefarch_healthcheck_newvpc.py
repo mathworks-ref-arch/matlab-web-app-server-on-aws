@@ -40,7 +40,7 @@ def main(keypairname, password, ipAddress, location_arg, platform_arg):
         stack_name = "mwas-refarch-health-check-" + matlab_release + date.today().strftime('%m-%d-%Y') + str(random.randint(1,101))
         ct = datetime.datetime.now()
         print("Date time before deployment of stack:-", ct)
-
+        stack = None
         # Deploying the stack
         try:
             print("deploying the stack")
@@ -50,12 +50,13 @@ def main(keypairname, password, ipAddress, location_arg, platform_arg):
             raise (e)
         finally:
             # Delete the deployment
-            print("deleting the stack")
-            deploy.delete_stack(stack)
-            print("success deleting the stack")
-            ct = datetime.datetime.now()
-            print("Date time after deployment and deletion of stack:-", ct)
-            print("\n\n")
+            if stack:
+                print("deleting the stack")
+                deploy.delete_stack(stack)
+                print("success deleting the stack")
+                ct = datetime.datetime.now()
+                print("Date time after deployment and deletion of stack:-", ct)
+                print("\n\n")
 
 if __name__ == '__main__':
     main(sys.argv[1], sys.argv[2], sys.argv[3], sys.argv[4], sys.argv[5])

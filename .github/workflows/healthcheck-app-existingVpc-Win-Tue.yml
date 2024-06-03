@@ -20,7 +20,7 @@ jobs:
         python -m pip install --upgrade pip
         pip install flake8 pytest
         pip install -r ./healthcheck/requirements.txt
-       
+
     - name: Lint with flake8
       run: |
         # stop the build if there are Python syntax errors or undefined names
@@ -33,4 +33,4 @@ jobs:
         export AWS_ACCESS_KEY_ID=${{ secrets.aws_access_key_id }}
         export AWS_SECRET_ACCESS_KEY=${{ secrets.aws_secret_access_key }}
         export AWS_REGION="eu-west-1"
-        python test_webappserver_refarch_existingvpc.py ${{ secrets.KeyPairNameIreland }} ${{ secrets.lmpassword }} ${{ secrets.ipaddress }} ${{ secrets.SSLCertificateARNIreland }} "eu-west-1" "Windows"
+        python test_webappserver_refarch_existingvpc.py ${{ secrets.KeyPairNameIreland }} ${{ secrets.lmpassword }} ${{ secrets.ipaddress }} "eu-west-1" "Windows"
