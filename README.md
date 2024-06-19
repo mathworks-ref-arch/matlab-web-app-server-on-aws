@@ -36,7 +36,7 @@ To deploy the reference architecture, select your MATLAB Web App Server release 
 | [R2021b](releases/R2021b/README.md) | R2021b, R2021a, R2020b, R2020a |
 > **Note**: MathWorks provides templates for only the six most recent releases of MATLAB Web App Server. Earlier templates are removed and are no longer supported.
 # Architecture and Resources
-Deploying this reference architecture will create several resources in your
+Deploying this reference architecture creates several resources in your
 resource group.
 
 ![Cluster Architecture](/releases/R2024a/images/mwas-ref-arch-aws-architecture-diagram.png?raw=true)
