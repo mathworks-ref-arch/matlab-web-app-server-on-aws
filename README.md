@@ -49,7 +49,7 @@ resource group.
 |----------------------------------------------------------------------------|---------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | AWS EC2 Instance                                                           | 2                   | This resource consists of two virtual machines (VMs):<ul><li>A VM that hosts the MATLAB Web App Server.</li><li>A VM that hosts the Network License Manager for MATLAB. For more information, see [Network License Manager for MATLAB](https://github.com/mathworks-ref-arch/license-manager-for-matlab-on-aws).</li></ul>   |
 | S3 Bucket                                                                  | 1                  | S3 storage bucket created during the creation of the stack. This resource stores the applications deployed to the reference architecture.                                                                                                                                                                                                  |
-| Virtual Private Cluster (VPC)                                              | 1                   | Enables resources to communicate with each other.                                           |
+| Virtual Private Cloud (VPC)                                              | 1                   | Enables resources to communicate with each other.                                           |
 | CloudWatch | 1 | Enables viewing of logs. |
 
 
