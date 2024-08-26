@@ -15,12 +15,12 @@ You are responsible for the cost of the AWS services used when you create cloud 
 # Introduction
 Use this guide to automate running MATLAB Web App Server on the Amazon Web Services (AWS) Cloud using an AWS CloudFormation template. The template is a YAML file that defines the resources required to deploy and manage MATLAB Web App Server on AWS. For information about AWS templates, see [AWS CloudFormation Templates](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/template-guide.html). <br>
 
-The default MATLAB Web App Server deployment template uses the Network License Manager for MATLAB reference architecture to manage MATLAB Web App Server licenses. The template for using an exisitng VPC for the deployment provides an option to either deploy the Network License Manager or use your own license server. For more information about the Network License Manager for MATLAB reference architecture, see [Network License Manager for MATLAB on Amazon Web Services](https://github.com/mathworks-ref-arch/license-manager-for-matlab-on-aws).
+The default MATLAB Web App Server deployment template uses the Network License Manager for MATLAB reference architecture to manage MATLAB Web App Server licenses. The template for using an existing VPC for the deployment provides an option to either deploy the Network License Manager or use your own license server. For more information about the Network License Manager for MATLAB reference architecture, see [Network License Manager for MATLAB on Amazon Web Services](https://github.com/mathworks-ref-arch/license-manager-for-matlab-on-aws).
 
 
 # Prepare Your AWS Account
 1. If you do not have an AWS account, create one at https://aws.amazon.com by following the on-screen instructions.
-2. Use the regions selector in the navigation bar to choose **US-EAST (N. Virginia)**, **EU (Ireland)** or **Asia Pacific (Tokyo)**, as the region where you want to deploy MATLAB Web App Server.
+2. Use the regions selector in the navigation bar to choose **US EAST (N. Virginia)**, **EU (Ireland)** or **Asia Pacific (Tokyo)**, as the region where you want to deploy MATLAB Web App Server.
 3. Create a [key pair](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-key-pairs.html) in that region. A key pair is necessary since it is the only way to connect to the EC2 instance as an administrator.
 4. If necessary, [request a service limit increase](https://console.aws.amazon.com/support/home#/case/create?issueType=service-limit-increase&limitType=service-code-) for the Amazon EC2 instance type or VPCs.  You might need to do this if you already have existing deployments that use that instance type or you think you might exceed the [default limit](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-resource-limits.html) with this deployment.
 
