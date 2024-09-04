@@ -201,7 +201,7 @@ Password: Enter the password you provided while creating the stack.
 1. Click **Administration** > **Manage License**.
 1. Copy the license server MAC address displayed at the top.
 
-When you deploy the MATLAB Web App Server reference architecture, a network license manager is automatically deployed. You can also use an existing license manager that is located in the same VPC and the security group of the MATLAB Web App Server EC2 instance. For detials, see [Network License Manager for MATLAB](https://github.com/mathworks-ref-arch/license-manager-for-matlab-on-aws).
+When you deploy the MATLAB Web App Server reference architecture, a network license manager is automatically deployed. You can also use an existing license manager that is located in the same VPC and the security group of the MATLAB Web App Server EC2 instance. For details, see [Network License Manager for MATLAB](https://github.com/mathworks-ref-arch/license-manager-for-matlab-on-aws).
 
 >**NOTE**: The license manager MAC address is available only after the stack creation is complete.
 
