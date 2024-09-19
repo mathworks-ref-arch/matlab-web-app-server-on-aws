@@ -35,7 +35,8 @@ To deploy the reference architecture, select your MATLAB Web App Server release 
 | [R2022b](releases/R2022b/README.md) | R2022b, R2022a, R2021b, R2021a, R2020b, R2020a |
 | [R2022a](releases/R2022a/README.md) | R2022a, R2021b, R2021a, R2020b, R2020a, R2019b |
 
-> \*When the server is configured to use MATLAB Runtime versions prior to R2023b, the `unsafe-inline` attribute is set in the `script-src` directive of the Content Security Policy on the server and cannot be disabled. This allows web apps with embedded JavaScript to execute on the server. These runtimes are disabled by default in R2024b. You can enable them using the [webapps-runtime](https://www.mathworks.com/help/webappserver/ref/webappsruntime.html) command.
+> [!WARNING]
+> \*When the server is configured to use MATLAB Runtime versions prior to R2023b, the `unsafe-inline` attribute is set in the `script-src` directive of the server's Content Security Policy on the server and cannot be removed. The attribute allows inline JavaScript execution and event handlers contained within a web app to execute on the server. These runtimes are disabled by default in R2024b. You can enable them using the [webapps-runtime](https://www.mathworks.com/help/webappserver/ref/webappsruntime.html) command.
 
 **Note**: MathWorks provides templates for only the six most recent releases of MATLAB Web App Server. Earlier templates are removed and are no longer supported.
 
