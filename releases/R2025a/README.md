@@ -13,7 +13,7 @@ Then, click the appropriate **Launch Stack** button to launch the stack configur
 
 The AWS Management Console opens in your web browser.
 
->**NOTE:** Mulitple versions of MATLAB Runtime are supported. For details, see [Deploy Reference Architecture for Your Release](/README.md#deploy-reference-architecture-for-your-release).
+>**NOTE:** Multiple versions of MATLAB Runtime are supported. For details, see [Deploy Reference Architecture for Your Release](/README.md#deploy-reference-architecture-for-your-release).
 
 >**NOTE:** Creating a stack on AWS can take at least 20 minutes.
 
@@ -27,7 +27,7 @@ The AWS Management Console opens in your web browser.
     | **Name of Existing Amazon EC2 Key Pair**          | Choose an existing Amazon EC2 key pair to connect to the EC2 instance hosting MATLAB Web App Server. If you do not have a key pair, create one. For details, see [Amazon EC2 Key Pairs](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-key-pairs.html#having-ec2-create-your-key-pair). <p><em>*Example*</em>: `boston-keypair`</p>                                                                                   |
     | **IP Address of MATLAB Web App Server Administrator in CIDR Notation** | Specify the IP address of the administrator using CIDR notation. The administrator can remotely connect to the EC2 instance that hosts MATLAB Web App Server and administer it. The IP address can be a single IP address or a range of IP addresses. The format for this field is IP Address/Mask. <p><em>Example</em>: `x.x.x.x/32`<ul><li>This is the public IP address which can be found by searching for **"what is my ip address"** on the web. The mask determines the number of IP addresses to include.</li><li>A mask of 32 is a single IP address.</li><li>Use a [CIDR calculator](https://www.ipaddressguide.com/cidr) if you need a range of more than one IP addresses.</li><li>You may need to contact your IT administrator to determine which address is appropriate.</li></ul>**NOTE:** Restricting access to the server using an IP address is not a form of authentication. MATLAB Web App Server supports authentication using LDAP and OIDC. For details, see [Authentication](https://www.mathworks.com/help/webappserver/ug/authentication.html).</p> |
     | **Do You Want to Use the Same IP Address Range to Access the MATLAB Web App Server Apps Home Page?**| Select, **Yes** or **No**. <ul><li>If you select **Yes**, the same IP address range specified above is configured to access the MATLAB Web App Server apps homepage. Choose this option if you know that the same set of users will administer the server and access web apps on the apps home page.</li><li>If you select **No**, you must specify a new IP address range in the next field. Choose this option if the users accessing web apps on the apps home page are different from the users administering the server.</li></ul>
-    | **IP Addresses Allowed to Access MATLAB Web App Server Apps Home Page** | Complete this field only if you selected **"No"** in the previous field. Specify the range of IP addresses that can access the MATLAB Web App Server apps home page in CIDR notation. The format for this field is IP Address/Mask.<p><em>*Example*</em>: `x.x.x.x/24`</p> |    
+    | **IP Addresses Allowed to Access MATLAB Web App Server Apps Home Page** | Complete this field only if you selected **No** in the previous field. Specify the range of IP addresses that can access the MATLAB Web App Server apps home page in CIDR notation. The format for this field is IP Address/Mask.<p><em>*Example*</em>: `x.x.x.x/24`</p> |    
     | **EC2 Instance Type** | Choose the AWS EC2 instance type to use for the server. All AWS instance types are supported. For more information, see [Amazon EC2 Instance Types](https://aws.amazon.com/ec2/instance-types/). <p><em>*Example*</em>: `m6a.large`</p> |
     | **Operating System** | Choose between Windows (Windows Server) and Linux (Ubuntu).  |
     ||**Settings for Network License Manager**|
@@ -45,13 +45,13 @@ The AWS Management Console opens in your web browser.
 
 >**Note**: If you are deploying to a new VPC, skip this step.
 
-To deploy MATLAB Web App Server onto an existing VPC, specify these additional parameters.
+To deploy MATLAB Web App Server onto an existing VPC, select the **Existing VPC** template in [Step 1](#step-1-launch-template). In addition to the parameters listed in Step 2, you must also specify the following parameters.
 
 | Parameter  | Value |
 |----------------------------------|--------------------------------------------------------------------------------|
 | Existing VPC ID | ID of your existing VPC. |
-|Assign Public IP to EC2 Instance Hosting MATLAB Web App Server | Specify whether to assign a public IP address to the deployed EC2 instance. If you are deploying a new network license manager, the network license manager will be assigned the same type of IP address as the EC2 instance. <ul><li>If you select "Yes", you must provide a public subnet in the field "Subnet for MATLAB Web App Server".</li><li>If you select "No", you must provide a private subnet in the field "Subnet for MATLAB Web App Server".</li></ul><p><p>**Note:** Even after you select "No", your MATLAB Web App Server apps home page is still accessible over the Internet. However, you cannot remotely connect to the EC2 instance hosting the server from outside the VPC.</p> |
-| Subnet for MATLAB Web App Server | Specify the ID of a public or private subnet within the existing VPC that will host the server. If you selected "Yes" in the previous field for assigning a public IP, choose a public subnet. Otherwise, choose a private subnet. |
+|Assign Public IP to EC2 Instance Hosting MATLAB Web App Server | Specify whether to assign a public IP address to the deployed EC2 instance. If you are deploying a new network license manager, the network license manager will be assigned the same type of IP address as the EC2 instance. <ul><li>If you select `Yes`, you must provide a public subnet in the field **Subnet for MATLAB Web App Server**.</li><li>If you select `No`, you must provide a private subnet in the field **Subnet for MATLAB Web App Server**.<p>Even if you select `No`, your MATLAB Web App Server apps home page is still accessible over the Internet. However, you cannot remotely connect to the EC2 instance hosting the server from outside the VPC.</li></ul><p><p>**Note:** You may need to configure an endpoint or public NAT gateway to ensure MATLAB Web App Server can access AWS services. For details, see [Ensure connectivity in an existing VPC](#ensure-connectivity-in-an-existing-vpc).</p> |
+| Subnet for MATLAB Web App Server | Specify the ID of a public or private subnet within the existing VPC that will host the server. If you selected `Yes` in the previous field for assigning a public IP, choose a public subnet. Otherwise, choose a private subnet. |
 | Public Subnet 1 | ID of an existing public subnet to host server resources. This subnet can be the same as the one hosting MATLAB Web App Server, as long as the subnet hosting the server is public. If the subnet hosting the server is private, then this subnet must be a different public subnet. |
    ||**Settings for Network License Manager**|
    | Port and IP Address of Existing Network License Manager | Optional parameter: Specify the port number and private DNS name or private IP address of the network license manager that has already been deployed to the existing VPC. Specify it in the format port@privateDNSname, for example, `27000@ip-172-30-1-89.ec2.internal` or `27000@172.30.1.89`. By default, the license manager uses port 27000. Leave this field blank if you are deploying a new network license manager.  |
@@ -65,6 +65,37 @@ You will also need to open the following ports in your VPC:
 | `8000`, `9988` | Required for communication between MATLAB Web App Server controllers  and AWS services. These ports do not need to be open to the internet. |
 | `27000` | Required for communication between the network license manager and MATLAB Web App Server. |
 | `3389`, `22` | Required for Remote Desktop and Secure Connection functionality. This can be used for troubleshooting and debugging MATLAB Web App Server. |
+
+### Ensure connectivity in an existing VPC
+To enable effective operation of the MATLAB Web App Server Lambda functions within an existing Virtual Private Cloud (VPC), you must configure connectivity based on whether the subnet has a public or private IP address.
+
+#### Use public NAT gateway in a private subnet
+If are using an existing VPC and deploying in a private subnet, consider using a public NAT gateway to ensure that the Lambda functions can communicate efficiently and securely within your VPC. For more information, see [NAT gateways](https://docs.aws.amazon.com/vpc/latest/userguide/vpc-nat-gateway.html) in the AWS documentation.
+
+#### Create endpoint in a public subnet
+If are using an existing VPC and deploying in a public subnet, then you must add an endpoint to one of the public subnets in the VPC in order to allow the server to access the EC2 API. You can check if such an endpoint already exists by navigating to the AWS Portal, selecting **Endpoints**, and filtering by VPC ID for the VPC you are using for deployment. If no such endpoint is present, follow these steps:
+
+1. Click **Create endpoint**.
+1. Provide a name tag for the endpoint.
+1. Select **Type** as `AWS services`.
+1. In **Services**, select `com.amazonaws.${AWS::Region}.ec2`. The region should match your VPC region. For instance, if your region is US East 1, select `com.amazonaws.us-east-1.ec2`.
+1. In **Network settings**, select the VPC you are using for deployment.
+1. Ensure that **Enable DNS** is checked to facilitate DNS resolution within the VPC.
+1. In **Subnets**, select the public subnet where the endpoint will be configured.
+1. In **Security groups**, select the security group to associate with the endpoint network interface. Ensure the following settings are applied to the security group:<p>
+    <table>
+      <th>Ingress</th>
+      <tr><td><b>Protocol</b></td><td>TCP</td></tr>
+      <tr><td><b>Port Range</b></td><td>0-65535</td></tr>
+      <tr><td><b>Source</b></td><td>VPC CIDR block — allows internal VPC communication on any TCP port</td></tr>
+    </table>
+    <table>
+      <th>Egress</th>
+      <tr><td><b>Protocol</b></td><td>All (-1)</td></tr>
+      <tr><td><b>Destination</b></td><td>Anywhere (0.0.0.0/0) — allows all outbound traffic to any destination</td></tr>
+    </table>
+
+For detailed information on creating endpoints, see [Access an AWS service using an interface VPC endpoint](https://docs.aws.amazon.com/vpc/latest/privatelink/create-interface-endpoint.html).
 
 ### Use an existing network license manager in an existing VPC
 For complete instructions on deploying the Network License Manager for MATLAB reference architecture, see [Network License Manager for MATLAB on Amazon Web Services](https://github.com/mathworks-ref-arch/license-manager-for-matlab-on-aws).
@@ -91,11 +122,11 @@ Click the **Create** button. The CloudFormation service starts creating resource
 
 ## Step 5. Upload License File
 1. Click **Outputs** in the *Stack details* for your stack.
-1. Look for the key named `MATLABWebAppServerLicenseManager` and click the corresponding URL listed under value. This will take you to Network License Manager for MATLAB Dashboard login page.
+1. Look for the key named `MATLABWebAppServerLicenseManager` and click the corresponding URL listed under value. This opens the Network License Manager for MATLAB Dashboard login page.
 1. The username is **manager**. For the password, enter the password you entered in the **Password for Network License Manager** field while creating the stack in [Step 2](#step-2-configure-the-stack).
 1. Follow the instructions on the home page of the network license manager to upload your MATLAB Web App Server license.
 
->**Note:** MATLAB Web App Server automatically starts after succesfully uploading a valid license file.
+>**Note:** MATLAB Web App Server automatically starts after successfully uploading a valid license file.
 
 
 ## Step 6. Open the MATLAB Web App Server Apps Home Page
@@ -114,7 +145,7 @@ To run applications on MATLAB Web App Server, you need to create web apps using 
 1. Look for the key named `MATLABWebAppServerAppsS3Bucket`, and click the corresponding URL listed under value.
 1. In the S3 console, click **apps**.
 1. Click **Upload** > **Add Files** to select and upload web apps (`.ctf` files).
->**NOTE 1:** If you enable OIDC authentication, you can upload web apps from the apps home page. Any apps you upload via the apps home page are not synchornized with S3 bucket. To enable OIDC authentication, see [Configure OIDC Authentication](#configure-oidc-authentication).
+>**NOTE 1:** If you enable OIDC authentication, you can upload web apps from the apps home page. Any apps you upload via the apps home page are not synchronized with S3 bucket. To enable OIDC authentication, see [Configure OIDC Authentication](#configure-oidc-authentication).
 >**NOTE 2:**  Only folders created within the APPS root level folder are supported. Subfolders within those folders are not supported.
 
 ## Get Password to EC2 Instance Hosting MATLAB Web App Server
