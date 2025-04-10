@@ -67,7 +67,7 @@ You will also need to open the following ports in your VPC:
 | `3389`, `22` | Required for Remote Desktop and Secure Connection functionality. This can be used for troubleshooting and debugging MATLAB Web App Server. |
 
 ### Ensure connectivity in an existing VPC
-To enable effective operation of the MATLAB Web App Server Lambda functions within an existing Virtual Private Cloud (VPC), you must configure connectivity based on whether the subnet has a public or private IP address.
+To enable effective operation of the MATLAB Web App Server Lambda functions within an existing Virtual Private Cloud (VPC), you must configure connectivity based on whether the subnet is public or private.
 
 #### Use public NAT gateway in a private subnet
 If are using an existing VPC and deploying in a private subnet, consider using a public NAT gateway to ensure that the Lambda functions can communicate efficiently and securely within your VPC. For more information, see [NAT gateways](https://docs.aws.amazon.com/vpc/latest/userguide/vpc-nat-gateway.html) in the AWS documentation.
@@ -83,17 +83,19 @@ If are using an existing VPC and deploying in a public subnet, then you must add
 1. Ensure that **Enable DNS** is checked to facilitate DNS resolution within the VPC.
 1. In **Subnets**, select the public subnet where the endpoint will be configured.
 1. In **Security groups**, select the security group to associate with the endpoint network interface. Ensure the following settings are applied to the security group:<p>
-    <table>
-      <th>Ingress</th>
-      <tr><td><b>Protocol</b></td><td>TCP</td></tr>
-      <tr><td><b>Port Range</b></td><td>0-65535</td></tr>
-      <tr><td><b>Source</b></td><td>VPC CIDR block — allows internal VPC communication on any TCP port</td></tr>
-    </table>
-    <table>
-      <th>Egress</th>
-      <tr><td><b>Protocol</b></td><td>All (-1)</td></tr>
-      <tr><td><b>Destination</b></td><td>Anywhere (0.0.0.0/0) — allows all outbound traffic to any destination</td></tr>
-    </table>
+    | Inbound rules  |  |
+    |---|---|
+    |Type|All TCP|
+    |Protocol|TCP|
+    |Port Range|0 - 65535|
+    |Source|VPC CIDR block range — allows internal VPC communication on any TCP port|
+
+    | Outbound rules  |  |
+    |---|---|
+    |Type|All traffic|
+    |Protocol|All (-1)|
+    |Port Range|All|
+    |Destination|Anywhere (0.0.0.0/0) — allows all outbound traffic to any destination|
 
 For detailed information on creating endpoints, see [Access an AWS service using an interface VPC endpoint](https://docs.aws.amazon.com/vpc/latest/privatelink/create-interface-endpoint.html).
 
