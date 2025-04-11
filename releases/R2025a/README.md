@@ -93,7 +93,7 @@ If are using an existing VPC and deploying in a public subnet, then you must add
     | Outbound rules  |  |
     |---|---|
     |Type|All traffic|
-    |Protocol|All (-1)|
+    |Protocol|All|
     |Port Range|All|
     |Destination|Anywhere (0.0.0.0/0) — allows all outbound traffic to any destination|
 
