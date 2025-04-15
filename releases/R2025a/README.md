@@ -45,6 +45,10 @@ The AWS Management Console opens in your web browser.
 
 >**Note**: If you are deploying to a new VPC, skip this step.
 
+### Prerequisites
+Before deploying MATLAB Web App Server within an existing Virtual Private Cloud (VPC), you must configure the VPC to enable connectivity. For details, see [Ensure connectivity in an existing VPC](#ensure-connectivity-in-an-existing-vpc).
+
+### Deploy to Existing VPC
 To deploy MATLAB Web App Server onto an existing VPC, select the **Existing VPC** template in [Step 1](#step-1-launch-template). In addition to the parameters listed in Step 2, you must also specify the following parameters.
 
 | Parameter  | Value |
@@ -56,48 +60,6 @@ To deploy MATLAB Web App Server onto an existing VPC, select the **Existing VPC*
    ||**Settings for Network License Manager**|
    | Port and IP Address of Existing Network License Manager | Optional parameter: Specify the port number and private DNS name or private IP address of the network license manager that has already been deployed to the existing VPC. Specify it in the format port@privateDNSname, for example, `27000@ip-172-30-1-89.ec2.internal` or `27000@172.30.1.89`. By default, the license manager uses port 27000. Leave this field blank if you are deploying a new network license manager.  |
    | Security Group of Existing Network License Manager | Optional parameter: Specify the security group of the network license manager that has already been deployed to the existing VPC. If you have an existing license manager and leave this blank, you must add the security group manually using the instructions in [Use an existing network license manager in an existing VPC](#use-an-existing-network-license-manager-in-an-existing-vpc). Leave this field blank if you are deploying a new network license manager.|
-
-You will also need to open the following ports in your VPC:
-
-| Port | Description |
-|------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `443` | Required for communicating with MATLAB Web App Server apps home page. |
-| `8000`, `9988` | Required for communication between MATLAB Web App Server controllers  and AWS services. These ports do not need to be open to the internet. |
-| `27000` | Required for communication between the network license manager and MATLAB Web App Server. |
-| `3389`, `22` | Required for Remote Desktop and Secure Connection functionality. This can be used for troubleshooting and debugging MATLAB Web App Server. |
-
-### Ensure connectivity in an existing VPC
-To enable effective operation of the MATLAB Web App Server Lambda functions within an existing Virtual Private Cloud (VPC), you must configure connectivity based on whether the subnet is public or private.
-
-#### Use public NAT gateway in a private subnet
-If are using an existing VPC and deploying in a private subnet, consider using a public NAT gateway to ensure that the Lambda functions can communicate efficiently and securely within your VPC. For more information, see [NAT gateways](https://docs.aws.amazon.com/vpc/latest/userguide/vpc-nat-gateway.html) in the AWS documentation.
-
-#### Create endpoint in a public subnet
-If are using an existing VPC and deploying in a public subnet, then you must add an endpoint to one of the public subnets in the VPC in order to allow the server to access the EC2 API. You can check if such an endpoint already exists by navigating to the AWS Portal, selecting **Endpoints**, and filtering by VPC ID for the VPC you are using for deployment. If no such endpoint is present, follow these steps:
-
-1. Click **Create endpoint**.
-1. Provide a name tag for the endpoint.
-1. Select **Type** as `AWS services`.
-1. In **Services**, select `com.amazonaws.${AWS::Region}.ec2`. The region should match your VPC region. For instance, if your region is US East 1, select `com.amazonaws.us-east-1.ec2`.
-1. In **Network settings**, select the VPC you are using for deployment.
-1. Ensure that **Enable DNS** is checked to facilitate DNS resolution within the VPC.
-1. In **Subnets**, select the public subnet where the endpoint will be configured.
-1. In **Security groups**, select the security group to associate with the endpoint network interface. Ensure the following settings are applied to the security group:<p>
-    | Inbound rules  |  |
-    |---|---|
-    |Type|All TCP|
-    |Protocol|TCP|
-    |Port Range|0 - 65535|
-    |Source|VPC CIDR block range — allows internal VPC communication on any TCP port|
-
-    | Outbound rules  |  |
-    |---|---|
-    |Type|All traffic|
-    |Protocol|All|
-    |Port Range|All|
-    |Destination|Anywhere (0.0.0.0/0) — allows all outbound traffic to any destination|
-
-For detailed information on creating endpoints, see [Access an AWS service using an interface VPC endpoint](https://docs.aws.amazon.com/vpc/latest/privatelink/create-interface-endpoint.html).
 
 ### Use an existing network license manager in an existing VPC
 For complete instructions on deploying the Network License Manager for MATLAB reference architecture, see [Network License Manager for MATLAB on Amazon Web Services](https://github.com/mathworks-ref-arch/license-manager-for-matlab-on-aws).
@@ -226,6 +188,71 @@ To delete the stack:
 1. Log in to the AWS Console.
 3. Go to the CloudFormation page and select the stack you created.
 3. Click **Delete**.
+
+## Ensure connectivity in an existing VPC
+If you are deploying MATLAB Web App Server to an existing VPC, you must open the following ports in your VPC:
+
+| Port | Description |
+|------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `443` | Required for communicating with MATLAB Web App Server apps home page. |
+| `8000`, `9988` | Required for communication between MATLAB Web App Server controllers  and AWS services. These ports do not need to be open to the internet. |
+| `27000` | Required for communication between the network license manager and MATLAB Web App Server. |
+| `3389`, `22` | Required for Remote Desktop and Secure Connection functionality. This can be used for troubleshooting and debugging MATLAB Web App Server. |
+
+ In addition, in order to allow the MATLAB Web App Server Lambda functions to access the EC2 API within an existing VPC, you must configure connectivity based on whether you choose a public or a private subnet for your deployment.
+
+### Use public NAT gateway in a private subnet
+If you are using an existing VPC and deploying in a private subnet, consider using a public NAT gateway to ensure that the Lambda functions can communicate within your VPC. In the context of private subnets, ensure that a public NAT Gateway is associated with a public subnet. This setup allows private subnets to leverage the NAT Gateway in their routing configurations, enabling outbound internet access while maintaining their own privacy. For more information, see [NAT gateways](https://docs.aws.amazon.com/vpc/latest/userguide/vpc-nat-gateway.html) in the AWS documentation. 
+
+### Create interface endpoint in a public subnet
+If you are using an existing VPC and deploying in a public subnet, then you must add an interface endpoint to one of the public subnets in the VPC. You can check if such an endpoint already exists by navigating to the AWS Portal, selecting **Endpoints**, and filtering by VPC ID for the VPC you are using for deployment. If no such endpoint is present, follow these steps:
+
+1. Click **Create endpoint**.
+1. Provide a name tag for the endpoint.
+1. Select **Type** as `AWS services`.
+1. In **Services**, select `com.amazonaws.${AWS::Region}.ec2`. The region should match your VPC region. For instance, if your region is US East 1, select `com.amazonaws.us-east-1.ec2`.
+1. In **Network settings**, select the VPC you are using for deployment.
+1. Ensure that **Enable DNS** is checked to facilitate DNS resolution within the VPC.
+1. In **Subnets**, select the public subnet where the endpoint will be configured.
+1. In **Security groups**, select the security group to associate with the endpoint network interface. Ensure the following settings are applied to the security group:<p>
+    
+    <table>
+    <tr>
+      <th colspan="2">Inbound rules</th>
+    </tr>
+    <tr>
+      <td><b>Type</b></td><td>All TCP</td>
+    </tr>
+    <tr>
+      <td><b>Protocol</b></td><td>TCP</td>
+    </tr>
+    <tr>
+      <td><b>Port Range</b></td><td>0 - 65535</td>
+    </tr>
+    <tr>
+      <td><b>Source</b></td><td>VPC CIDR block range — allows internal VPC communication on any TCP port</td>
+    </tr>
+    </table>
+
+    <table>
+    <tr>
+      <th colspan="2">Outbound rules</th>
+    </tr>
+    <tr>
+      <td><b>Type</b></td><td>All traffic</td>
+    </tr>
+    <tr>
+      <td><b>Protocol</b></td><td>All</td>
+    </tr>
+    <tr>
+      <td><b>Port Range</b></td><td>All</td>
+    </tr>
+    <tr>
+      <td><b>Destination</b></td><td>Anywhere (0.0.0.0/0) — allows all outbound traffic to any destination</td>
+    </tr>
+    </table>
+
+For detailed information on creating endpoints, see [Access an AWS service using an interface VPC endpoint](https://docs.aws.amazon.com/vpc/latest/privatelink/create-interface-endpoint.html).
 
 # Enhancement Request
 Provide suggestions for additional features or capabilities using the following link: https://www.mathworks.com/solutions/cloud.html
