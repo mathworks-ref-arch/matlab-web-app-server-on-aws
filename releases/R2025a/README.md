@@ -16,6 +16,8 @@ The AWS Management Console opens in your web browser.
 >**NOTE:** Multiple versions of MATLAB Runtime are supported. For details, see [Deploy Reference Architecture for Your Release](/README.md#deploy-reference-architecture-for-your-release).
 
 >**NOTE:** Creating a stack on AWS can take at least 20 minutes.
+### Prerequisites for existing VPC
+Before deploying MATLAB Web App Server within an existing Virtual Private Cloud (VPC), you must configure the VPC to enable connectivity. For details, see [Ensure connectivity in an existing VPC](#ensure-connectivity-in-an-existing-vpc).
 
 ## Step 2. Configure the Stack
 1. Provide values for parameters in the **Create Stack** page:
@@ -45,10 +47,6 @@ The AWS Management Console opens in your web browser.
 
 >**Note**: If you are deploying to a new VPC, skip this step.
 
-### Prerequisites
-Before deploying MATLAB Web App Server within an existing Virtual Private Cloud (VPC), you must configure the VPC to enable connectivity. For details, see [Ensure connectivity in an existing VPC](#ensure-connectivity-in-an-existing-vpc).
-
-### Deploy to Existing VPC
 To deploy MATLAB Web App Server onto an existing VPC, select the **Existing VPC** template in [Step 1](#step-1-launch-template). In addition to the parameters listed in Step 2, you must also specify the following parameters.
 
 | Parameter  | Value |
@@ -199,7 +197,7 @@ If you are deploying MATLAB Web App Server to an existing VPC, you must open the
 | `27000` | Required for communication between the network license manager and MATLAB Web App Server. |
 | `3389`, `22` | Required for Remote Desktop and Secure Connection functionality. This can be used for troubleshooting and debugging MATLAB Web App Server. |
 
- In addition, in order to allow the MATLAB Web App Server Lambda functions to access the EC2 API within an existing VPC, you must configure connectivity based on whether you choose a public or a private subnet for your deployment.
+ In addition, in order for Lambda functions present in the MATLAB Web App Server reference architecture to work in an existing Virtual Private Cloud (VPC), you must configure connectivity in your VPC based on whether you choose a public or a private subnet for your deployment.
 
 ### Use public NAT gateway in a private subnet
 If you are using an existing VPC and deploying in a private subnet, consider using a public NAT gateway to ensure that the Lambda functions can communicate within your VPC. In the context of private subnets, ensure that a public NAT Gateway is associated with a public subnet. This setup allows private subnets to leverage the NAT Gateway in their routing configurations, enabling outbound internet access while maintaining their own privacy. For more information, see [NAT gateways](https://docs.aws.amazon.com/vpc/latest/userguide/vpc-nat-gateway.html) in the AWS documentation. 
