@@ -1,7 +1,11 @@
 # MATLAB Web App Server on Amazon Web Services - R2025a
 
 # Deployment Steps
-Follow these steps to deploy the R2025a MATLAB Web App Server reference architecture on AWS. To deploy reference architectures for other releases, see [Deploy Reference Architecture for Your Release](/README.md#deploy-reference-architecture-for-your-release). 
+Follow these steps to deploy the R2025a MATLAB Web App Server reference architecture on AWS. To deploy reference architectures for other releases, see [Deploy Reference Architecture for Your Release](/README.md#deploy-reference-architecture-for-your-release).
+
+### Prerequisites
+Before deploying MATLAB Web App Server within an existing Virtual Private Cloud (VPC), you must configure the VPC to enable connectivity. For details, see [Ensure connectivity in an existing VPC](#ensure-connectivity-in-an-existing-vpc).
+
 ## Step 1. Launch Template
 Before launching the template, make sure that you have selected one of these supported AWS regions from the top navigation:<ul><li>**US East (N. Virginia)**</li><li>**Europe (Ireland)**</li><li>**Asia Pacific (Tokyo)**</li></ul>
 
@@ -16,8 +20,6 @@ The AWS Management Console opens in your web browser.
 >**NOTE:** Multiple versions of MATLAB Runtime are supported. For details, see [Deploy Reference Architecture for Your Release](/README.md#deploy-reference-architecture-for-your-release).
 
 >**NOTE:** Creating a stack on AWS can take at least 20 minutes.
-### Prerequisites for existing VPC
-Before deploying MATLAB Web App Server within an existing Virtual Private Cloud (VPC), you must configure the VPC to enable connectivity. For details, see [Ensure connectivity in an existing VPC](#ensure-connectivity-in-an-existing-vpc).
 
 ## Step 2. Configure the Stack
 1. Provide values for parameters in the **Create Stack** page:
