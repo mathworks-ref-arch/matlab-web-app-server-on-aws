@@ -57,7 +57,7 @@ To deploy MATLAB Web App Server onto an existing VPC, specify these additional p
 | Public Subnet 1 | ID of an existing public subnet to host server resources. This subnet can be the same as the one hosting MATLAB Web App Server, as long as the subnet hosting the server is public. If the subnet hosting the server is private, then this subnet must be a different public subnet. |
    ||**Settings for Network License Manager**|
    | Port and IP Address of Existing Network License Manager | Optional parameter: Specify the port number and private DNS name or private IP address of the network license manager that has already been deployed to the existing VPC. Specify it in the format port@privateDNSname, for example, `27000@ip-172-30-1-89.ec2.internal` or `27000@172.30.1.89`. By default, the license manager uses port 27000. Leave this field blank if you are deploying a new network license manager.  |
-   | Security Group of Existing Network License Manager | Optional parameter: Specify the security group of the network license manager that has already been deployed to the existing VPC. Leave this field blank if you are deploying a new network license manager. |
+   | Security Group of Existing Network License Manager | Optional parameter: Specify the security group of the network license manager that has already been deployed to the existing VPC. Leave this field blank if you are deploying a new network license manager. If you have an existing license manager and leave this blank, you must add the security group manually using the instructions in [Use an existing network license manager in an existing VPC](#use-an-existing-network-license-manager-in-an-existing-vpc).|
 
 You will also need to open the following ports in your VPC:
 
@@ -74,8 +74,8 @@ For complete instructions on deploying the Network License Manager for MATLAB re
 If you want to use an existing network license manager in an existing VPC:
 - Choose `No` for the *Deploy Network License Manager* step of the deployment.
 - Specify the IP address of the existing network license manager in the `IP Address of Existing Network License Manager` step of the deployment. You can find the private IP address in the *Outputs* tab of the existing network license manager deployment. 
-
-To use an existing network license manager, you must add the security group of the server VMs to the security group of the license manager.
+#### Add security group of the server VMs to the security group of the license manager
+If you did not supply a security group in the field **Security Group of Existing Network License Manager** at the time of deployment, you must add the security group of the server VMs to the security group of the license manager.
 1. In the AWS management console, select the external security group that is nested in the network license manager stack you created. If it is not present in the stack list, ensure the **View nested** option is enabled.<p>For example: `mluser-nlm-MWSecurityGroupExternal-8JJX66NUZDD8`</p>
 1. In the *Stack details* for the external security group stack, click **Resources**.
 1. Look for the **Logical ID** named ```SecurityGroup``` and click the corresponding URL listed under **Physical ID**. This will take you to the security group details.
