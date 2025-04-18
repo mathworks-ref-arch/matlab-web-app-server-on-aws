@@ -202,7 +202,7 @@ If you are deploying MATLAB Web App Server to an existing VPC, you must open the
  In addition, in order for Lambda functions present in the MATLAB Web App Server reference architecture to work in an existing VPC, you must configure connectivity based on whether you choose a public or a private subnet for your deployment.
 
 ### Use public NAT gateway when deploying to a private subnet
-If you are using an existing VPC and deploying in a private subnet, consider using a public NAT gateway associated with a public subnet. This setup allows the Lambda functions to communicate with other resources within your VPC. For more information, see [NAT gateways](https://docs.aws.amazon.com/vpc/latest/userguide/vpc-nat-gateway.html) in the AWS documentation. 
+If you are using an existing VPC and deploying in a private subnet, consider using a public NAT gateway associated with a public subnet. This setup allows the Lambda functions to communicate with AWS services. For more information, see [NAT gateways](https://docs.aws.amazon.com/vpc/latest/userguide/vpc-nat-gateway.html) in the AWS documentation. 
 
 ### Create interface VPC endpoint when deploying to a public subnet
 If you are using an existing VPC and deploying in a public subnet, then you must add an interface VPC endpoint to one of the public subnets in the VPC. You can check if such an endpoint already exists by navigating to the AWS Console, selecting **Endpoints**, and filtering by VPC ID for the VPC you are using for deployment. If no such endpoint is present, follow these steps:
@@ -210,7 +210,7 @@ If you are using an existing VPC and deploying in a public subnet, then you must
 1. Click **Create endpoint**.
 1. Provide a name tag for the endpoint.
 1. Select **Type** as `AWS services`.
-1. In **Services**, select `com.amazonaws.${AWS::Region}.ec2`. The region should match your VPC region. For instance, if your region is US East 1, select `com.amazonaws.us-east-1.ec2`.
+1. In **Services**, select `com.amazonaws.<AWS Region>.ec2`. The region should match your VPC region. For instance, if your region is US East 1, select `com.amazonaws.us-east-1.ec2`.
 1. In **Network settings**, select the VPC you are using for deployment.
 1. Ensure that **Enable DNS** is checked to facilitate DNS resolution within the VPC.
 1. In **Subnets**, select the public subnet where the endpoint will be configured.
