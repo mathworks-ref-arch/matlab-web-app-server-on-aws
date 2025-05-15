@@ -110,17 +110,21 @@ The MALAB Web App Server admin portal provides a web-based interface to configur
 
 
 ## Step 7. Open the MATLAB Web App Server Apps Home Page
+The MATLAB Web App Server home page provides a web-based interface to deploy and manage web applications. To access the apps home page:
+
 1. In the *Stack details* for your stack, click the **Outputs** tab.
 1. Look for the key named `MATLABWebAppServerAppsHomePage` and click the corresponding URL listed under value. This opens the apps home page.
-1. On Linux servers, user authentication to the server home page is enabled by default through [Keycloak](https://www.keycloak.org/docs/latest/server_admin/index.html). The default configuration includes three user accounts you can use to log in to the server home page. Each user belongs to one or more pre-configured groups, and each group grants specific permissions on the MATLAB Web App Server. For more information, see [Groups](https://www.keycloak.org/docs/latest/server_admin/index.html#proc-managing-groups_server_administration_guide) in the Keycloak documentation.
+1. On Linux servers, user authentication to the server home page is enabled by default through [Keycloak](https://www.keycloak.org/docs/latest/server_admin/index.html). 
+
+    There are three pre-configured user accounts in Keycloak that you can use to log in to the server home page: `matlab-webapps-admin`, `matlab-webapps-author`, and `matlab-webapps-user`. After you log in, you see the `SampleApps` category, which is created by default and contains a sample web app. 
 
     |User account |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Permissions | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Group Membership |
     |-|-|-|
-    |`matlab-webapps-admin` | <ul><li>Access the admin portal</li><li>Upload, delete, and execute web apps in the SampleApps category</li><li>Access the server home page</li></ul> | <ul><li>**MATLAB Web App Server Administrators**</li><li>**MATLAB Web App Server Authors**</li><li>**MATLAB Web App Server Users**</li></ul>|
+    |`matlab-webapps-admin` | <ul><li>Access the admin portal</li><li>Upload, delete, and execute web apps in the `SampleApps` category</li><li>Access the server home page</li></ul> | <ul><li>**MATLAB Web App Server Administrators**</li><li>**MATLAB Web App Server Authors**</li><li>**MATLAB Web App Server Users**</li></ul>|
     |`matlab-webapps-author` | <ul><li>Upload, delete, and execute web apps in the `SampleApps` category</li><li>Access the server home page</li></ul>| <ul><li>**MATLAB Web App Server Authors**</li><li>**MATLAB Web App Server Users**</li></ul> |
     |`matlab-webapps-user` | <ul><li>Execute web apps in the `SampleApps` category</li><li>Access the server home page</li></ul>| <ul><li>**MATLAB Web App Server Users**</li></ul> |
 
-    The default password for each user is the same as the username. For instance, the default password for the author account is `matlab-webapps-author`. After you log in to a user account for the first time, you are prompted to change the password.
+    The default password for each user is the same as the username. For instance, the default password for the author account is `matlab-webapps-author`. After you log in to a user account for the first time, you are prompted to change the password.  
 
 To run applications on MATLAB Web App Server, you need to create web apps using MATLAB Compiler. For details, see [Web Apps](https://www.mathworks.com/help/compiler/webapps/create-and-deploy-a-web-app.html) in the MATLAB Compiler product documentation.
 
@@ -139,7 +143,10 @@ After you deploy MATLAB Web App Server, log in to the Keycloak administration co
       <tr><td><b>Password</b></td><td>keycloak-admin</td></tr>
     </table>
 
-You can set up user authentication directly with Keycloak or federate with a third party identity provider. Add or modify groups and users as needed through your authentication provider. For more information, see [Managing users](https://www.keycloak.org/docs/latest/server_admin/index.html#assembly-managing-users_server_administration_guide) in the Keycloak documentation.
+There are three pre-configured user accounts and three groups in Keycloak. Each user account belongs to one or more groups, and each group grants specific permissions on the MATLAB Web App Server. For example, the `matlab-webapps-admin` user inherits the ability to upload and delete apps from the **MATLAB Web App Server Authors** group. Add or modify groups and users as needed through the Keycloak admin console. For more information, see [Managing users](https://www.keycloak.org/docs/latest/server_admin/index.html#assembly-managing-users_server_administration_guide) in the Keycloak documentation.
+
+To allow an existing group to access additional resources on the MATLAB Web App Server, use the **App Management/Access Control** page of the admin portal. For example, you could assign all members of the **MATLAB Web App Server Users** group execute permissions for all apps in the root level folder.
+
 
 ### Windows Server
 On Windows servers, user authentication to the MATLAB Web App Server home page is not enabled by default. To enable OIDC authentication, see [Configure OIDC Authentication](#configure-oidc-authentication).<p>
