@@ -1,0 +1,7 @@
+{
+  "VPCStack.yml": "https://matlab-web-app-server-templates.s3.amazonaws.com/r2025a_refarch/VPCStack.yml",
+  "LambdaFunctionStack.yml": "https://matlab-web-app-server-templates.s3.amazonaws.com/r2025a_refarch/LambdaFunctionStack.yml",
+  "CommonResourcesStack.yml": "https://matlab-web-app-server-templates.s3.amazonaws.com/r2025a_refarch/CommonResourcesStack.yml",
+  "WebAppServer_existing.yml": "https://matlab-web-app-server-templates.s3.amazonaws.com/r2025a_refarch/WebAppServer_existing.yml",
+  "WebAppServer_new.yml": "https://matlab-web-app-server-templates.s3.amazonaws.com/r2025a_refarch/WebAppServer_new.yml"
+}
