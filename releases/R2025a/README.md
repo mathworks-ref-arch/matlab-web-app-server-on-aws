@@ -112,17 +112,15 @@ The MALAB Web App Server admin portal provides a web-based interface to configur
 ## Step 7. Open the MATLAB Web App Server Apps Home Page
 1. In the *Stack details* for your stack, click the **Outputs** tab.
 1. Look for the key named `MATLABWebAppServerAppsHomePage` and click the corresponding URL listed under value. This opens the apps home page.
-1. On Linux servers, user authentication to the server home page is enabled by default. The default configuration includes three user accounts you can use to log in to the server home page. Each user belongs to one or more pre-configured groups, granting them specific permissions on the MATLAB Web App Server. For instance, the **MATLAB Web App Server Authors** group includes upload and delete permissions for the web apps in the `SampleApps` folder. For more information, see [Groups](https://www.keycloak.org/docs/latest/server_admin/index.html#proc-managing-groups_server_administration_guide) in the Keycloak documentation. 
+1. On Linux servers, user authentication to the server home page is enabled by default through [Keycloak](https://www.keycloak.org/docs/latest/server_admin/index.html). The default configuration includes three user accounts you can use to log in to the server home page. Each user belongs to one or more pre-configured groups, and each group grants specific permissions on the MATLAB Web App Server. For more information, see [Groups](https://www.keycloak.org/docs/latest/server_admin/index.html#proc-managing-groups_server_administration_guide) in the Keycloak documentation.
 
-    The default credentials for the user accounts are as follows.
+    |User account |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Permissions | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Group Membership |
+    |-|-|-|
+    |`matlab-webapps-admin` | <ul><li>Access the admin portal</li><li>Upload, delete, and execute web apps in the SampleApps category</li><li>Access the server home page</li></ul> | <ul><li>**MATLAB Web App Server Administrators**</li><li>**MATLAB Web App Server Authors**</li><li>**MATLAB Web App Server Users**</li></ul>|
+    |`matlab-webapps-author` | <ul><li>Upload, delete, and execute web apps in the `SampleApps` category</li><li>Access the server home page</li></ul>| <ul><li>**MATLAB Web App Server Authors**</li><li>**MATLAB Web App Server Users**</li></ul> |
+    |`matlab-webapps-user` | <ul><li>Execute web apps in the `SampleApps` category</li><li>Access the server home page</li></ul>| <ul><li>**MATLAB Web App Server Users**</li></ul> |
 
-    |Username |Password |
-    |-|-|
-    |`matlab-webapps-admin`|`matlab-webapps-admin`|
-    |`matlab-webapps-author`|`matlab-webapps-author`|
-    |`matlab-webapps-user`|`matlab-webapps-user`|
-
-    After you log in to a user account for the first time, you are prompted to change the password.
+    The default password for each user is the same as the username. For instance, the default password for the author account is `matlab-webapps-author`. After you log in to a user account for the first time, you are prompted to change the password.
 
 To run applications on MATLAB Web App Server, you need to create web apps using MATLAB Compiler. For details, see [Web Apps](https://www.mathworks.com/help/compiler/webapps/create-and-deploy-a-web-app.html) in the MATLAB Compiler product documentation.
 
