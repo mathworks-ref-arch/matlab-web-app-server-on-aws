@@ -112,7 +112,7 @@ The MALAB Web App Server admin portal provides a web-based interface to configur
 ## Step 7. Open the MATLAB Web App Server Apps Home Page
 1. In the *Stack details* for your stack, click the **Outputs** tab.
 1. Look for the key named `MATLABWebAppServerAppsHomePage` and click the corresponding URL listed under value. This opens the apps home page.
-1. On Linux servers, user authentication to the server home page is enabled by default. The default configuration includes three user accounts you can use to log in to the server home page. Each user belongs to one or more pre-configured groups, granting them specific permissions on the MATLAB Web App Server. For more information, see [Groups](https://www.keycloak.org/docs/latest/server_admin/index.html#proc-managing-groups_server_administration_guide) in the Keycloak documentation. 
+1. On Linux servers, user authentication to the server home page is enabled by default. The default configuration includes three user accounts you can use to log in to the server home page. Each user belongs to one or more pre-configured groups, granting them specific permissions on the MATLAB Web App Server. For instance, the **MATLAB Web App Server Authors** group includes upload and delete permissions for the web apps in the `SampleApps` folder. For more information, see [Groups](https://www.keycloak.org/docs/latest/server_admin/index.html#proc-managing-groups_server_administration_guide) in the Keycloak documentation. 
 
     The default credentials for the user accounts are as follows.
 
