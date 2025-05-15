@@ -29,11 +29,11 @@ The AWS Management Console opens in your web browser.
     | **Stack name**                         | Choose a name for the stack. This will be shown in the AWS console. <p><em>*Example*</em>: `Boston`</p>                                                                                                                                                                                                                                                                       |
     | |**Settings for Hosting MATLAB Web App Server**|
     | **Name of Existing Amazon EC2 Key Pair**          | Choose an existing Amazon EC2 key pair to connect to the EC2 instance hosting MATLAB Web App Server. If you do not have a key pair, create one. For details, see [Amazon EC2 Key Pairs](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-key-pairs.html#having-ec2-create-your-key-pair). <p><em>*Example*</em>: `boston-keypair`</p>                                                                                   |
-    | **IP Address of MATLAB Web App Server Administrator in CIDR Notation** | Specify the IP address of the administrator using CIDR notation. The administrator can remotely connect to the EC2 instance that hosts MATLAB Web App Server and administer it. The IP address can be a single IP address or a range of IP addresses. The format for this parameter is IP Address/Mask. <p><em>Example</em>: `x.x.x.x/32`<ul><li>Your public IP address can be found by searching for **"what is my ip address"** on the web. The mask determines the number of IP addresses to include.</li><li>A mask of 32 is a single IP address.</li><li>Use a [CIDR calculator](https://www.ipaddressguide.com/cidr) if you need a range of more than one IP address.</li><li>You may need to contact your IT administrator to determine which address is appropriate.</li></ul>**NOTE:** Restricting access to the server using an IP address is not a form of authentication. MATLAB Web App Server supports authentication using LDAP and OIDC. For details, see [Authentication](https://www.mathworks.com/help/webappserver/ug/authentication.html).</p> |
-    | **Do You Want to Use the Same IP Address Range to Access the MATLAB Web App Server Apps Home Page?**| Select, **Yes** or **No**. <ul><li>If you select **Yes**, the same IP address range specified above is configured to access the MATLAB Web App Server apps homepage. Choose this option if you know that the same set of users will administer the server and access web apps on the apps home page.</li><li>If you select **No**, you must specify a new IP address range for the next parameter. Choose this option if the users accessing web apps on the apps home page are different from the users administering the server.</li></ul>
+    | **IP Address of MATLAB Web App Server Administrator in CIDR Notation** | Specify the IP address of the administrator using CIDR notation. The administrator can remotely connect to the EC2 instance that hosts MATLAB Web App Server and administer it. The IP address can be a single IP address or a range of IP addresses. The format for this parameter is IP Address/Mask. <p><em>Example</em>: `x.x.x.x/32`<ul><li>Your public IP address can be found by searching for **"what is my ip address"** on the web. The mask determines the number of IP addresses to include.</li><li>A mask of 32 is a single IP address.</li><li>Use a [CIDR calculator](https://www.ipaddressguide.com/cidr) if you need a range of more than one IP address.</li><li>You may need to contact your IT administrator to determine which address is appropriate.</li></ul>**NOTE:** Restricting access to the server using an IP address is not a form of authentication. MATLAB Web App Server supports authentication using LDAP or OIDC. For details, see [Step 8](#step-8-configure-user-authentication).</p> |
+    | **Do You Want to Use the Same IP Address Range to Access the MATLAB Web App Server Apps Home Page?**| Select, **Yes** or **No**. <ul><li>If you select **Yes**, the same IP address range specified above is configured to access the MATLAB Web App Server apps home page. Choose this option if you know that the same set of users will administer the server and access web apps on the apps home page.</li><li>If you select **No**, you must specify a new IP address range for the next parameter. Choose this option if the users accessing web apps on the apps home page are different from the users administering the server.</li></ul>
     | **IP Addresses Allowed to Access MATLAB Web App Server Apps Home Page** | Complete this parameter only if you selected **No** for the previous parameter. Specify the range of IP addresses that can access the MATLAB Web App Server apps home page in CIDR notation. The format for this parameter is IP Address/Mask.<p><em>*Example*</em>: `x.x.x.x/24`</p> |    
     | **EC2 Instance Type** | Choose the AWS EC2 instance type to use for the server. All AWS instance types are supported. For more information, see [Amazon EC2 Instance Types](https://aws.amazon.com/ec2/instance-types/). <p><em>*Example*</em>: `m6a.large`</p> |
-    | **Operating System** | Choose between Windows (Windows Server) and Linux (Ubuntu).  |
+    | **Operating System** | Choose between Windows (Windows Server) and Linux (Ubuntu). <p><p>**NOTE:** The admin portal interface and Keycloak authentication are only available on Linux.|
     ||**Settings for Network License Manager**|
     | **Password for Network License Manager** | Specify a password for the network license manager. Use this password to log in to the network license manager after the stack has been successfully created.<p>Deploying MATLAB Web App Server automatically deploys a network license manager.</p>|
     | **Confirm Password** | Reenter the password to log in to the network license manager. |
@@ -92,14 +92,59 @@ Click the **Create** button. The CloudFormation service starts creating resource
 
 >**Note:** MATLAB Web App Server automatically starts after successfully uploading a valid license file.
 
+## Step 6. Connect and Log In to the Admin Portal (Linux Server Only)
+> **Note:** The Internet Explorer web browser is not supported for accessing the admin portal. 
 
-## Step 6. Open the MATLAB Web App Server Apps Home Page
+The MALAB Web App Server admin portal provides a web-based interface to configure and manage the server instance on the cloud. The admin portal is only available for servers deployed on Ubuntu Linux.
+
+1. In the Stack details for your stack, click the **Outputs** tab.
+1. Look for the key named `AdminPortalUrl` and click the corresponding URL listed under **value**. This opens the admin portal Overview page.
+1. The first time you access the admin portal, log in using the following username and password:
+
+    <table>
+      <tr><td>Username</td><td>matlab-webapps-admin</td></tr>
+      <tr><td>Password</td><td>matlab-webapps-admin</td></tr>
+    </table>
+
+1. After logging in for the first time, you are prompted to change the password.
+
+
+## Step 7. Open the MATLAB Web App Server Apps Home Page
 1. In the *Stack details* for your stack, click the **Outputs** tab.
 1. Look for the key named `MATLABWebAppServerAppsHomePage` and click the corresponding URL listed under value. This opens the apps home page.
+1. On Linux servers, user authentication to the server home page is enabled by default. The default configuration includes three user accounts you can use to log in to the server home page. Each user belongs to one or more pre-configured groups, granting them specific permissions on the MATLAB Web App Server. For more information, see [Groups](https://www.keycloak.org/docs/latest/server_admin/index.html#proc-managing-groups_server_administration_guide) in the Keycloak documentation. 
 
-You are now ready to use MATLAB Web App Server on AWS. 
+    The default credentials for the user accounts are as follows.
+
+    |Username |Password |
+    |-|-|
+    |`matlab-webapps-admin`|`matlab-webapps-admin`|
+    |`matlab-webapps-author`|`matlab-webapps-author`|
+    |`matlab-webapps-user`|`matlab-webapps-user`|
+
+    After you log in to a user account for the first time, you are prompted to change the password.
 
 To run applications on MATLAB Web App Server, you need to create web apps using MATLAB Compiler. For details, see [Web Apps](https://www.mathworks.com/help/compiler/webapps/create-and-deploy-a-web-app.html) in the MATLAB Compiler product documentation.
+
+## Step 8. Configure User Authentication
+
+### Linux Server
+On Linux servers, user authentication to the admin portal and MATLAB Web App Server home page is administered by default through [Keycloak](https://www.keycloak.org/docs/latest/server_admin/index.html). Keycloak is a cloud native solution that provides authentication, authorization, and user management for applications and services. You can configure authentication using your identity provider with Keycloak or directly using LDAP or OIDC.
+
+After you deploy MATLAB Web App Server, log in to the Keycloak administration console to configure user authentication and change the default admin credentials.
+1. In the Stack details for your stack, click the **Outputs** tab.
+1. Look for the key named `KeycloakConsoleUrl` and click the corresponding URL listed under **value**. This opens the Keycloak admin console.
+1. Log into the Keycloak portal using the following username and password:
+
+    <table>
+      <tr><td><b>Username</b></td><td>keycloak-admin</td></tr>
+      <tr><td><b>Password</b></td><td>keycloak-admin</td></tr>
+    </table>
+
+You can set up user authentication directly with Keycloak or federate with a third party identity provider. Add or modify groups and users as needed through your authentication provider. For more information, see [Managing users](https://www.keycloak.org/docs/latest/server_admin/index.html#assembly-managing-users_server_administration_guide) in the Keycloak documentation.
+
+### Windows Server
+On Windows servers, user authentication to the MATLAB Web App Server home page is not enabled by default. To enable OIDC authentication, see [Configure OIDC Authentication](#configure-oidc-authentication).<p>
 
 # Common Tasks
 
@@ -109,8 +154,8 @@ To run applications on MATLAB Web App Server, you need to create web apps using 
 1. Look for the key named `MATLABWebAppServerAppsS3Bucket`, and click the corresponding URL listed under value.
 1. In the S3 console, click **apps**.
 1. Click **Upload** > **Add Files** to select and upload web apps (`.ctf` files).
->**NOTE 1:** If you enable OIDC authentication, you can upload web apps from the apps home page. Any apps you upload via the apps home page are not synchronized with S3 bucket. To enable OIDC authentication, see [Configure OIDC Authentication](#configure-oidc-authentication).<p>
->**NOTE 2:**  Only folders created within the `APPS` root-level folder are supported. Subfolders within those folders are not supported.
+>**NOTE 1:** If you enable user authentication, you can upload web apps from the apps home page. To configure authentication, see [Step 8](#step-8-configure-user-authentication).<p>
+>**NOTE 2:**  Only folders created within the `apps` root-level folder are supported. Subfolders within those folders are not supported.
 
 ## Get Password to EC2 Instance Hosting MATLAB Web App Server
 1. In the AWS management console, select the stack you deployed. 
@@ -152,6 +197,9 @@ To run applications on MATLAB Web App Server, you need to create web apps using 
 | Policy-Based Access   | `webapps_acc_ctl.json`                                      | [Policy-Based Access Documentation](https://www.mathworks.com/help/webappserver/ug/policy-based-access.html)  |
 
 ## Configure OIDC Authentication
+On Linux servers, configure authentication using Keycloak in [Step 8](#step-8-configure-user-authentication). You can also use the following steps to configure OIDC authentication manually.
+
+On Windows servers, use the following instructions.
 1. Connect to the EC2 instance hosting MATLAB Web App Server. For details, see:
     * [Connect to EC2 Instance Hosting MATLAB Web App Server Using Remote Desktop](#connect-to-ec2-instance-hosting-matlab-web-app-server-using-remote-desktop)
     * [Connect to EC2 Instance Hosting MATLAB Web App Server Using SSH](#connect-to-ec2-instance-hosting-matlab-web-app-server-using-ssh).
@@ -168,6 +216,8 @@ Logs are available in AWS CloudWatch.
 1. In the AWS management console, select the stack you deployed. 
 1. In the *Stack details* for your stack, click the **Outputs** tab.
 1. To view logs related to the cloud console and the MATLAB Web App Server workers, look for the key named `MATLABWebAppServerLogGroup`, and click the corresponding URL listed under value.
+
+On Linux servers, you can also download logs directly from the admin portal. For details, see [Step 6](#step-6-connect-and-log-in-to-the-admin-portal-linux-server-only).
 
 ## Get Network License Manager MAC Address
 1. In the AWS management console, select the stack that you deployed. 
