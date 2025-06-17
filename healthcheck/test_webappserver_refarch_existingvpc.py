@@ -67,15 +67,22 @@ def main(keypairname, password, ipAddress, location_arg, platform_arg):
             print("success deploying the stack")
         except Exception as e:
             raise (e)
+        
         finally:
-           if stack:
-            # Delete the deployment
-            print("deleting the stack")
-            deploy.delete_stack(stack)
-            print("success deleting the stack")
-            ct = datetime.datetime.now()
-            print("Date time after deployment and deletion of stack:-", ct)
-            print("\n\n")
+             if stack:
+                 # Delete the deployment
+                 print("Deleting the stack")
+                 deploy.delete_stack(stack)
+                 print("Success deleting the stack")
+                 ct = datetime.datetime.now()
+                 print("Date time after deployment and deletion of stack:-", ct)
+                 print("\n\n")
+      
+             # Delete VPC
+             print("Deleting VPC stack")
+             deploy.delete_stack(existingstack)
+             print("Success deleting the existing VPC stack")
+
 
 if __name__ == '__main__':
     main(sys.argv[1], sys.argv[2], sys.argv[3], sys.argv[4], sys.argv[5])
