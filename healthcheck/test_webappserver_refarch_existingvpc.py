@@ -43,7 +43,10 @@ def main(keypairname, password, ipAddress, location_arg, platform_arg):
     res = requests.get(f"https://github.com/mathworks-ref-arch/{ref_arch_name}/blob/master/releases/")
 
     # Deploy a stack for the latest two releases
-    latest_releases = [re.findall("releases/(R\d{4}[ab]\\b)", res.text)[-1], re.findall("releases/(R\d{4}[ab]\\b)", res.text)[-2]]
+    latest_releases = [
+        re.findall(r"releases/(R\d{4}[ab]\b)", res.text)[-1],
+        re.findall(r"releases/(R\d{4}[ab]\b)", res.text)[-2]
+    ]
     number_of_releases = 1
     for i in range(number_of_releases):
         matlab_release = latest_releases[i]
