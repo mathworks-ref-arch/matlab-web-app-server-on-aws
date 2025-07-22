@@ -10,9 +10,10 @@ import random
 from datetime import date
 import json
 
-def main(keypairname, password, ipAddress, location_arg, platform_arg):
+def main(keypairname, password, location_arg, platform_arg):
     # Reference architectures in production.
     ref_arch_name = 'matlab-web-app-server-on-aws'
+    ipAddress = requests.get("https://api.ipify.org").text + "/32"
     parameters = [{'ParameterKey': 'KeyPairName', 'ParameterValue': keypairname},
                   {'ParameterKey': 'AdminIPAddress', 'ParameterValue': ipAddress},
                   {'ParameterKey': 'Password', 'ParameterValue': password},
@@ -62,4 +63,4 @@ def main(keypairname, password, ipAddress, location_arg, platform_arg):
                 print("\n\n")
 
 if __name__ == '__main__':
-    main(sys.argv[1], sys.argv[2], sys.argv[3], sys.argv[4], sys.argv[5])
+    main(sys.argv[1], sys.argv[2], sys.argv[3], sys.argv[4])

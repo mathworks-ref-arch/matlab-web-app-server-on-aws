@@ -40,4 +40,4 @@ jobs:
     - name: MATLAB Web App Server Reference Architecture Health Check Test Windows New VPC Windows ap-northeast region
       run: |
         cd healthcheck
-        python test_mwasrefarch_healthcheck_newvpc.py ${{ secrets.OIDCKeyPairNameTokyo }} ${{ secrets.lmpassword }} ${{ secrets.ipaddress }} "ap-northeast-1" "Windows"
+        python test_mwasrefarch_healthcheck_newvpc.py ${{ secrets.OIDCKeyPairNameTokyo }} ${{ secrets.lmpassword }} "ap-northeast-1" "Windows"

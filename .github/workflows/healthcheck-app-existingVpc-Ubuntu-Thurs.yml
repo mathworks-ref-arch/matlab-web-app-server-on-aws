@@ -40,4 +40,4 @@ jobs:
     - name: MATLAB Web App Server Reference Architecture Health Check Test Ubuntu Existing VPC Ubuntu us-east-1 region
       run: |
         cd healthcheck
-        python test_mwasrefarch_healthcheck_newvpc.py ${{ secrets.OIDCKeyPairNameVirginia }} ${{ secrets.lmpassword }} ${{ secrets.ipaddress }} "us-east-1" "Ubuntu"
+        python test_mwasrefarch_healthcheck_newvpc.py ${{ secrets.OIDCKeyPairNameVirginia }} ${{ secrets.lmpassword }} "us-east-1" "Ubuntu"

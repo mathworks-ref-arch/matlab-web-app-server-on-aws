@@ -14,10 +14,11 @@ import random
 from datetime import date
 import sys
 
-def main(keypairname, password, ipAddress, location_arg, platform_arg):
+def main(keypairname, password, location_arg, platform_arg):
    # Reference architectures in production.
    # Deploy a stack for creating VPC with 2 subnets
     existing_template_url = "https://matlab-web-app-server-templates.s3.amazonaws.com/r2022a_refarch/VPCStack.yml"
+    ipAddress = requests.get("https://api.ipify.org").text + "/32"
     vpc_parameters  = [{"ParameterKey": "AllowPublicIP",
                             "ParameterValue": "Yes"}]
     existingstack = deploy.deploy_stack(existing_template_url, vpc_parameters, location_arg, "existingvpc")
@@ -88,4 +89,4 @@ def main(keypairname, password, ipAddress, location_arg, platform_arg):
 
 
 if __name__ == '__main__':
-    main(sys.argv[1], sys.argv[2], sys.argv[3], sys.argv[4], sys.argv[5])
+    main(sys.argv[1], sys.argv[2], sys.argv[3], sys.argv[4])
