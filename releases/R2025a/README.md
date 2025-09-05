@@ -95,7 +95,7 @@ Click the **Create** button. The CloudFormation service starts creating resource
 ## Step 6. Connect and Log In to the Admin Portal (Linux Server Only)
 > **Note:** The Internet Explorer web browser is not supported for accessing the admin portal. 
 
-The MALAB Web App Server admin portal provides a web-based interface to configure and manage the server instance on the cloud. The admin portal is only available for servers deployed on Ubuntu Linux.
+The MATLAB Web App Server admin portal provides a web-based interface to configure and manage the server instance on the cloud. The admin portal is only available for servers deployed on Ubuntu Linux. For more details on accessing and using the admin portal, see [Manage MATLAB Web App Server on AWS Using Admin Portal](https://www.mathworks.com/help/webappserver/ug/manage-matlab-web-app-server-using-admin-portal-on-aws-reference-architecture.html).
 
 1. In the Stack details for your stack, click the **Outputs** tab.
 1. Look for the key named `AdminPortalUrl` and click the corresponding URL listed under **value**. This opens the admin portal Overview page.
@@ -131,7 +131,7 @@ To run applications on MATLAB Web App Server, you need to create web apps using 
 ## Step 8. Configure User Authentication
 
 ### Linux Server
-On Linux servers, user authentication to the admin portal and MATLAB Web App Server home page is administered by default through [Keycloak](https://www.keycloak.org/docs/latest/server_admin/index.html). Keycloak is a cloud native solution that provides authentication, authorization, and user management for applications and services. You can configure authentication using your identity provider with Keycloak or directly using LDAP or OIDC.
+On Linux servers, user authentication to the admin portal and MATLAB Web App Server home page is administered by default through [Keycloak](https://www.keycloak.org/docs/latest/server_admin/index.html). Keycloak is a cloud native solution that provides authentication, authorization, and user management for applications and services. You can configure authentication using your identity provider with Keycloak or directly using LDAP or OIDC. For more details, see [Configure Authentication for MATLAB Web App Server on AWS](https://www.mathworks.com/help/webappserver/ug/configure-authentication-for-matlab-web-app-server-on-aws.html).
 
 After you deploy MATLAB Web App Server, log in to the Keycloak administration console to configure user authentication and change the default admin credentials.
 1. In the Stack details for your stack, click the **Outputs** tab.
