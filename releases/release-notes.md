@@ -1,5 +1,8 @@
 ## Release Notes for MATLAB Web App Server on Amazon Web Services
 
+### R2025b
+- You can now deploy MATLAB Web App Server R2025b using the Amazon Web Services reference architecture.
+
 ### R2025a
 - You can now deploy MATLAB Web App Server R2025a using the Amazon Web Services reference architecture.
 - You can now manage MATLAB Web App Server Linux instances using the MATLAB Web App Server Admin Portal, which is a web-based interface to edit server settings, configure access control for web applications, and view server logs. For more details, see [Connect and Log In to the Admin Portal](R2025a/README.md#step-6-connect-and-log-in-to-the-admin-portal-linux-server-only).

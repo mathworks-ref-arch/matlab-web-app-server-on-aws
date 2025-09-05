@@ -1,7 +1,7 @@
 # MATLAB Web App Server on Amazon Web Services - R2023b
 
 # Deployment Steps
-Follow these steps to deploy the R2023b MATLAB Web App Server reference architecture on AWS. To deploy reference architectures for other releases, see [Deploy Reference Architecture for Your Release](/README.md#deploy-reference-architecture-for-your-release). 
+Follow these steps to deploy the R2023b MATLAB Web App Server reference architecture on AWS. To deploy reference architectures for other releases, see [Deploy Reference Architecture for Your Release](/README.md?tab=readme-ov-file#deploy-reference-architecture-for-your-release). 
 ## Step 1. Launch Template
 Before launching the template, make sure that you have selected one of these supported AWS regions from the top navigation:<ul><li>**US East (N. Virginia)**</li><li>**Europe (Ireland)**</li><li>**Asia Pacific (Tokyo)**</li></ul>
 
@@ -13,7 +13,7 @@ Then, click the appropriate **Launch Stack** button to launch the stack configur
 
 The AWS Management Console opens in your web browser.
 
->**NOTE:** Multiple versions of MATLAB Runtime are supported. For details, see [Deploy Reference Architecture for Your Release](/README.md#deploy-reference-architecture-for-your-release).
+>**NOTE:** Multiple versions of MATLAB Runtime are supported. For details, see [Deploy Reference Architecture for Your Release](/README.md?tab=readme-ov-file#deploy-reference-architecture-for-your-release).
 
 >**NOTE:** Creating a stack on AWS can take at least 20 minutes.
 ><!--For other releases, see [How do I launch a template that uses a previous MATLAB release?](#how-do-i-launch-a-template-that-uses-a-previous-matlab-release)-->
