@@ -160,7 +160,7 @@ On Windows servers, user authentication to the MATLAB Web App Server home page i
 1. In the S3 console, click **apps**.
 1. Click **Upload** > **Add Files** to select and upload web apps (`.ctf` files).
 >**NOTE 1:** If you enable user authentication, you can upload web apps from the apps home page. To configure authentication, see [Step 8](#step-8-configure-user-authentication).<p>
->**NOTE 2:**  Only folders created within the `apps` root-level folder are supported. Subfolders within those folders are not supported.
+>**NOTE 2:**  Only folders created within the `apps` root-level folder are supported. Subfolders within those folders are not supported. For folder naming guidelines, see [General purpose bucket naming rules](https://docs.aws.amazon.com/AmazonS3/latest/userguide/bucketnamingrules.html).
 
 ## Get Password to EC2 Instance Hosting MATLAB Web App Server
 1. In the AWS management console, select the stack you deployed. 
