@@ -13,7 +13,7 @@ Then, click the appropriate **Launch Stack** button to launch the stack configur
 
 | Release | New VPC | Existing VPC | Operating Systems |
 |---------|---------| ------------ | ----------------- |
-| R2025b | <a href="https://us-east-1.console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/quickcreate?templateURL=https://matlab-web-app-server-templates.s3.amazonaws.com/R2025b_refarch/WebAppServer_new.yml" target="_blank">     <img src="https://s3.amazonaws.com/cloudformation-examples/cloudformation-launch-stack.png"/> </a> | <a  href ="https://us-east-1.console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/create/review?templateURL=https://matlab-web-app-server-templates.s3.amazonaws.com/R2025b_refarch/WebAppServer_existing.yml"  target ="_blank" >      <img  src ="https://s3.amazonaws.com/cloudformation-examples/cloudformation-launch-stack.png" /> </a> | Windows Server 2022 or Ubuntu 22.04 VM |
+| R2025b | <a href="https://us-east-1.console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/quickcreate?templateURL=https://matlab-web-app-server-templates.s3.amazonaws.com/r2025b_refarch/WebAppServer_new.yml" target="_blank">     <img src="https://s3.amazonaws.com/cloudformation-examples/cloudformation-launch-stack.png"/> </a> | <a  href ="https://us-east-1.console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/create/review?templateURL=https://matlab-web-app-server-templates.s3.amazonaws.com/r2025b_refarch/WebAppServer_existing.yml"  target ="_blank" >      <img  src ="https://s3.amazonaws.com/cloudformation-examples/cloudformation-launch-stack.png" /> </a> | Windows Server 2022 or Ubuntu 22.04 VM |
 
 The AWS Management Console opens in your web browser.
 
@@ -160,7 +160,7 @@ On Windows servers, user authentication to the MATLAB Web App Server home page i
 1. In the S3 console, click **apps**.
 1. Click **Upload** > **Add Files** to select and upload web apps (`.ctf` files).
 >**NOTE 1:** If you enable user authentication, you can upload web apps from the apps home page. To configure authentication, see [Step 8](#step-8-configure-user-authentication).<p>
->**NOTE 2:**  Only folders created within the `apps` root-level folder are supported. Subfolders within those folders are not supported.
+>**NOTE 2:**  Only folders created within the `apps` root-level folder are supported. Subfolders within those folders are not supported. For folder naming guidelines, see [General purpose bucket naming rules](https://docs.aws.amazon.com/AmazonS3/latest/userguide/bucketnamingrules.html).
 
 ## Get Password to EC2 Instance Hosting MATLAB Web App Server
 1. In the AWS management console, select the stack you deployed. 

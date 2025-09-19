@@ -117,8 +117,8 @@ To run applications on MATLAB Web App Server, you need to create web apps using 
 1. Look for the key named `MATLABWebAppServerAppsS3Bucket`, and click the corresponding URL listed under value.
 1. In the S3 console, click **apps**.
 1. Click **Upload** > **Add Files** to select and upload web apps (`.ctf` files).
->**NOTE 1:** If you enable OIDC authentication, you can upload web apps from the apps home page. Any apps you upload via the apps home page are not synchornized with S3 bucket. To enable OIDC authentication, see [Configure OIDC Authentication](#configure-oidc-authentication).
->**NOTE 2:**  Only folders created within the APPS root level folder are supported. Subfolders within those folders are not supported.
+>**NOTE 1:** If you enable OIDC authentication, you can upload web apps from the apps home page. Any apps you upload via the apps home page are not synchornized with S3 bucket. To enable OIDC authentication, see [Configure OIDC Authentication](#configure-oidc-authentication).<p>
+>**NOTE 2:**  Only folders created within the APPS root level folder are supported. Subfolders within those folders are not supported. For folder naming guidelines, see [General purpose bucket naming rules](https://docs.aws.amazon.com/AmazonS3/latest/userguide/bucketnamingrules.html).
 
 ## Get Password to EC2 Instance Hosting MATLAB Web App Server
 1. In the AWS management console, select the stack you deployed. 
