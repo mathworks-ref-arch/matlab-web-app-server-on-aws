@@ -1,7 +1,12 @@
 ## Release Notes for MATLAB Web App Server on Amazon Web Services
 
+### R2026a
+- You can now deploy MATLAB Web App Server R2026a using the Amazon Web Services reference architecture.
+
+
 ### R2025b
 - You can now deploy MATLAB Web App Server R2025b using the Amazon Web Services reference architecture.
+- Starting November 4 2025, all servers use Hyper-V generation 2 for improved performance and security. Linux servers use Ubuntu 24.04.
 
 ### R2025a
 - You can now deploy MATLAB Web App Server R2025a using the Amazon Web Services reference architecture.
