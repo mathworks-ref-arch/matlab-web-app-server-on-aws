@@ -1,6 +1,7 @@
 # Health Check tests for MATLAB Web App Server Reference Architecture
 
 import refarch_testtools.deploy as deploy
+import refarch_testtools.git_utils as git_utils
 import sys
 import re
 import requests
@@ -13,6 +14,8 @@ import json
 def main(keypairname, password, location_arg, platform_arg):
     # Reference architectures in production.
     ref_arch_name = 'matlab-web-app-server-on-aws'
+    branch_name = git_utils.get_current_branch()
+    
     ipAddress = requests.get("https://api.ipify.org").text + "/32"
     parameters = [{'ParameterKey': 'KeyPairName', 'ParameterValue': keypairname},
                   {'ParameterKey': 'AdminIPAddress', 'ParameterValue': ipAddress},
@@ -22,7 +25,7 @@ def main(keypairname, password, location_arg, platform_arg):
                   {'ParameterKey': 'UseSameIPForClient', 'ParameterValue': 'Yes'}]
 
     # Find latest MATLAB release from Github page and get template url text
-    res = requests.get(f"https://github.com/mathworks-ref-arch/{ref_arch_name}/blob/master/releases/")
+    res = requests.get(f"https://github.com/mathworks-ref-arch/{ref_arch_name}/blob/{branch_name}/releases/")
 
     # Deploy a stack for the latest two releases
     latest_releases = [
@@ -36,7 +39,7 @@ def main(keypairname, password, location_arg, platform_arg):
         github_base_dir = "https://raw.githubusercontent.com/mathworks-ref-arch"
 
         # Getting template url from .json file
-        template_url_path = f"{github_base_dir}/{ref_arch_name}/main/releases/{matlab_release}/templates.json"
+        template_url_path = f"{github_base_dir}/{ref_arch_name}/{branch_name}/releases/{matlab_release}/templates.json"
         response = urllib.request.urlopen(template_url_path)
         template_json = json.loads(response.read())
         template_url = template_json["WebAppServer_new.yml"]

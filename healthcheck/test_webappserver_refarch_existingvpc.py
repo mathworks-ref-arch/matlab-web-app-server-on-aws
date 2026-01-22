@@ -1,7 +1,8 @@
 # Test for MATLAB WebApps Server Reference Architecture AWS on Windows where existing VPC is used for stack creation.
-# Mathworks 2023
+# Mathworks 2023-2026
 
 import refarch_testtools.deploy as deploy
+import refarch_testtools.git_utils as git_utils
 import warnings
 import time
 import unittest
@@ -29,6 +30,7 @@ def main(keypairname, password, location_arg, platform_arg):
     subnet2 = deploy.get_stack_output_value(existingstack, 'Subnet2')
     subnet3 = deploy.get_stack_output_value(existingstack, 'Subnet3')
     ref_arch_name = 'matlab-web-app-server-on-aws'
+    branch_name = git_utils.get_current_branch()
     parameters = [{'ParameterKey': 'KeyPairName', 'ParameterValue': keypairname},
                   {'ParameterKey': 'AdminIPAddress', 'ParameterValue': ipAddress},
                   {'ParameterKey': 'Password', 'ParameterValue': password},
@@ -41,7 +43,7 @@ def main(keypairname, password, location_arg, platform_arg):
                   {'ParameterKey': 'DeployLicenseServer', 'ParameterValue': 'Yes'}]
 
     # Find latest MATLAB release from Github page and get template url text
-    res = requests.get(f"https://github.com/mathworks-ref-arch/{ref_arch_name}/blob/master/releases/")
+    res = requests.get(f"https://github.com/mathworks-ref-arch/{ref_arch_name}/blob/{branch_name}/releases/")
 
     # Deploy a stack for the latest two releases
     latest_releases = [
@@ -55,7 +57,7 @@ def main(keypairname, password, location_arg, platform_arg):
         github_base_dir = "https://raw.githubusercontent.com/mathworks-ref-arch"
 
         # Getting template url from .json file
-        template_url_path = f"{github_base_dir}/{ref_arch_name}/main/releases/{matlab_release}/templates.json"
+        template_url_path = f"{github_base_dir}/{ref_arch_name}/{branch_name}/releases/{matlab_release}/templates.json"
         response = urllib.request.urlopen(template_url_path)
         template_json = json.loads(response.read())
         template_url = template_json["WebAppServer_existing.yml"]
