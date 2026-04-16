@@ -1,5 +1,9 @@
 ## Release Notes for MATLAB Web App Server on Amazon Web Services
 
+### R2026a
+- You can now deploy MATLAB Web App Server R2026a using the Amazon Web Services reference architecture.
+- Audit logging is now enabled by default on Linux servers. For more information, see [Audit Logging](https://www.mathworks.com/help/webappserver/ug/audit-logging.html).
+
 ### R2025b
 - You can now deploy MATLAB Web App Server R2025b using the Amazon Web Services reference architecture.
 - Starting November 7 2025, Linux servers use Ubuntu 24.04 for improved performance and security.
