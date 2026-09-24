@@ -15,7 +15,7 @@ import sys
 import traceback
 
 
-def main(keypairname, password, location_arg, platform_arg, git_token):
+def main(keypairname, password, location_arg, platform_arg, git_token, SSLCertificateARN):
     # Reference architectures in production.
     # Deploy a stack for creating VPC with 2 subnets
     existing_template_url = "https://matlab-web-app-server-templates.s3.amazonaws.com/r2022a_refarch/VPCStack.yml"
@@ -62,7 +62,9 @@ def main(keypairname, password, location_arg, platform_arg, git_token):
         {'ParameterKey': 'ExistingVPC', 'ParameterValue': vpc_id},
         {'ParameterKey': 'ExistingSubnet1', 'ParameterValue': subnet1},
         {'ParameterKey': 'ExistingSubnet2', 'ParameterValue': subnet2},
-        {'ParameterKey': 'DeployLicenseServer', 'ParameterValue': 'Yes'}
+        {'ParameterKey': 'DeployLicenseServer', 'ParameterValue': 'Yes'},
+        {'ParameterKey': 'SSLCertificateARN', 'ParameterValue': SSLCertificateARN}
+
     ]
     
     # With a GitHub token
@@ -159,4 +161,4 @@ if __name__ == '__main__':
         print("Error: Missing required arguments")
         print("Usage: python script.py <keypairname> <password> <location> <platform> <git_token>")
         sys.exit(1)
-    main(sys.argv[1], sys.argv[2], sys.argv[3], sys.argv[4], sys.argv[5])
+    main(sys.argv[1], sys.argv[2], sys.argv[3], sys.argv[4], sys.argv[5], sys.argv[6])

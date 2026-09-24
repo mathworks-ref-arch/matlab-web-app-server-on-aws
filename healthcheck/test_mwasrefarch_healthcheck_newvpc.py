@@ -13,7 +13,7 @@ import json
 import traceback
 
 
-def main(keypairname, password, location_arg, platform_arg, git_token):
+def main(keypairname, password, location_arg, platform_arg, git_token, SSLCertificateARN):
     # Reference architectures in production.
     ref_arch_name = 'matlab-web-app-server-on-aws'
     branch_name = git_utils.get_current_branch()
@@ -26,7 +26,8 @@ def main(keypairname, password, location_arg, platform_arg, git_token):
         {'ParameterKey': 'Password', 'ParameterValue': password},
         {'ParameterKey': 'ConfirmPassword', 'ParameterValue': password},
         {'ParameterKey': 'WorkerSystem', 'ParameterValue': platform_arg},
-        {'ParameterKey': 'UseSameIPForClient', 'ParameterValue': 'Yes'}
+        {'ParameterKey': 'UseSameIPForClient', 'ParameterValue': 'Yes'},
+        {'ParameterKey': 'SSLCertificateARN', 'ParameterValue': SSLCertificateARN}
     ]
     
     # With a GitHub token
@@ -107,4 +108,4 @@ if __name__ == '__main__':
         print("Error: Missing required arguments")
         print("Usage: python script.py <keypairname> <password> <location> <platform> <git_token>")
         sys.exit(1)
-    main(sys.argv[1], sys.argv[2], sys.argv[3], sys.argv[4], sys.argv[5])
+    main(sys.argv[1], sys.argv[2], sys.argv[3], sys.argv[4], sys.argv[5], sys.argv[6])
